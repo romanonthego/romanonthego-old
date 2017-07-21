@@ -1,0 +1,15 @@
+.tag
+  opacity: 0.4
+  order: -1
+  margin-right: x(5)
+
+  +media('phone')
+    display: none
+
+  &:before
+    content: '['
+
+  &:after
+    content: ']'
+
+apply_media_cache()

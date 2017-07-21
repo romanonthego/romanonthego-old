@@ -1,0 +1,21 @@
+$columnWidth = 80
+$columnGutter = 20
+$columnsCount = 12
+
+row(reverse = false, align = 'flex-start')
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  align-items: align
+  flex-wrap: wrap
+  margin-right: - x($columnGutter / 2)
+  margin-left: - x($columnGutter / 2)
+  // hackish, but gold
+  width: calc(100% + 2rem)
+
+col(number = 1, of = 6, offset = 0)
+  $percentage = percentage(number / of)
+  flex: 0 0 auto
+  width: unquote('calc(' + $percentage + ' - ' + x(20) + ')')
+  margin-left: x($columnGutter / 2)
+  margin-right: x($columnGutter / 2)

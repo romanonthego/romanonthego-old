@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="content-language" content="en">
+  <meta http-equiv="language" content="en">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  {{> meta }}
+  {{> preloadScripts }}
+  {{> initialState }}
+  {{> css }}
+</head>
+<body>
+  {{! app hook }}
+  <main id="app">{{{html}}}</main>
+  {{! app scripts }}
+  {{> sentry }}
+  {{> googleAnalytics }}
+  {{> js}}
+</body>
+</html>

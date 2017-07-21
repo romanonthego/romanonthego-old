@@ -1,0 +1,40 @@
+@keyframes appear
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+.meStatic
+  opacity: 0
+  animation-name: appear
+  animation-duration: 2.5s
+  animation-iteration-count: 1
+  animation-fill-mode: forwards
+
+.me
+  position: fixed
+  height: 100vh
+  width: 100vw
+  min-height: x(320)
+  width: 100%
+  top: 0
+  right: 0
+  pointer-events: none
+  display: flex
+  flex-direction: row
+  justify-content: center
+  align-items: center
+
+  svg
+    display: block
+    position: absolute
+    top: 0
+    right: 0
+    overflow: visible
+    opacity: 0.30
+    height: 100%
+    width: auto
+
+    p
+      position: relative
+      will-change: fill-opacity

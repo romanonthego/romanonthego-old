@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-language" content="ru">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style type="text/css">
+      body {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-family: monospace;
+        text-transform: uppercase;
+        background-color: #1B2B34;
+        color: wheat;
+      }
+
+      .state {
+        height: 61vh;
+        width: 41vw;
+        text-align: left;
+      }
+
+      #log {
+        font-family: monospace;
+        line-height: 1.2rem;
+        font-size: 1rem;
+        text-transform: none;
+        height: 300px;
+        max-height: 300px;
+        overflow: scroll;
+        background-color: #0F2026;
+        color: white;
+        padding: 20px;
+      }
+
+      #progress {
+        height: 10px;
+        background-color: #8CC093;
+        width: 0%;
+        transition: width .1s ease-in;
+      }
+
+      #progress-precentage {
+        margin-left: 0%;
+        transition: margin-left .1s ease-in;
+        color: #8CC093;
+      }
+
+      #log span {
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="state">
+      <h1>Prerender getting ready</h1>
+      <h2 id="timeout"></h2>
+
+      <div id="progress-precentage">0%</div>
+      <div id="progress"></div>
+
+      <pre id="log">
+      </pre>
+    </div>
+
+    <script type="text/javascript">
+      var seconds = {{timeout}};
+
+      if (WebSocket) {
+        var ws = new WebSocket("ws://localhost:8080/prerender-status");
+         ws.onopen = function(){};
+         ws.onmessage = function (evt) {
+            var msg = evt.data;
+            var data = JSON.parse(msg);
+
+            var log = document.querySelectorAll('#log')[0];
+            var progressPrecentage = document.querySelectorAll('#progress-precentage')[0];
+            var progress = document.querySelectorAll('#progress')[0];
+
+            log.innerHTML = "<span>" + data.msg + "</span>" + log.innerHTML;
+
+            var percentage = Math.floor(data.percentage * 100);
+
+            progressPrecentage.innerHTML = percentage + "%"
+            progressPrecentage.style.marginLeft = percentage - 5 + "%"
+            progress.style.width= percentage + "%";
+
+            if (percentage >= 100) {
+              setTimeout(function() {
+                document.location.reload()
+              }, 100)
+            }
+
+         };
+
+         ws.onclose = function() {
+            console.log("Connection is closed...");
+         };
+      } else {
+        withInterval();
+      }
+
+      function withInterval() {
+        window.prerenderCheckInterval = setInterval(function() {
+          if (seconds < 1) {
+            clearInterval(window.prerenderCheckInterval)
+            document.location.reload()
+          } else {
+            seconds = seconds - 1;
+
+            document.querySelectorAll('#timeout')[0].innerHTML = 'retrying in ' + seconds + ' sec';
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

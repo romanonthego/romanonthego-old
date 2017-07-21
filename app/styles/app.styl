@@ -1,0 +1,46 @@
+@require './normalize'
+@require './reset'
+@require './typography'
+
+defineFont(font-family, filename, font-weight, font-style)
+  @font-face
+    font-family: font-family
+    font-weight: font-weight
+    font-style: font-style
+    src: url("app/styles/fonts/" + filename + ".woff") format("woff")
+
+defineFont('Roboto', 'Roboto-Regular', 400, 'normal')
+defineFont('Roboto', 'Roboto-Medium', 500, 'normal')
+defineFont('Roboto', 'Roboto-Bold', 700, 'normal')
+
+
+*, *:before, *:after
+  box-sizing: border-box
+  font-weight: normal
+  font-style: normal
+
+html
+  background-color: $bgColor
+  font-size: $grid.block
+  height: 100%
+
+  +media('wide_desk')
+    font-size: $grid.block * 1.1
+
+body
+  min-height: 100%
+  background-color: $bgColor
+  color: $textColor
+  font-family: $bodyFont
+  font-size: fontSize(16)
+  line-height: fontSize(20)
+  max-width: 100%
+  min-width: x(1280)
+
+:global(#app)
+  min-height: 100%
+  min-height: 100vh
+  display: flex
+  flex-direction: column
+
+apply_media_cache()

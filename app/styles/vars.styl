@@ -1,0 +1,256 @@
+$defaultFont ='Roboto', sans-serif
+
+$bodyFont = $defaultFont
+$headerFont = $defaultFont
+$actionFont = $defaultFont
+
+// COLORS
+$bgColor = rgba(255, 255, 255, 1.00)
+$textColor = rgba(46, 48, 50, 1.00)
+$invertedTextColor = rgba(239, 240, 242, 1.00)
+$quoteColor = rgba(162, 166, 172, 1.00)
+$accentColor = rgba(101, 152, 255, 1.00)
+$pressedColor = rgba(0, 105, 227, 1.00)
+
+$blackColor = rgba(22, 22, 22, 1.00)
+$subtleColor = rgba(248, 248, 248, 1.00)
+$middleColor = rgba(234, 233, 231, 1.00)
+$darkMiddleColor = rgba(199, 201, 204, 1.00)
+$subtleDarkColor = rgba(73, 76, 78, 1.00)
+
+$confirmColor = rgba(62, 233, 132, 1.00)
+$warningColor = rgba(255, 173, 5, 1.00)
+$errorColor = rgba(231, 70, 90, 1.00)
+$errorFadedColor = rgba(231, 70, 90, .50)
+
+$accentSubtleColor = rgba(255, 253, 229, 1.00)
+$accentYellowColor = rgba(255, 247, 159, 1.00)
+
+// links
+$linkColor = rgba(0, 118, 255, 1.00)
+$linkHover = rgba(42, 150, 255, 1.00)
+$linkPressed = rgba(0, 105, 227, 1.00)
+$linkVisited = rgba(187, 96, 235, 1.00)
+
+$button = rgba(55, 114, 255, 1.00)
+
+$devices = {
+  ipad: {
+    width: 1024px
+    height: 768px
+  }
+
+  iphone4: {
+    width: 320px
+    height: 480px
+  }
+
+  iphone5: {
+    width: 320px
+    height: 568px
+  }
+
+  iphone6: {
+    width: 375px
+    height: 667px
+  }
+
+  iphone6plus: {
+    width: 414px
+    height: 736px
+  }
+}
+
+$grid ={
+  block: 10px
+  row: 29px
+
+  wide_desk: {
+    column: 133px
+    columnGutter: 20px
+    row: 29px
+    columnCount: 12
+  }
+
+  desk: {
+    column: 70px
+    columnGutter: 30px
+    row: 29px
+    columnCount: 12
+  }
+
+  tablet: {
+    column: 60px
+    columnGutter: 20px
+    row: 29px
+    columnCount: 10
+  }
+
+  phoneLandscape: {
+    column: 31px
+    columnGutter: 5px
+    row: 19px
+    columnCount: 12
+  }
+
+  phonePortrait: {
+    column: 22px
+    columnGutter: 5px
+    row: 19px
+    columnCount: 10
+  }
+}
+
+
+// // SIZING
+// // return size in base-blocks
+// // default for all the stuff
+x(n=1)
+  return xInRem(n)
+
+// return size in base block in rem units
+xInRem(n)
+  $n_normalized = n/$grid.block
+  return 1rem*$n_normalized
+
+
+xInPx(n=1)
+  return $grid.block*n
+
+
+xFromPx(sizeInPx)
+  return x(sizeInPx)
+
+
+// columns
+column(n=1, addGutter=false, size='desk')
+  column = $grid[size]['column']
+  gutter = $grid[size]['columnGutter']
+
+  guttersCount = n
+
+  if addGutter
+    guttersCount = n
+  else
+    guttersCount = n - 1
+
+  return x(column)*n + x(gutter)*guttersCount
+
+
+columnGutter(size='desk')
+  gutter = $grid[size]['columnGutter']
+
+  return x(gutter)
+
+
+
+row(n=1, size='desk')
+  row = $grid[size]['row']
+
+  return x(row/$grid.block)*n
+
+
+rowFromPx(sizeInPx=20, size='desk')
+  row = $grid[size]['row']
+
+  return x(row)*(sizeInPx/row)
+
+
+// returns x(size/20px) here
+fontSize(sizeInPx)
+  return xFromPx(sizeInPx)
+
+y(n=1)
+  return x($grid.row)*n
+
+yInPx(n)
+  return $grid.row*n
+
+
+
+// AWESOME MEDIA QUIERIES
+$media_cache = {}
+
+media(query)
+  return 'only screen and ' + query
+
+media2x(query)
+  q =     'only screen and (-webkit-min-device-pixel-ratio: 1.5)      and ' + query + ','
+  q = q + 'only screen and (   min--moz-device-pixel-ratio: 1.5)      and ' + query + ','
+  q = q + 'only screen and (     -o-min-device-pixel-ratio: 1.5/1)    and ' + query + ','
+  q = q + 'only screen and (        min-device-pixel-ratio: 1.5)      and ' + query + ','
+  q = q + 'only screen and (                min-resolution: 192dpi)   and ' + query + ','
+  q = q + 'only screen and (                min-resolution: 2dppx)    and ' + query
+
+  return q
+
+media3x(query)
+  q =     'only screen and (-webkit-min-device-pixel-ratio: 3)      and ' + query + ','
+  q = q + 'only screen and (   min--moz-device-pixel-ratio: 3)      and ' + query + ','
+  q = q + 'only screen and (     -o-min-device-pixel-ratio: 3/1)    and ' + query + ','
+  q = q + 'only screen and (        min-device-pixel-ratio: 3)      and ' + query + ','
+  q = q + 'only screen and (                min-resolution: 220dpi) and ' + query + ','
+  q = q + 'only screen and (                min-resolution: 3dppx)  and ' + query
+
+  return q
+
+$media_aliases = {
+  phonePortrait:        media('(max-width: 414px)')
+  'phonePortrait@2x':   media2x('(max-width: 414px)')
+  'phonePortrait@3x':   media3x('(max-width: 414px)')
+
+  phoneLandscape:       media('(max-width: 736px)')
+  'phoneLandscape@2x':  media2x('(max-width: 736px)')
+  'phoneLandscape@3x':  media3x('(max-width: 736px)')
+
+  phone:           media('(max-width: 736px)')
+  'phone@2x':      media2x('(max-width: 736px)')
+  'phone@3x':      media3x('(max-width: 736px)')
+
+  portable:        media('(max-width: 1023px)')
+  'portable@2x':   media2x('(max-width: 1023px)')
+  'portable@3x':   media3x('(max-width: 1023px)')
+
+  tablet:          media('(max-width: 1023px)')
+  'tablet@2x':     media2x('(max-width: 1023px)')
+  'tablet@3x':     media3x('(max-width: 1023px)')
+
+  desk:            media('(min-width: 1024px)')
+  'desk@2x':       media2x('(min-width: 1024px)')
+  'desk@3x':       media3x('(min-width: 1024px)')
+
+  medium_desk:     media('(max-width: 1140px)')
+  'medium_desk@2x':media2x('(max-width: 1140px)')
+  'medium_desk@3x':media3x('(max-width: 1140px)')
+
+  wide_desk:       media('(min-width: 2100px)')
+  'wide_desk@2x':  media2x('(min-width: 2100px)')
+  'wide_desk@3x':  media3x('(min-width: 2100px)')
+}
+
+svg()
+  svg
+    use, path, polygon
+      {block}
+
+
+media($condition)
+  helper($condition)
+    unless $media_cache[$condition]
+      $media_cache[$condition] = ()
+    push($media_cache[$condition], block)
+
+  +helper($condition)
+    {selector() + ''}
+      {block}
+
+// Function we would use to call all the cached styles
+apply_media_cache()
+  for $media, $blocks in $media_cache
+    $media = unquote($media_aliases[$media] || $media)
+    // $media = '(%s)' % $media unless match('\(', $media)
+    // $media = 'only screen and %s' % $media
+
+    @media $media
+      for $block in $blocks
+        {$block}

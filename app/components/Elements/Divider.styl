@@ -1,0 +1,23 @@
+.divider
+  position: relative
+  height: 0px
+  width: auto
+  opacity: 0.4
+  margin-bottom: x(60)
+
+  &:after
+    content: '___________________________________________________________'
+    position: absolute
+    left: 0
+    top: 0
+
+  +media('tablet')
+    &:after
+      content: '_______________________________________'
+
+  +media('phone')
+    &:after
+      content: '_________________________'
+
+
+apply_media_cache()

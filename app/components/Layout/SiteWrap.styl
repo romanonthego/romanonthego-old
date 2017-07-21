@@ -1,0 +1,28 @@
+.site
+  display: flex
+  justify-content: flex-start
+  align-items: stretch
+  flex-direction: column
+  min-height: 100%
+  padding: 0
+
+.siteWrap
+  flex 1 0 auto
+
+$dotsColor = rgba(black, 0.05)
+
+.overlay
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  pointer-events: none
+  z-index: 9000
+  background-image: linear-gradient(45deg, $dotsColor 25%, transparent 25%),
+      linear-gradient(-45deg, $dotsColor 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, $dotsColor 75%),
+      linear-gradient(-45deg, transparent 75%, $dotsColor 75%)
+  background-size: 2px 2px
+  background-position: 0 0, 1px 0, 1px -1px, 0px 1px
+  background-blend-mode: screen

@@ -1,0 +1,43 @@
+.wrap
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+.status
+  opacity: 0.4
+  flex: 1 0 auto
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  align-items: center
+
+.statusText
+  &:before, &:after
+    display: inline
+
+  &:before
+    content: '['
+
+  &:after
+    content: ']'
+
+
+.meta
+  flex: 0 1 auto
+  list-style: none
+  margin: 0
+  padding: 0
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  align-items: center
+
+  +media('phone')
+    display: none
+
+  li
+    margin-right: x(20)
+    opacity: 0.4
+
+    &:last-child
+      margin-right: 0

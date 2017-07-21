@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - 7.5
+script:
+  - npm run lint
+cache:
+  directories:
+    - node_modules
+notifications:
+  slack: whitescape:9SIIR0wiT5owM9rfk41C6otD

@@ -1,0 +1,9 @@
+{{!
+  Preloaded fonts without crossorigin will double fetch!
+  Ensure you’re adding a crossorigin attribute when fetching fonts using preload otherwise they will be double downloaded.
+  ---
+  https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf
+}}
+{{#statics.fonts}}
+  <link rel="preload" href="/assets/{{name}}" crossorigin="anonymous" as="font" type="font/woff">
+{{/statics.fonts}}

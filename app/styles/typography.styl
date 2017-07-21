@@ -1,0 +1,133 @@
+body
+  font-family: $bodyFont
+  font-size: x(18)
+  line-height: x(28)
+  color: $textColor
+
+  :global(.inverted)
+    color: $invertedTextColor
+
+h1, h2, h3, h6, p, a
+  ::selection
+    background: rgba($accentColor, 0.4)
+  ::-moz-selection
+    background: rgba($accentColor, 0.4)
+
+h1, h2, h3, h4, h5, h6
+  font-family: $headerFont
+  font-weight: 700
+
+h1, h2
+  margin-bottom: 0
+
+  &:global(.header)
+    margin-bottom: 1em
+
+h3
+  margin-bottom: x(30)
+
+p,
+blockquote
+  margin-bottom: x(26)
+
+  & + h1,
+    + h2,
+    + h3
+    margin-top: x(48)
+
+blockquote
+  margin: x(41) 0
+
+h1
+  font-size: x(48)
+  line-height: 1.25
+  color: $blackColor
+
+  :global(.inverted) &
+    color: $invertedTextColor
+
+h2
+  font-size: x(27)
+  line-height: x(32)
+  color: $blackColor
+
+  :global(.inverted) &
+    color: $invertedTextColor
+
+h3
+  font-size: x(20)
+  line-height: x(26)
+  color: $textColor
+
+  :global(.inverted) &
+    color: $invertedTextColor
+
+small, :global(.small), h6
+  font-size: x(14)
+  line-height: x(16)
+
+button, input
+  outline: none
+  box-shadow: none
+
+hr
+  border-width: 0
+
+a
+  color: $linkColor
+  text-decoration: none
+
+  &:hover
+    color: $linkHover
+    text-decoration: underline
+  &:active
+    color: $linkPressed
+    text-decoration: underline
+  // &:visited
+  //   color: $linkVisited
+
+blockquote
+  padding-left: x(30)
+  font-family: $bodyFont
+  font-size: x(24)
+  line-height: x(32)
+  color: $quoteColor
+
+b
+  font-family: $headerFont
+  font-weight: 700
+
+button
+  outline: none
+  border: none
+  background-color: transparent
+  padding: 0
+  margin: 0
+
+:global(.medium)
+  font-size: x(16)
+  line-height: x(20)
+
+:global(.subtle)
+  color: $quoteColor
+
+:global(.caps)
+  font-family: $headerFont
+  font-weight: 700
+  font-size: x(12)
+  line-height: x(14)
+  letter-spacing: x(.8)
+  text-transform: uppercase
+
+:global(.action)
+  font-family: $actionFont
+  color: $linkColor
+
+  :global(.inverted) &
+    background-color: $linkColor
+    color: $invertedTextColor
+
+:global(.inverted)
+  background-color: $blackColor
+
+apply_media_cache()
