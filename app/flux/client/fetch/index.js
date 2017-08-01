@@ -14,7 +14,7 @@ export default function client(props = {}) {
     body,
     // timeout = 15 * 1000,
     withAuthorization = false,
-    ...otherProps,
+    ...otherProps
   } = props
 
   const headersList = new Headers({

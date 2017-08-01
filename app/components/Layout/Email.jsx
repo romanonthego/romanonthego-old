@@ -52,10 +52,7 @@ class Email extends PureComponent {
       })
 
       event.preventDefault()
-      return false
     }
-
-    return true
   }
 
   handleEmailScramble = (key) => {
