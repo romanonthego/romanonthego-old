@@ -1,11 +1,10 @@
 {
-  "name": "ecomp-fe",
-  "private": true,
-  "version": "1.1.0",
-  "description": "E-Components Front-End",
+  "name": "romanonthego",
+  "version": "2.0.0",
+  "description": "romanonthego",
   "repository": {
     "type": "git",
-    "url": "https://github.com/whitescape/ecomp-fe"
+    "url": "https://github.com/romanonthego/romanonthego-fe"
   },
   "author": "romanonthego@gmail.com",
   "license": "UNLICENSED",
