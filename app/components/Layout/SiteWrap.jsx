@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import cx from 'classnames'
 import css from './SiteWrap.styl'
 import Header from './Header'
@@ -6,10 +7,10 @@ import Footer from './Footer'
 
 export default class SiteWrap extends PureComponent {
   static propTypes = {
-    children: React.PropTypes.node,
-    displayHeader: React.PropTypes.bool,
-    displayFooter: React.PropTypes.bool,
-    displayProfile: React.PropTypes.bool,
+    children: PropTypes.node,
+    displayHeader: PropTypes.bool,
+    displayFooter: PropTypes.bool,
+    displayProfile: PropTypes.bool,
   }
 
   static defaultProps = {

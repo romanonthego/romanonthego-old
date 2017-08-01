@@ -1,4 +1,6 @@
-import React, {PureComponent, PropTypes} from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import isEqual from 'lodash/isEqual'
 import cx from 'classnames'
 import css from './index.styl'
 
@@ -16,20 +18,79 @@ const castOutputToString = (output) => {
   }, '')
 }
 
-export default class TextScamble extends PureComponent {
+const setText = (children, oldText) => {
+  const queue = []
+
+  for (let i = 0, len = children.length; i < len; i += 1) {
+    const from = oldText[i] || ''
+    const to = children[i] || ''
+    const start = floor(random() * 40)
+    const end = start + floor(random() * 40)
+
+    queue.push({from, to, start, end})
+  }
+
+  return {
+    frame: 0,
+    queue,
+    newText: children,
+    done: false,
+  }
+}
+
+// eslint-disable-next-line complexity
+const buildNewOutput = (queue, frame) => {
+  let complete = 0
+  const output = []
+  const newQueue = [...queue]
+
+  for (let i = 0, n = queue.length; i < n; i += 1) {
+    const {
+      from,
+      to,
+      start,
+      end,
+      char = null,
+    } = queue[i]
+
+    if (frame >= end) {
+      complete += 1
+      output.push({char: to})
+    }
+
+    if (frame < end && frame >= start) {
+      if (!char || random() < 0.28) {
+        newQueue[i].char = randomChar(scrambledChars)
+      }
+      output.push({dud: true, char})
+    }
+
+    if (frame < end && frame < start) {
+      output.push({char: from})
+    }
+  }
+
+  return {
+    newQueue,
+    output,
+    complete,
+  }
+}
+
+export default class TextScamble extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     dudClassName: PropTypes.string,
-    element: PropTypes.oneOf([PropTypes.func, PropTypes.string]),
+    element: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
     onDone: PropTypes.func,
     onDoneTimeout: PropTypes.number,
-    chars: PropTypes.string,
+    // chars: PropTypes.string,
   }
 
   static defaultProps = {
     element: 'span',
     onDoneTimeout: 1,
-    chars: scrambledChars,
+    // chars: scrambledChars,
   }
 
   state = {
@@ -46,7 +107,7 @@ export default class TextScamble extends PureComponent {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.children !== this.props.children) {
+    if (!isEqual(newProps.children, this.props.children)) {
       this.setText(newProps.children)
     }
   }
@@ -70,39 +131,24 @@ export default class TextScamble extends PureComponent {
     }
   }
 
-  componentWillUumount() {
+  componentWillUnmount() {
     clearTimeout(this.onDoneTimeoutRequest)
+    this.cancelAnimation()
   }
 
   // eslint-disable-next-line complexity
   setText(children) {
-    const {
-      oldText,
-      // newText,
-    } = this.state
-
-    const queue = []
-    const frame = 0
-
     if (!children || !children.length) {
       return
     }
 
-    for (let i = 0, len = children.length; i < len; i++) {
-      const from = oldText[i] || ''
-      const to = children[i] || ''
-      const start = floor(random() * 40)
-      const end = start + floor(random() * 40)
+    const {
+      oldText,
+    } = this.state
 
-      queue.push({from, to, start, end})
-    }
+    const state = setText(children, oldText)
 
-    this.setState({
-      queue,
-      frame,
-      newText: children,
-      done: false,
-    }, () => {
+    this.setState(state, () => {
       this.cancelAnimation()
       this.update()
     })
@@ -118,7 +164,7 @@ export default class TextScamble extends PureComponent {
       newQueue,
       output,
       complete,
-    } = this.buildNewOutput(queue, frame)
+    } = buildNewOutput(queue, frame)
 
     const done = complete === queue.length
 
@@ -133,45 +179,6 @@ export default class TextScamble extends PureComponent {
         this.animate()
       }
     })
-  }
-
-  // eslint-disable-next-line complexity
-  buildNewOutput(queue, frame) {
-    let complete = 0
-    const output = []
-    const newQueue = [...queue]
-
-    for (let i = 0, n = queue.length; i < n; i++) {
-      const {
-        from,
-        to,
-        start,
-        end,
-        char = null,
-      } = queue[i]
-
-      if (frame >= end) {
-        complete++
-        output.push({char: to})
-      }
-
-      if (frame < end && frame >= start) {
-        if (!char || random() < 0.28) {
-          newQueue[i].char = randomChar(this.props.chars)
-        }
-        output.push({dud: true, char})
-      }
-
-      if (frame < end && frame < start) {
-        output.push({char: from})
-      }
-    }
-
-    return {
-      newQueue,
-      output,
-      complete,
-    }
   }
 
   cancelAnimation() {
@@ -205,7 +212,6 @@ export default class TextScamble extends PureComponent {
       element: Element,
       onDone, // eslint-disable-line
       onDoneTimeout, // eslint-disable-line
-      chars, // eslint-disable-line
       ...otherProps
     } = this.props
 

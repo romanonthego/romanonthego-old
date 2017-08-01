@@ -1,25 +1,37 @@
-import React, {PureComponent, PropTypes, Children} from 'react'
+import React, {PureComponent, Children} from 'react'
+import PropTypes from 'prop-types'
 import cx from 'classnames'
 import css from './LinksList.styl'
+
+const renderItem = (child, i) => {
+  const props = {
+    key: i,
+    className: css.item
+  }
+
+  // if (child.type === 'li') {
+  //   return cloneElement(child, props, [
+
+  //   ])
+  // }
+
+  return (
+    <li {...props}>
+      {child}
+    </li>
+  )
+}
 
 export default class LinksList extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     wrapped: PropTypes.bool,
-    addMore: PropTypes.oneOf([PropTypes.bool, PropTypes.string]),
+    addMore: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   }
 
   static defaultProps = {
     wrapped: false,
     addMore: false,
-  }
-
-  renderItem(child, i) {
-    return (
-      <li key={i} className={css.item}>
-        {child}
-      </li>
-    )
   }
 
   render() {
@@ -38,7 +50,7 @@ export default class LinksList extends PureComponent {
 
     return (
       <ul className={cl}>
-        {childrenArray.map(this.renderItem)}
+        {childrenArray.map(renderItem)}
         {addMore &&
           <li className={cx(css.item, css.addMore)}>
             {typeof addMore === 'boolean' ? 'and others' : addMore}

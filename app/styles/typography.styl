@@ -1,70 +1,40 @@
-body
-  font-family: $bodyFont
-  font-size: x(18)
-  line-height: x(28)
-  color: $textColor
+// @keyframes anaglyphPulse
+//   0%
+//     text-shadow: 1px 0 0 red, -1px 0 0 cyan
+//   50%
+//     text-shadow: 0 0 0 rgba(red, 0), 0 0 0 rgba(cyan, 0)
+//   100%
+//     text-shadow: 0 0 0 rgba(red, 0), 0 0 0 rgba(cyan, 0)
 
-  :global(.inverted)
-    color: $invertedTextColor
+*
+  text-shadow: 0.5px 0 0 red, -0.5px 0 0 cyan
 
-h1, h2, h3, h6, p, a
-  ::selection
-    background: rgba($accentColor, 0.4)
-  ::-moz-selection
-    background: rgba($accentColor, 0.4)
+  +selection()
+    background: rgba(white, 0.4)
 
 h1, h2, h3, h4, h5, h6
   font-family: $headerFont
-  font-weight: 700
-
-h1, h2
-  margin-bottom: 0
-
-  &:global(.header)
-    margin-bottom: 1em
-
-h3
-  margin-bottom: x(30)
-
-p,
-blockquote
-  margin-bottom: x(26)
-
-  & + h1,
-    + h2,
-    + h3
-    margin-top: x(48)
-
-blockquote
-  margin: x(41) 0
 
 h1
-  font-size: x(48)
-  line-height: 1.25
-  color: $blackColor
-
-  :global(.inverted) &
-    color: $invertedTextColor
+  font-size: x(24)
+  font-weight: 300
+  line-height: 1.3
+  margin-bottom: 1em
 
 h2
-  font-size: x(27)
-  line-height: x(32)
-  color: $blackColor
-
-  :global(.inverted) &
-    color: $invertedTextColor
-
-h3
-  font-size: x(20)
-  line-height: x(26)
-  color: $textColor
-
-  :global(.inverted) &
-    color: $invertedTextColor
-
-small, :global(.small), h6
   font-size: x(14)
-  line-height: x(16)
+  font-size: calc(1rem + 1.5vmin)
+  opacity: 0.4
+  margin-bottom: 1em
+
+small, .small
+  font-size: x(11)
+  font-size: calc(0.5rem + 1vmin)
+  font-weight: 300
+  line-height: 1.3
+
+:global(.secondary)
+  opacity: 0.4
 
 button, input
   outline: none
@@ -74,60 +44,109 @@ hr
   border-width: 0
 
 a
-  color: $linkColor
-  text-decoration: none
+  position: relative
+  color: white
+  text-decoration: underline
+  // text-decoration-style: dashed
+  // text-decoration-color: rgba(white, 0.6)
+  // border-bottom: 1px solid white
+
+
+  +media('tablet')
+    &:after
+      display: none
+
+  // &:after
+  //   height: 1.68em
+  //   white-space: nowrap
+  //   pointer-events: none
+  //   display: block
+  //   overflow: hidden
+  //   max-width: 0
+  //   content: attr(href)
+  //   position: absolute
+  //   top: 110%
+  //   left: 0
+  //   font-size: 0.68em
+  //   background-color: white
+  //   color: $bgColor
+  //   transition: max-width 0.4s linear
+  //   z-index: 1
+
+  // &[data-external]
+  //   &:after
+  //     content: attr(href) ' ↗'
+
+  // &[data-use-title]
+  //   &:after
+  //     content: attr(data-title)
+
+  //   &[data-external]
+  //     &:after
+  //       content: attr(data-title) ' ↗'
+
+  // &[data-tooltip-position="top"]
+  //   &:after
+  //     top: -110%
+
+  // &[data-hide-tooltip]
+  //   &:after
+  //     display: none !important
 
   &:hover
-    color: $linkHover
-    text-decoration: underline
-  &:active
-    color: $linkPressed
-    text-decoration: underline
-  // &:visited
-  //   color: $linkVisited
+    color: $bgColor
+    background-color: white
+    text-decoration: none
 
-blockquote
-  padding-left: x(30)
-  font-family: $bodyFont
-  font-size: x(24)
-  line-height: x(32)
-  color: $quoteColor
+    &:after
+      display: block
+      max-width: x(400)
+      background-color: white
+      z-index: 2
 
-b
-  font-family: $headerFont
-  font-weight: 700
+  +media('tablet')
+    &:after
+      display: none !important
+
+form
+  &, & > fieldset
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    justify-content: flex-start
+
+input
+  width: 100%
+  margin-bottom: x(20)
+
+  &:last-child
+    margin-bottom: 0
+
+input[type="text"]
+input[type="email"]
+input[type="password"]
+  display: block
+  background-color: rgba(white, 0.1)
+  padding: x(10) x(5)
+  border-top: none
+  border-left: none
+  border-right: none
+  border-bottom: 1px dashed rgba(white, 0.5)
+
+  &:hover
+    background-color: rgba(white, 0.15)
+
+  &:focus
+    background-color: rgba(white, 0.2)
+    border-bottom: 1px dashed white
+
 
 button
   outline: none
   border: none
-  background-color: transparent
-  padding: 0
-  margin: 0
+  background-color: white
+  color: $bgColor
+  padding: x(10) x(5)
 
-:global(.medium)
-  font-size: x(16)
-  line-height: x(20)
-
-:global(.subtle)
-  color: $quoteColor
-
-:global(.caps)
-  font-family: $headerFont
-  font-weight: 700
-  font-size: x(12)
-  line-height: x(14)
-  letter-spacing: x(.8)
-  text-transform: uppercase
-
-:global(.action)
-  font-family: $actionFont
-  color: $linkColor
-
-  :global(.inverted) &
-    background-color: $linkColor
-    color: $invertedTextColor
-
-:global(.inverted)
-  background-color: $blackColor
 
 apply_media_cache()

@@ -1,10 +1,11 @@
-import React, {PropTypes, PureComponent} from 'react'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import cx from 'classnames'
 import css from './Section.styl'
 
 export default class Section extends PureComponent {
   static propTypes = {
-    element: PropTypes.oneOf([PropTypes.string, PropTypes.function]),
+    element: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     className: PropTypes.string,
     children: PropTypes.node,
     paddingTop: PropTypes.bool,

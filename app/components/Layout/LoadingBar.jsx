@@ -1,4 +1,5 @@
-import React, {PropTypes, PureComponent} from 'react'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import cx from 'classnames'
 import {TransitionMotion, spring} from 'react-motion'
 import css from './LoadingBar.styl'
@@ -9,9 +10,6 @@ const springConfig = {stiffness: 300, damping: 32, precision: 1}
 export default class LoadingBar extends PureComponent {
   static propTypes = {
     loading: PropTypes.bool.isRequired,
-    version: PropTypes.string.isRequired,
-    commitLong: PropTypes.string.isRequired,
-    commitShort: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
@@ -50,7 +48,10 @@ export default class LoadingBar extends PureComponent {
                 })
 
                 return (
-                  <span key={i} className={cl} >
+                  <span
+                    key={i} // eslint-disable-line
+                    className={cl}
+                  >
                     _
                   </span>
                 )
@@ -65,13 +66,13 @@ export default class LoadingBar extends PureComponent {
 
   render() {
     return (
-        <TransitionMotion
-          styles={this.getStyles()}
-          willEnter={this.willEnter}
-          willLeave={this.willLeave}
-        >
-          {this.renderProgress}
-        </TransitionMotion>
+      <TransitionMotion
+        styles={this.getStyles()}
+        willEnter={this.willEnter}
+        willLeave={this.willLeave}
+      >
+        {this.renderProgress}
+      </TransitionMotion>
     )
   }
 }

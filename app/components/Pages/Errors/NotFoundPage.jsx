@@ -1,4 +1,5 @@
-import React, {PropTypes, PureComponent} from 'react'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import {Link} from 'react-router'
 import PageMeta from 'app/components/PageMeta'
 import SiteWrap from 'app/components/Layout/SiteWrap'
@@ -21,7 +22,7 @@ export default class NotFoundPage extends PureComponent {
               </main>
               <aside>
                 <Link to="/">
-                  Back to '/'
+                  Back to /
                 </Link>
               </aside>
             </section>

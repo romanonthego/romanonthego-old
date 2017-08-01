@@ -1,5 +1,5 @@
 import git from 'git-rev-sync'
-import thisPackage from '../../package.json'
+// import thisPackage from '../../package.json'
 
 export default {
   DEV: true,
@@ -9,7 +9,7 @@ export default {
   GA_MODE: 'auto',
   LAST_COMMIT_LONG: git.long(),
   LAST_COMMIT_SHORT: git.short(),
-  VERSION: thisPackage.version,  // IMPORTANT
+  VERSION: '2.0',  // IMPORTANT
   // TO ACCESS THIS METADATA RUN
   // heroku labs:enable runtime-dyno-metadata -a <app name>
   // HEROKU_APP_ID: false,

@@ -1,21 +1,50 @@
 import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
+import cx from 'classnames'
 import {TransitionMotion, spring} from 'react-motion'
 import css from './RouteTransition.styl'
-import cx from 'classnames'
 // import reactVendorPrefixes from 'app/utils/reactVendorPrefixes'
 
 const springConfig = {stiffness: 146, damping: 32, precision: 0.01}
 
+const renderRoute = (interpolated = {}) => {
+  const {
+    key,
+    data: {
+      children
+    } = {},
+    style: {
+      opacity
+    } = {}
+  } = interpolated
+
+  const cl = cx({
+    [css.route]: true,
+    [css.animated]: opacity < 1,
+  })
+
+  return (
+    <div key={key} className={cl} style={{opacity}}>
+      {children}
+    </div>
+  )
+}
+
+const willEnter = () => ({
+  opacity: 1,
+})
+
+
+const willLeave = () => ({
+  opacity: spring(0, springConfig),
+})
+
+
 export default class RouteTransition extends PureComponent {
   static propTypes = {
-    pathname: React.PropTypes.string.isRequired,
-    children: React.PropTypes.node.isRequired,
-    animated: React.PropTypes.bool,
-    animationConfig: React.PropTypes.shape({
-      stiffness: React.PropTypes.number.isRequired,
-      damping: React.PropTypes.number.isRequired,
-      precision: React.PropTypes.number,
-    }),
+    pathname: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
+    animated: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -40,53 +69,16 @@ export default class RouteTransition extends PureComponent {
     ]
   }
 
-  willEnter = () => {
-    return {
-      opacity: 1,
-    }
-  }
-
-
-  willLeave = () => {
-    return {
-      opacity: spring(0, springConfig),
-    }
-  }
-
-
-  renderRoute = ({key, data, style}) => {
-    const {opacity} = style
-
-    // animated out
-    const animated = opacity < 1
-
-    const cl = cx({
-      [css.route]: true,
-      [css.animated]: animated,
-    })
-
-    const transitionStyle = {
-      opacity,
-    }
-
-    return (
-      <div key={key} className={cl} style={transitionStyle}>
-        {data.children}
-      </div>
-    )
-  }
-
-
   renderRoutesTransition = () => {
     return (
       <TransitionMotion
         styles={this.getStyles()}
-        willEnter={this.willEnter}
-        willLeave={this.willLeave}
+        willEnter={willEnter}
+        willLeave={willLeave}
       >
-        {interpolatedStyles =>
+        {(interpolatedStyles) =>
           <div className={css.wrap}>
-            {interpolatedStyles.map(this.renderRoute)}
+            {interpolatedStyles.map(renderRoute)}
           </div>
         }
       </TransitionMotion>
@@ -98,6 +90,14 @@ export default class RouteTransition extends PureComponent {
   }
 
   render() {
-    return this.props.animated ? this.renderRoutesTransition() : this.renderWithoutAnimation()
+    const {
+      animated
+    } = this.props
+
+    if (animated) {
+      return this.renderRoutesTransition()
+    }
+
+    return this.renderWithoutAnimation()
   }
 }

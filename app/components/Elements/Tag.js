@@ -1,11 +1,12 @@
-import React, {PureComponent, PropTypes} from 'react'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import TextScramble from './TextScramble'
 import css from './Tag.styl'
 
 export default class Tag extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    element: PropTypes.oneOf([PropTypes.string, PropTypes.func]),
+    element: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }
 
   static defaultProps = {

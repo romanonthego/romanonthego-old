@@ -1,4 +1,5 @@
-import React, {PropTypes, PureComponent} from 'react'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import ShuffleChar from './ShuffleChar'
 import css from './ShuffleText.styl'
 
@@ -25,7 +26,7 @@ class ShuffleText extends PureComponent {
       charClassName,
     } = this.props
 
-    if (char !== ` ` && char !== `-`) {
+    if (char !== ' ' && char !== '-') {
       return (
         <ShuffleChar
           char={char}
@@ -43,23 +44,24 @@ class ShuffleText extends PureComponent {
   render() {
     const {
       children,
-      charClassName,
-      shuffle,
-      element,
-      countMultiplier,
-      timeoutMultiplier,
+      element: Element,
+      // charClassName,
+      // shuffle,
+      // element,
+      // countMultiplier,
+      // timeoutMultiplier,
       ...otherProps
     } = this.props
 
     const string = [...children].map(this.renderChar)
 
     return (
-      <this.props.element
+      <Element
         className={css.text}
         {...otherProps}
       >
         {string}
-      </this.props.element>
+      </Element>
     )
   }
 }

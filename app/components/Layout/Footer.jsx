@@ -15,17 +15,26 @@ export default class Footer extends PureComponent {
         <Divider />
         <ul>
           <li>
-            <LinkScramble to="https://github.com/romanonthego" data-tooltip-position="top">
+            <LinkScramble
+              to="https://github.com/romanonthego"
+              data-tooltip-position="top"
+            >
               github
             </LinkScramble>
           </li>
           <li>
-            <LinkScramble to="https://medium.com/@romanonthego" data-tooltip-position="top">
+            <LinkScramble
+              to="https://medium.com/@romanonthego"
+              data-tooltip-position="top"
+            >
               medium
             </LinkScramble>
           </li>
           <li>
-            <LinkScramble to="https://www.facebook.com/romanonthego" data-tooltip-position="top">
+            <LinkScramble
+              to="https://www.facebook.com/romanonthego"
+              data-tooltip-position="top"
+            >
               facebook
             </LinkScramble>
           </li>

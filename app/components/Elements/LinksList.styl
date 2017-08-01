@@ -31,7 +31,7 @@ $itemsInColum = 4
   flex-direction: column
   justify-content: flex-start
   align-items: flex-start
-  width: x(800)
+  max-width: x(800)
 
   +media('tablet')
     width: 100%
@@ -41,8 +41,8 @@ $itemsInColum = 4
     max-height: none
 
 .wrapped
-  height: 1.6em * $itemsInColum
-  max-height: 1.6em * $itemsInColum
+  height: 1.5em * $itemsInColum + 0.5em
+  max-height: 1.5em * $itemsInColum + 0.5em
   flex-wrap: wrap
 
   +media('phone')
@@ -56,8 +56,8 @@ $itemsInColum = 4
   flex-direction: row
   justify-content: flex-start
   align-items: center
-  margin-bottom: 0.6em
-  height: 1em
+  margin-bottom: 0.5em
+  min-height: 1em
 
   &:nth-child(4n)
     column-span: all
@@ -66,11 +66,15 @@ $itemsInColum = 4
     margin-bottom: 0
 
   &:before
+    align-self: flex-start
     content: counter(linksList, decimal-leading-zero) '·'
     animation: listNumberAnimated 1s linear
     animation-iteration-count: 1
     opacity: 0.4
     margin-right: x(5)
+
+    +selection()
+      opacity: 0
 
 .addMore
   opacity: 0.4

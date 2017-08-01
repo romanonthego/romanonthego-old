@@ -1,1 +1,1 @@
-export default from './ShuffleText'
+export default from './ShuffleText' // eslint-disable-line

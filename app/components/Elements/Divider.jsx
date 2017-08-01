@@ -1,10 +1,11 @@
-import React, {PureComponent, PropTypes} from 'react'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import cx from 'classnames'
 import css from './Divider.styl'
 
 export default class Divider extends PureComponent {
   static propTypes = {
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string,
   }
 
   render() {

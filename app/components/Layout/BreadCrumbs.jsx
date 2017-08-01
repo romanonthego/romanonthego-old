@@ -1,7 +1,16 @@
-import React, {PureComponent, PropTypes, Children} from 'react'
+import React, {PureComponent, Children} from 'react'
+import PropTypes from 'prop-types'
 import LinkScramble from 'app/components/Elements/LinkScramble'
 import cx from 'classnames'
 import css from './BreadCrumbs.styl'
+
+const renderItem = (child, i) => {
+  return (
+    <li key={i} className={css.item}>
+      {child}
+    </li>
+  )
+}
 
 export default class BreadCrumbs extends PureComponent {
   static propTypes = {
@@ -31,7 +40,7 @@ export default class BreadCrumbs extends PureComponent {
               romanonthego
             </LinkScramble>
           </li>
-          {childrenArray.map(this.renderItem)}
+          {childrenArray.map(renderItem)}
         </ul>
       </nav>
     )

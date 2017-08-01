@@ -1,4 +1,5 @@
-import React, {PropTypes, PureComponent} from 'react'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import PageMeta from 'app/components/PageMeta'
 import Helmet from 'bulletproof-react-helmet-es6'
 import {asyncConnect} from 'redux-connect'

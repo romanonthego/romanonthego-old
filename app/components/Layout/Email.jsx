@@ -1,4 +1,5 @@
-import React, {PureComponent, PropTypes} from 'react'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import TextScramble from 'app/components/Elements/TextScramble'
 import css from './Email.styl'
 import connector from './Email.connector'
@@ -89,27 +90,31 @@ class Email extends PureComponent {
       <a
         {...linkProps}
         onClick={this.handleUncover}
+        role="button"
         tabIndex={0}
         className={css.link}
         data-tooltip-position="top"
       >
         <span className={css.hint}>
-          <TextScramble>{hintText}</TextScramble>
+          <TextScramble>
+            {hintText}
+          </TextScramble>
         </span>
-
-        <TextScramble
-          element="span"
-          onDone={this.handleEmailScramble('name')}
-          onDoneTimeout={3600}
-        >
-          {uncovered ? 'romanonthego' : name}
-        </TextScramble>
-        @
-        <TextScramble
-          element="span"
-        >
-          gmail.com
-        </TextScramble>
+        <span className={css.linkItself}>
+          <TextScramble
+            element="span"
+            onDone={this.handleEmailScramble('name')}
+            onDoneTimeout={3600}
+          >
+            {uncovered ? 'romanonthego' : name}
+          </TextScramble>
+          @
+          <TextScramble
+            element="span"
+          >
+            gmail.com
+          </TextScramble>
+        </span>
       </a>
     )
   }

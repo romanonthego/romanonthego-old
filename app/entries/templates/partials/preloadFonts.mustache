@@ -4,6 +4,9 @@
   ---
   https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf
 }}
+{{^statics.fonts}}
+  <!-- no fonts to preload -->
+{{/statics.fonts}}
 {{#statics.fonts}}
-  <link rel="preload" href="/assets/{{name}}" crossorigin="anonymous" as="font" type="font/woff">
+  <link rel="preload" href="/assets/{{name}}" crossorigin="anonymous" as="font" type="font/woff2">
 {{/statics.fonts}}

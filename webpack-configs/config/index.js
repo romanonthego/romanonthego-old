@@ -60,7 +60,6 @@ const stylesLoaders = ({minimize = false} = {}) => {
       options: {
         import: [
           path.join(__DIR, 'app', 'styles', 'vars.styl'),
-          path.join(__DIR, 'app', 'styles', 'grid.styl'),
         ],
         preferPathResolver: 'webpack',
       },
@@ -149,7 +148,7 @@ export default {
         }),
       },
       {
-        test: /\.(svg|png|jpe?g|woff)$/,
+        test: /\.(svg|png|jpe?g|woff|woff2)$/,
         use: {
           loader: 'file-loader',
           options: {
@@ -177,7 +176,7 @@ export default {
         exclude: nodeModulesRegex,
       },
       {
-        test: /\.(svg|png|jpe?g|woff)$/,
+        test: /\.(svg|png|jpe?g|woff|woff2)$/,
         use: {
           loader: 'file-loader',
           options: {
@@ -205,7 +204,7 @@ export default {
         })
       },
       {
-        test: /\.(svg|png|jpe?g|woff)$/,
+        test: /\.(svg|png|jpe?g|woff|woff2)$/,
         use: {
           loader: 'file-loader',
           options: {

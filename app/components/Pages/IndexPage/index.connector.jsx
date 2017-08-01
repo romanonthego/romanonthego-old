@@ -2,11 +2,11 @@ import pageRenderingProvider from 'app/components/Providers/PageRenderingProvide
 import emptyLoader from 'app/flux/loaders/empty'
 import {selectFastMode} from 'app/flux/selectors/me'
 import {setFastMode} from 'app/flux/actions/me'
-import Page from './IndexPage'
+import Page from './index'
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.loadingBar,
+    loading: state.loadingBar.shown,
     fastMode: selectFastMode(state),
   }
 }

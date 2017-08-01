@@ -1,11 +1,12 @@
-import React, {PropTypes, PureComponent} from 'react'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import cx from 'classnames'
 import sample from 'lodash/sample'
 import random from 'lodash/random'
 import css from './ShuffleChar.styl'
 
-const poolRus = `ЙАПРОЛДЖЭЁИТЬБЮ`.split(``)
-const poolEng = `ABCDEFGHIJKLMN`.split(``)
+// const poolRus = `ЙАПРОЛДЖЭЁИТЬБЮ`.split(``)
+const poolEng = 'ABCDEFGHIJKLMN'.split('')
 
 function randomChar(char) {
   return sample(poolEng)
@@ -82,7 +83,7 @@ export default class ShuffleChar extends PureComponent {
       count,
     } = this.state
 
-    let style = count === 0 ? {opacity: 0} : {}
+    const style = count === 0 ? {opacity: 0} : {}
 
     return (
       <span

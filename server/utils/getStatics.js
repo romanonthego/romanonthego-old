@@ -14,7 +14,7 @@ const getAsset = (stats, name, ext = 'js') => {
   return asset[index] || defaultAssetName
 }
 
-const getFonts = (stats, extention = 'woff') => {
+const getFonts = (stats, extention = 'woff2') => {
   return filter(stats.assets, ({name}) => {
     return name.endsWith(`.${extention}`)
   }).map(({name}) => ({name}))
@@ -32,6 +32,7 @@ export default function getStatics() {
     // js
     js: [
       {name: getAsset(stats, 'manifest')},
+      {name: getAsset(stats, 'core-js')},
       {name: getAsset(stats, 'vendor')},
       {name: getAsset(stats, 'app')},
       // {name: getAsset(stats, 'demo')},
@@ -41,12 +42,12 @@ export default function getStatics() {
       {name: getAsset(stats, 'app', 'css')}
     ],
     // fonts to get them loaded before the css
-    fonts: getFonts(stats, 'woff'),
+    fonts: getFonts(stats, 'woff2'),
     // lazy-loading js and stuff
     // just firebase for now
     preloadJs: [
-      {name: getAsset(stats, 'firebase')},
-      {name: getAsset(stats, 'core-js')},
+      // {name: getAsset(stats, 'firebase')},
+      // {name: getAsset(stats, 'core-js')},
     ]
   }
 }

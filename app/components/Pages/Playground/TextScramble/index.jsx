@@ -32,20 +32,20 @@ export default class TextScrambleDemo extends PureComponent {
     return (
       <SiteWrap>
         <BulletproofHelmet
-          url={`${__BASE_URL__}/playground/text-scramble/`}
+          url={`${GLOBALS.BASE_URL}/playground/text-scramble/`}
           title="TextScramble Demo"
           description="Litlle text scramble effect as pureres react component"
           breadcrumbs={[
             {
-              id: `${__BASE_URL__}`,
+              id: `${GLOBALS.BASE_URL}`,
               name: 'romanonthego',
             },
             {
-              id: `${__BASE_URL__}/playground/`,
+              id: `${GLOBALS.BASE_URL}/playground/`,
               name: 'playground',
             },
             {
-              id: `${__BASE_URL__}/playground/text-scramble/`,
+              id: `${GLOBALS.BASE_URL}/playground/text-scramble/`,
               name: 'TextScramble',
             },
           ]}
@@ -63,8 +63,8 @@ export default class TextScrambleDemo extends PureComponent {
               <input
                 type="text"
                 defaultValue={'well, hello'}
-                ref={i => this.input = i} // eslint-disable-line
-                autoFocus
+                ref={(input) => this.input = input} // eslint-disable-line
+                autoFocus // eslint-disable-line
               />
               <button type="submit">
                 apply text

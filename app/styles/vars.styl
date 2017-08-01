@@ -1,38 +1,13 @@
-$defaultFont ='Roboto', sans-serif
+$text-color = white
 
-$bodyFont = $defaultFont
-$headerFont = $defaultFont
-$actionFont = $defaultFont
+$monospace = 'Overpass Mono', 'Courier New', Courier, monospace
+
+$bodyFont = $monospace
+$headerFont = $monospace
 
 // COLORS
-$bgColor = rgba(255, 255, 255, 1.00)
-$textColor = rgba(46, 48, 50, 1.00)
-$invertedTextColor = rgba(239, 240, 242, 1.00)
-$quoteColor = rgba(162, 166, 172, 1.00)
-$accentColor = rgba(101, 152, 255, 1.00)
-$pressedColor = rgba(0, 105, 227, 1.00)
-
-$blackColor = rgba(22, 22, 22, 1.00)
-$subtleColor = rgba(248, 248, 248, 1.00)
-$middleColor = rgba(234, 233, 231, 1.00)
-$darkMiddleColor = rgba(199, 201, 204, 1.00)
-$subtleDarkColor = rgba(73, 76, 78, 1.00)
-
-$confirmColor = rgba(62, 233, 132, 1.00)
-$warningColor = rgba(255, 173, 5, 1.00)
-$errorColor = rgba(231, 70, 90, 1.00)
-$errorFadedColor = rgba(231, 70, 90, .50)
-
-$accentSubtleColor = rgba(255, 253, 229, 1.00)
-$accentYellowColor = rgba(255, 247, 159, 1.00)
-
-// links
-$linkColor = rgba(0, 118, 255, 1.00)
-$linkHover = rgba(42, 150, 255, 1.00)
-$linkPressed = rgba(0, 105, 227, 1.00)
-$linkVisited = rgba(187, 96, 235, 1.00)
-
-$button = rgba(55, 114, 255, 1.00)
+$bgColor = #12151E
+$textColor = white
 
 $devices = {
   ipad: {
@@ -179,8 +154,8 @@ media2x(query)
   q = q + 'only screen and (   min--moz-device-pixel-ratio: 1.5)      and ' + query + ','
   q = q + 'only screen and (     -o-min-device-pixel-ratio: 1.5/1)    and ' + query + ','
   q = q + 'only screen and (        min-device-pixel-ratio: 1.5)      and ' + query + ','
-  q = q + 'only screen and (                min-resolution: 192dpi)   and ' + query + ','
-  q = q + 'only screen and (                min-resolution: 2dppx)    and ' + query
+  q = q + 'only screen and (                min-resolution: 192dpi) and ' + query + ','
+  q = q + 'only screen and (                min-resolution: 2dppx)  and ' + query
 
   return q
 
@@ -223,15 +198,10 @@ $media_aliases = {
   'medium_desk@2x':media2x('(max-width: 1140px)')
   'medium_desk@3x':media3x('(max-width: 1140px)')
 
-  wide_desk:       media('(min-width: 2100px)')
-  'wide_desk@2x':  media2x('(min-width: 2100px)')
-  'wide_desk@3x':  media3x('(min-width: 2100px)')
+  wide_desk:       media('(min-width: 1800px)')
+  'wide_desk@2x':  media2x('(min-width: 1800px)')
+  'wide_desk@3x':  media3x('(min-width: 1800px)')
 }
-
-svg()
-  svg
-    use, path, polygon
-      {block}
 
 
 media($condition)
@@ -254,3 +224,17 @@ apply_media_cache()
     @media $media
       for $block in $blocks
         {$block}
+
+defineFont(font-family, filename, font-weight, font-style)
+  @font-face
+    font-family: font-family
+    font-weight: font-weight
+    font-style: font-style
+    src: url("app/styles/fonts/" + filename + ".woff2") format("woff2")
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF
+
+selection()
+  ::selection
+    {block}
+  ::-moz-selection
+    {block}

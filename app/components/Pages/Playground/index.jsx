@@ -17,16 +17,16 @@ export default class PlaygroundPage extends PureComponent {
     return (
       <SiteWrap displayHeader={false} displayFooter>
         <BulletproofHelmet
-          url={`${__BASE_URL__}/playground/`}
+          url={`${GLOBALS.BASE_URL}/playground/`}
           title="Playground"
           description="Litlle playground of mine"
           breadcrumbs={[
             {
-              id: `${__BASE_URL__}`,
+              id: `${GLOBALS.BASE_URL}`,
               name: 'romanonthego',
             },
             {
-              id: `${__BASE_URL__}/playground/`,
+              id: `${GLOBALS.BASE_URL}/playground/`,
               name: 'playground',
             },
           ]}

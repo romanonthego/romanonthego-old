@@ -1,4 +1,5 @@
-import React, {PropTypes, PureComponent}  from 'react'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import PageMeta from 'app/components/PageMeta'
 import SiteWrap from 'app/components/Layout/SiteWrap'
 import Section from 'app/components/Layout/Section'
