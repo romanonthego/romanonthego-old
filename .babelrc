@@ -1,0 +1,13 @@
+{
+  "presets": [
+    "react",
+    "env",
+    "stage-2"
+  ],
+  "plugins": [
+    "add-module-exports",
+    "syntax-dynamic-import",
+    "transform-decorators-legacy",
+    "transform-export-extensions",
+  ]
+}

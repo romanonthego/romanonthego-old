@@ -1,0 +1,12 @@
+{{#statics.js}}
+  <link rel="preload" href="/assets/{{name}}" as="script" />
+{{/statics.js}}
+{{#statics.preloadJs}}
+  <link rel="preload" href="/assets/{{name}}" as="script" />
+{{/statics.preloadJs}}
+{{#GLOBALS.GA}}
+  <link rel="preload" href="//www.google-analytics.com/analytics.js" as="script" crossorigin="anonymous" />
+{{/GLOBALS.GA}}
+{{#GLOBALS.SENTRY_DSN_BROWSER}}
+  <link rel="preload" href="//cdn.ravenjs.com/{{GLOBALS.RAVEN_VERSION}}/raven.min.js" crossorigin="anonymous" as="script" />
+{{/GLOBALS.SENTRY_DSN_BROWSER}}

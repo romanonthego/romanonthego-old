@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="{{lang}}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-language" content="{{lang}}">
+    <meta http-equiv="language" content="{{lang}}">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{> favicons }}
+    {{> meta }}
+    {{> preloadScripts }}
+    {{> initialState }}
+    {{> uploadcare }}
+    {{> css }}
+  </head>
+  <body>
+    <main id="app">
+      {{{html}}}
+    </main>
+    {{> sentry }}
+    {{> googleAnalytics }}
+    {{> js}}
+  </body>
+</html>

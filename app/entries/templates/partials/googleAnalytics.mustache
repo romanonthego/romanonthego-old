@@ -1,0 +1,24 @@
+{{^GLOBALS.GA}}
+  <!-- no GA provided, skipping google analytics initialization -->
+{{/GLOBALS.GA}}
+
+{{#GLOBALS.GA}}
+  <script>
+    var dimensions = {
+      TRACKING_VERSION: 'dimension1',
+      CLIENT_ID: 'dimension2',
+    };
+
+    var TRACKING_VERSION = '{{GLOBALS.VERSION}}';
+
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', '{{GLOBALS.GA}}', '{{GLOBALS.GA_MODE}}');
+    ga('require', 'displayfeatures');
+    ga('set', 'transport', 'beacon');
+    ga('set', dimensions.TRACKING_VERSION, TRACKING_VERSION);
+    ga(function(tracker) {
+      tracker.set(dimensions.CLIENT_ID, tracker.get('clientId'));
+    });
+  </script>
+  <script async src="//www.google-analytics.com/analytics.js"></script>
+{{/GLOBALS.GA}}

@@ -1,0 +1,19 @@
+.wrap
+  position: relative
+  overflow: hidden
+
+.wrap, .route
+  min-height: 100%
+  flex: 1
+
+.animated
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 8999
+  will-change: opacity, transform
+  transform: translate3d(0, 0, 0)
+  widht: 100%
+  min-height: 100vh
+  min-width: 100vw
+  pointer-events: none

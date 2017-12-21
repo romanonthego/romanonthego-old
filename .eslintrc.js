@@ -1,0 +1,52 @@
+module.exports = {
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
+    node: true,
+  },
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+      experimentalObjectRestSpread: true,
+      classes: true,
+    },
+  },
+  extends: ['prettier', 'plugin:react/recommended'],
+  plugins: ['prettier', 'react'],
+  rules: {
+    'no-unused-vars': ['error', {vars: 'all', args: 'none'}],
+    'no-undef': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        trailingComma: 'all',
+        bracketSpacing: false,
+        jsxBracketSameLine: false,
+        parser: 'babylon',
+        semi: false,
+        printWidth: 80,
+        tabWidth: 2,
+        useTabs: false,
+      },
+    ],
+    'react/jsx-filename-extension': ['warn', {extensions: ['.js', '.jsx']}],
+    'react/prefer-es6-class': ['off'],
+    'react/prefer-stateless-function': ['off'],
+    'react/require-default-props': ['off'],
+    'react/no-unused-prop-types': ['off'],
+    'react/forbid-prop-types': ['off'],
+    'import/no-extraneous-dependencies': ['off'],
+    'import/no-unresolved': ['off'],
+    'import/extensions': ['off'],
+    'import/prefer-default-export': ['off'],
+  },
+  globals: {
+    GLOBALS: true,
+    NODE_ENV: true,
+  },
+}

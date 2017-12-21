@@ -1,0 +1,15 @@
+{
+  "name": "romanonthego.rocks",
+  "description": "romanonthego.rocks frontend",
+  "website": "https://romanonthego.rocks-fe-stage.herokuapp.com",
+  "logo": "https://romanonthego.rocks-fe-stage.herokuapp.com/logo.png",
+  "repository": "https://github.com/whitescape/romanonthego.rocks-fe",
+  "success_url": "/",
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "yarn lint"
+      }
+    }
+  }
+}

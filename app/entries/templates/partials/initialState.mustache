@@ -1,0 +1,12 @@
+{{#initialState}}
+  <script>
+    window.__INITIAL_STATE__ = {{{initialState}}};
+  </script>
+{{/initialState}}
+
+{{^initialState}}
+  <!-- no initialState, providing default as {}-->
+  <script>
+    window.__INITIAL_STATE__ = {};
+  </script>
+{{/initialState}}

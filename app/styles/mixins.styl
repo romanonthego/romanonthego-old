@@ -1,0 +1,229 @@
+
+$devices = {
+  ipad: {
+    width: 1024px
+    height: 768px
+  }
+
+  iphone4: {
+    width: 320px
+    height: 480px
+  }
+
+  iphone5: {
+    width: 320px
+    height: 568px
+  }
+
+  iphone6: {
+    width: 375px
+    height: 667px
+  }
+
+  iphone6plus: {
+    width: 414px
+    height: 736px
+  }
+}
+
+$grid ={
+  block: 10px
+  row: 29px
+
+  wideDesk: {
+    column: 133px
+    columnGutter: 20px
+    row: 29px
+    columnCount: 12
+  }
+
+  desk: {
+    column: 70px
+    columnGutter: 30px
+    row: 29px
+    columnCount: 12
+  }
+
+  tablet: {
+    column: 60px
+    columnGutter: 20px
+    row: 29px
+    columnCount: 10
+  }
+
+  phoneLandscape: {
+    column: 31px
+    columnGutter: 5px
+    row: 19px
+    columnCount: 12
+  }
+
+  phonePortrait: {
+    column: 22px
+    columnGutter: 5px
+    row: 19px
+    columnCount: 10
+  }
+}
+
+
+// // SIZING
+// // return size in base-blocks
+// // default for all the stuff
+x(n=1)
+  return xInRem(n)
+
+// return size in base block in rem units
+xInRem(n)
+  $normalized = n/$grid.block
+  return 1rem*$normalized
+
+
+xInPx(n=1)
+  return $grid.block*n
+
+
+xFromPx(sizeInPx)
+  return x(sizeInPx)
+
+
+// columns
+column(n=1, addGutter=false, size='desk')
+  column = $grid[size]['column']
+  gutter = $grid[size]['columnGutter']
+
+  guttersCount = n
+
+  if addGutter
+    guttersCount = n
+  else
+    guttersCount = n - 1
+
+  return x(column)*n + x(gutter)*guttersCount
+
+
+columnGutter(size='desk')
+  gutter = $grid[size]['columnGutter']
+
+  return x(gutter)
+
+
+
+row(n=1, size='desk')
+  row = $grid[size]['row']
+
+  return x(row/$grid.block)*n
+
+
+rowFromPx(sizeInPx=20, size='desk')
+  row = $grid[size]['row']
+
+  return x(row)*(sizeInPx/row)
+
+
+// returns x(size/20px) here
+fontSize(sizeInPx)
+  return xFromPx(sizeInPx)
+
+y(n=1)
+  return x($grid.row)*n
+
+yInPx(n)
+  return $grid.row*n
+
+
+defineFont(font-family, filename, font-weight, font-style)
+  @font-face
+    font-family: font-family
+    font-weight: font-weight
+    font-style: font-style
+    src: url("app/styles/fonts/" + filename + ".woff") format("woff")
+
+
+// AWESOME MEDIA QUIERIES
+$mediaCache = {}
+
+media(query)
+  return 'only screen and ' + query
+
+media2x(query)
+  q =     'only screen and (-webkit-min-device-pixel-ratio: 1.5)      and ' + query + ','
+  q = q + 'only screen and (   min--moz-device-pixel-ratio: 1.5)      and ' + query + ','
+  q = q + 'only screen and (     -o-min-device-pixel-ratio: 1.5/1)    and ' + query + ','
+  q = q + 'only screen and (        min-device-pixel-ratio: 1.5)      and ' + query + ','
+  q = q + 'only screen and (                min-resolution: 192dpi)   and ' + query + ','
+  q = q + 'only screen and (                min-resolution: 2dppx)    and ' + query
+
+  return q
+
+media3x(query)
+  q =     'only screen and (-webkit-min-device-pixel-ratio: 3)      and ' + query + ','
+  q = q + 'only screen and (   min--moz-device-pixel-ratio: 3)      and ' + query + ','
+  q = q + 'only screen and (     -o-min-device-pixel-ratio: 3/1)    and ' + query + ','
+  q = q + 'only screen and (        min-device-pixel-ratio: 3)      and ' + query + ','
+  q = q + 'only screen and (                min-resolution: 220dpi) and ' + query + ','
+  q = q + 'only screen and (                min-resolution: 3dppx)  and ' + query
+
+  return q
+
+$mediaAliases = {
+  phonePortrait:        media('(max-width: 414px)')
+  'phonePortrait@2x':   media2x('(max-width: 414px)')
+  'phonePortrait@3x':   media3x('(max-width: 414px)')
+
+  phoneLandscape:       media('(max-width: 736px)')
+  'phoneLandscape@2x':  media2x('(max-width: 736px)')
+  'phoneLandscape@3x':  media3x('(max-width: 736px)')
+
+  phone:           media('(max-width: 736px)')
+  'phone@2x':      media2x('(max-width: 736px)')
+  'phone@3x':      media3x('(max-width: 736px)')
+
+  tablet:          media('(min-width: 736px) and (max-width: 1023px)')
+  'tablet@2x':     media2x('(min-width: 736px) and (max-width: 1023px)')
+  'tablet@3x':     media3x('(min-width: 736px) and (max-width: 1023px)')
+
+  desk:            media('(min-width: 1024px)')
+  'desk@2x':       media2x('(min-width: 1024px)')
+  'desk@3x':       media3x('(min-width: 1024px)')
+
+  mediumDesk:     media('(max-width: 1140px)')
+  'mediumDesk@2x':media2x('(max-width: 1140px)')
+  'mediumDesk@3x':media3x('(max-width: 1140px)')
+
+  wideDesk:       media('(min-width: 1800px)')
+  'wideDesk@2x':  media2x('(min-width: 1800px)')
+  'wideDesk@3x':  media3x('(min-width: 1800px)')
+}
+
+
+media($condition)
+  helper($condition)
+    unless $mediaCache[$condition]
+      $mediaCache[$condition] = ()
+    push($mediaCache[$condition], block)
+
+  +helper($condition)
+    {selector() + ''}
+      {block}
+
+// Function we would use to call all the cached styles
+applyMediaCache()
+  for $media, $blocks in $mediaCache
+    $media = unquote($mediaAliases[$media] || $media)
+    // $media = '(%s)' % $media unless match('\(', $media)
+    // $media = 'only screen and %s' % $media
+
+    @media $media
+      for $block in $blocks
+        {$block}
+
+placeholder()
+  &::-webkit-input-placeholder
+    {block}
+  &::-moz-placeholder
+    {block}
+  &:-ms-input-placeholder
+    {block}
+  &:-moz-placeholder
+    {block}

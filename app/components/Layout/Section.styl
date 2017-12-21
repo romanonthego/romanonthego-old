@@ -1,0 +1,48 @@
+.section
+  padding: 0 x(30)
+  max-width: 100vw
+  min-width: x(1024)
+  background-position: center center
+  background-size: cover
+
+  +media('tablet')
+    min-width: x(760)
+    padding: 0 x(20)
+
+  +media('phone')
+    min-width: auto
+    padding: 0 x(10)
+
+.paddingTop
+  padding-top: x(32)
+
+.paddingBottom
+  padding-bottom: x(32)
+
+.transparent
+  background-color: transparent
+
+.white
+  background-color: white
+
+.main
+  width: x(1024)
+  margin: 0 auto
+  padding: 0 x(30)
+  margin: 0 auto
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+  +media('tablet')
+    width: x(724)
+    max-width: 100%
+    padding: 0
+
+  +media('phone')
+    width: x(355)
+    max-width: 100%
+    padding: 0
+
+apply_media_cache()
