@@ -1,0 +1,144 @@
+*
+  text-shadow: 0.5px 0 0 red, -0.5px 0 0 cyan
+
+  +selection()
+    background: rgba(white, 0.6)
+
+h1, h2, h3, h4, h5, h6
+  font-family: $headerFont
+
+h1
+  font-size: x(24)
+  font-weight: 300
+  line-height: 1.3
+  margin-bottom: 1em
+
+h2
+  font-size: x(16)
+  font-size: calc(1rem + 1.5vmin)
+  opacity: 0.6
+  margin-bottom: 1em
+
+small, .small
+  font-size: x(11)
+  font-size: calc(0.5rem + 1vmin)
+  font-weight: 300
+  line-height: 1.3
+
+:global(.secondary)
+  opacity: 0.6
+
+button, input
+  outline: none
+  box-shadow: none
+
+hr
+  border-width: 0
+
+a
+  position: relative
+  color: white
+  text-decoration: underline
+  // text-decoration-style: dashed
+  // text-decoration-color: rgba(white, 0.6)
+  // border-bottom: 1px solid white
+
+
+  +media('tablet')
+    &:after
+      display: none
+
+  // &:after
+  //   height: 1.68em
+  //   white-space: nowrap
+  //   pointer-events: none
+  //   display: block
+  //   overflow: hidden
+  //   max-width: 0
+  //   content: attr(href)
+  //   position: absolute
+  //   top: 110%
+  //   left: 0
+  //   font-size: 0.68em
+  //   background-color: white
+  //   color: $bgColor
+  //   transition: max-width 0.4s linear
+  //   z-index: 1
+
+  // &[data-external]
+  //   &:after
+  //     content: attr(href) ' ↗'
+
+  // &[data-use-title]
+  //   &:after
+  //     content: attr(data-title)
+
+  //   &[data-external]
+  //     &:after
+  //       content: attr(data-title) ' ↗'
+
+  // &[data-tooltip-position="top"]
+  //   &:after
+  //     top: -110%
+
+  // &[data-hide-tooltip]
+  //   &:after
+  //     display: none !important
+
+  &:hover
+    color: $bgColor
+    background-color: white
+    text-decoration: none
+
+    &:after
+      display: block
+      max-width: x(400)
+      background-color: white
+      z-index: 2
+
+  +media('tablet')
+    &:after
+      display: none !important
+
+form
+  &, & > fieldset
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    justify-content: flex-start
+
+input
+  width: 100%
+  margin-bottom: x(20)
+
+  &:last-child
+    margin-bottom: 0
+
+input[type="text"]
+input[type="email"]
+input[type="password"]
+  display: block
+  background-color: rgba(white, 0.1)
+  padding: x(10) x(5)
+  border-top: none
+  border-left: none
+  border-right: none
+  border-bottom: 1px dashed rgba(white, 0.5)
+
+  &:hover
+    background-color: rgba(white, 0.15)
+
+  &:focus
+    background-color: rgba(white, 0.2)
+    border-bottom: 1px dashed white
+
+
+button
+  outline: none
+  border: none
+  background-color: white
+  color: $bgColor
+  padding: x(10) x(5)
+
+
+applyMediaCache()

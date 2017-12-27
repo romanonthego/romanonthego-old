@@ -3,7 +3,7 @@ import {persistStore} from 'redux-persist'
 import crosstabSync from 'redux-persist-crosstab'
 import {isClient} from 'app/utils/isServer'
 
-const whitelist = []
+const whitelist = ['me']
 
 export default function crossTabSync(store) {
   if (isClient) {

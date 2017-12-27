@@ -1,0 +1,23 @@
+.block
+  margin-top: x(20)
+
+.resumeIframe
+  background-color: white
+  margin-top: x(60)
+  width: x(860)
+  height: x(1100)
+  transform-origin: left top
+
+  +media('tablet')
+    transform: scale(0.8)
+    // width: x(860 * 0.8)
+    // height: x(1100 * 0.8)
+
+  +media('phone')
+    display: none
+    // transform: scale(0.3)
+    // width: x(860 * 0.3)
+    // height: x(1100 * 0.3)
+
+
+applyMediaCache()

@@ -1,0 +1,34 @@
+.footer
+  padding-bottom: x(60)
+  position: relative
+  z-index: 200
+
+  ul
+    list-style: none
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: flex-end
+
+    +media('phone')
+      flex-direction: column
+      align-items: flex-start
+
+    li
+      margin-right: 20px
+
+      +media('phone')
+        margin-right: 0
+        margin-bottom: 10px
+
+      &:last-child
+        margin-right: 0
+
+        +media('phone')
+          margin-bottom: 0
+
+
+.resumeLink
+  align-self: flext-end
+
+applyMediaCache()

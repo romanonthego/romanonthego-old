@@ -24,6 +24,7 @@ export function browser(config) {
       sourceMapFilename: '[file].map',
       path: path.join(__DIR, 'build'),
       publicPath: '/assets/',
+      crossOriginLoading: 'anonymous',
     }
   }
 
@@ -32,5 +33,6 @@ export function browser(config) {
     chunkFilename: '[name].js',
     path: path.join(__DIR, 'build'),
     publicPath: '/assets/',
+    crossOriginLoading: 'anonymous',
   }
 }

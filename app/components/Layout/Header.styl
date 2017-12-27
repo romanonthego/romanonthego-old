@@ -1,0 +1,65 @@
+.logo
+  width: x(120)
+  height: x(28)
+  margin-top: x(-4)
+
+.header
+  width: 100%
+
+.headerInner
+  padding: x(22) 0
+  border-bottom: 1px solid $accent
+
+.headerMenu
+  display: flex
+  align-items: center
+  justify-content: space-between
+  list-style: none
+  font-size: x(16)
+
+  a
+    text-decoration: none
+    &:hover
+      color: white
+      text-decoration: underline
+
+.headerMenu .button
+  font-size: x(16)
+  svg
+    display: block
+    width: x(22)
+    height: x(11)
+    margin-right: x(10)
+    path
+      transition: stroke .1s linear
+
+  &:hover
+    text-decoration: none
+    path
+      stroke: $blue
+
+.white
+  a
+    color: white
+    transition: color .1s linear
+
+  :global(#vector-logo)
+    fill: white
+
+  .headerInner
+    border-color: alpha(white, .5)
+
+.gray
+  a
+    color: $dark-gray
+    transition: color .1s linear
+
+    &:hover
+      color: $dark-gray
+      text-decoration: underline
+
+  :global(#vector-logo)
+    fill: $dark-gray
+
+  .headerInner
+    border-color: alpha($dark-gray, .5)

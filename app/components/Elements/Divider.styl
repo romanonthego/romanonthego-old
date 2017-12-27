@@ -1,0 +1,24 @@
+.divider
+  position: relative
+  height: 0px
+  width: auto
+  opacity: 0.6
+  margin-bottom: x(60)
+
+  &:after
+    font-family: $fallbackFont
+    content: '-----------------------------------------------------------'
+    position: absolute
+    left: 0
+    top: 0
+
+  +media('tablet')
+    &:after
+      content: '---------------------------------------'
+
+  +media('phone')
+    &:after
+      content: '-------------------------'
+
+
+apply-media-cache()

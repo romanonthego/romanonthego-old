@@ -1,21 +1,29 @@
 .site
+  flex: 1 0 auto
   display: flex
   justify-content: flex-start
-  align-items: flex-start
+  align-items: stretch
   flex-direction: column
   min-height: 100%
-  flex: 1
-  padding: 0 x(40)
+  padding: 0
 
-.contentWrap
-  width: 100%
-  heigth: 100%
-  flex: 1
+.siteWrap
+  flex 1 0 auto
 
-.wrapper
-  min-height: 100vh
+$dotsColor = rgba(black, 0.1)
+
+.overlay
+  position: fixed
+  top: 0
+  left: 0
   width: 100%
-  display: flex
-  flex-direction: column
-  justify-content: flex-start
-  align-items: flex-start
+  height: 100%
+  pointer-events: none
+  z-index: 9000
+  background-image: linear-gradient(45deg, $dotsColor 25%, transparent 25%),
+      linear-gradient(-45deg, $dotsColor 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, $dotsColor 75%),
+      linear-gradient(-45deg, transparent 75%, $dotsColor 75%)
+  background-size: 2px 2px
+  background-position: 0 0, 1px 0, 1px -1px, 0px 1px
+  background-blend-mode: multiply

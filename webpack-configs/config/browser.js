@@ -36,7 +36,7 @@ export function browserConfig(options) {
   return {
     context: config.__DIR,
     resolve: browserResolve(config),
-    devtool: production ? 'source-map' : 'eval',
+    devtool: production ? 'source-map' : 'cheap-module-source-map',
     ...(production ? {performance: performance()} : {}),
     stats: stats(),
     entry: browserEntry(props),

@@ -1,42 +1,42 @@
-import PropTypes from 'prop-types'
 import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import PageMeta from 'app/components/PageMeta'
 import SiteWrap from 'app/components/Layout/SiteWrap'
 import Section from 'app/components/Layout/Section'
-import reportError from 'app/utils/reporting'
+import TextPrint from 'app/components/Elements/TextPrint'
+import window from 'app/utils/window'
 import css from './ErrorPages.styl'
 
 export default class ServerErrorPage extends PureComponent {
   static propTypes = {
     error: PropTypes.object,
-    skipLayout: PropTypes.bool,
   }
 
-  static defaultProps = {
-    skipLayout: false,
-  }
-
-  componentWillMount() {
-    reportError(this.props.error, {
-      extra: {message: 'user saw a 500 error page'},
-    })
-  }
+  static defaultProps = {}
 
   render() {
-    const {error, skipLayout} = this.props
+    const {
+      error,
+      // skipLayout,
+    } = this.props
 
     const displayError = error
 
     return (
       <PageMeta status={500}>
-        <SiteWrap displayHeader={!skipLayout} displayFooter={!skipLayout}>
+        <SiteWrap colorKey="white">
           <Section className={css.content}>
-            <h1 className={css.title}>Что-то пошло не так</h1>
-            <h2 className={css.subtitle}>
-              Попробуйте повторить позже. Мы уже работаем над решением проблемы.
-            </h2>
+            <main>
+              <h1 className={css.title}>500</h1>
+              <TextPrint className="secondary">Something went wrong</TextPrint>
+            </main>
+            <aside>
+              <button onClick={() => window.location.reload()}>
+                reload page
+              </button>
+            </aside>
           </Section>
-          <Section className={css.section}>
+          <Section className={css.section} paddingTop paddingBottom>
             {displayError && (
               <code className={css.errorStack}>
                 Message: {error.message}

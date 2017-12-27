@@ -1,40 +1,48 @@
-import PropTypes from 'prop-types'
 import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import cx from 'classnames'
+import css from './SiteWrap.styl'
 import Header from './Header'
 import Footer from './Footer'
-import css from './SiteWrap.styl'
 
 export default class SiteWrap extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     displayHeader: PropTypes.bool,
     displayFooter: PropTypes.bool,
-    className: PropTypes.string,
   }
 
   static defaultProps = {
-    displayHeader: true,
+    displayHeader: false,
     displayFooter: true,
   }
 
   render() {
-    const {children, displayHeader, displayFooter, className} = this.props
+    const {
+      children,
+      displayHeader,
+      displayFooter,
+    } = this.props
 
     const cl = cx({
       [css.site]: true,
-      [className]: className,
     })
 
     return (
       <main className={cl}>
-        <main className={css.wrapper}>
-          {displayHeader && <Header />}
+        <aside className={css.overlay} />
 
-          <main className={css.contentWrap}>{children}</main>
+        {displayHeader &&
+          <Header />
+        }
 
-          {displayFooter && <Footer />}
+        <main className={css.siteWrap}>
+          {children}
         </main>
+
+        {displayFooter &&
+          <Footer />
+        }
       </main>
     )
   }

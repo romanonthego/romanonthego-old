@@ -1,11 +1,10 @@
 import React from 'react'
 import isArray from 'lodash/isArray'
 import NotFoundPage from 'app/components/Pages/Errors/NotFoundPage'
-import UnauthorizedPage from 'app/components/Pages/Errors/UnauthorizedPage'
 import ServerErrorPage from 'app/components/Pages/Errors/ServerErrorPage'
 
 const errorPages = {
-  403: UnauthorizedPage,
+  403: NotFoundPage,
   404: NotFoundPage,
   416: NotFoundPage, // yep, wrong pagination for now gets and 404 page
   500: ServerErrorPage,

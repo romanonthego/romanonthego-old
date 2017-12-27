@@ -137,7 +137,7 @@ defineFont(font-family, filename, font-weight, font-style)
     font-family: font-family
     font-weight: font-weight
     font-style: font-style
-    src: url("app/styles/fonts/" + filename + ".woff") format("woff")
+    src: url("app/styles/fonts/" + filename + ".woff2") format("woff")
 
 
 // AWESOME MEDIA QUIERIES
@@ -226,4 +226,10 @@ placeholder()
   &:-ms-input-placeholder
     {block}
   &:-moz-placeholder
+    {block}
+
+selection()
+  ::selection
+    {block}
+  ::-moz-selection
     {block}

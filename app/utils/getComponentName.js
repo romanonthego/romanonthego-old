@@ -1,3 +1,3 @@
 export default function getComponentName(Component) {
-  return Component.displayName || Component.name
+  return Component ? Component.displayName || Component.name : 'SomeComponent'
 }

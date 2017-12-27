@@ -1,0 +1,27 @@
+@keyframes pulse
+  0%
+    background-color: rgba(white, 0.6)
+  100%
+    background-color: rgba(white, 0.2)
+
+.textPrint
+  word-wrap: break-word
+
+.carret
+  display: inline-block
+  // font-size: x(12)
+  // line-height: x(12)
+  height: auto
+  width: x(12)
+  background-color: rgba(white, 0.6)
+  animation-duration: 0.5s
+  animation-name: pulse
+  animation-iteration-count: infinite
+
+  +media('tablet')
+    &:nth-child(3n)
+      display: block
+
+  +media('phone')
+    &:nth-child(2n), &:nth-child(3n)
+      display: block

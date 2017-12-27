@@ -4,7 +4,7 @@ import {asyncConnect} from 'redux-connect'
 import omit from 'lodash/omit'
 import PageMeta from 'app/components/PageMeta'
 import {isClient} from 'app/utils/isServer'
-import LoadingBar from 'app/components/Layout/LoadingBar'
+import ControlPanel from 'app/components/Layout/ControlPanel'
 import Helmet from 'app/components/Helmet'
 import RouteTransition from 'app/routes/RouteTransition'
 import css from './index.styl'
@@ -40,7 +40,7 @@ export class Wrap extends PureComponent {
       <PageMeta status={200} lang="ru">
         <main className={css.wrap}>
           <Helmet />
-          <LoadingBar />
+          <ControlPanel />
           <RouteTransition url={url} animated={isClient}>
             <main className={css.wrappedRoute} {...sanitizeProps(this.props)} />
           </RouteTransition>

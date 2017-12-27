@@ -7,13 +7,17 @@ export const extractNodeEnv = () => {
   return JSON.stringify(process.env.NODE_ENV || 'development')
 }
 
-const extractGitCommit = () => {
+const extractGitSafely = cb => {
   try {
-    return git.long()
+    return cb()
   } catch (e) {
-    return process.env.SOURCE_VERSION || 'impossible to set GIT_COMMIT'
+    return process.env.SOURCE_VERSION || 'unable to set GIT_COMMIT'
   }
 }
+
+const extractGitCommitLong = () => extractGitSafely(() => git.long())
+
+const extractGitCommitShort = () => extractGitSafely(() => git.short())
 
 const extractAppVersion = () => {
   return process.env.npm_package_version
@@ -31,7 +35,9 @@ export const globals = {
   TEST_ENV_VARIABLE: null,
   BACKEND_URL: 'https://ecomp-be-stage.herokuapp.com',
   VERSION: extractAppVersion(),
-  GIT_COMMIT: extractGitCommit(),
+  GIT_COMMIT_LONG: extractGitCommitLong(),
+  GIT_COMMIT_SHORT: extractGitCommitShort(),
+  RESUME_LINK: null,
 }
 
 export default (config = {}) => {

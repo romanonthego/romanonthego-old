@@ -1,11 +1,11 @@
-const prefix = '@loadingBar'
+import typesWithPrefix from 'app/flux/utils/typesWithPrefix'
 
-export const types = {
-  SHOW: `${prefix}/SHOW`,
-  HIDE: `${prefix}/HIDE`,
-  HIDE_WITH_ERROR: `${prefix}/HIDE_WITH_ERROR`,
-  RESET: `${prefix}/RESET`,
-}
+export const types = typesWithPrefix('@loadingBar', {
+  SHOW: `SHOW`,
+  HIDE: `HIDE`,
+  HIDE_WITH_ERROR: `HIDE_WITH_ERROR`,
+  RESET: `RESET`,
+})
 
 export function showLoadingBar() {
   return {

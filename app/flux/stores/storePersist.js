@@ -8,7 +8,7 @@ const defaultExpiration = daysToPersist * 86400
 
 const config = {
   keyPrefix: 'romanonthego.rocks',
-  whitelist: [],
+  whitelist: ['me'],
 }
 
 export default function storePersist(store, cookies) {

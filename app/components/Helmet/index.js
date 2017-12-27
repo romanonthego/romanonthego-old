@@ -10,7 +10,7 @@ export default class index extends PureComponent {
 
   static defaultProps = {
     title: 'romanonthego.rocks',
-    // description: 'romanonthego.rocks',
+    description: 'romanonthego.rocks',
   }
 
   render() {

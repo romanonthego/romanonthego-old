@@ -1,0 +1,73 @@
+@keyframes pulse
+  0%
+    background-color: rgba(white, 0.6)
+  100%
+    background-color: rgba(white, 0.2)
+
+.wrap
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+.barContainer
+  display: block
+  z-index: 9999
+  width: 100%
+  pointer-events: none
+  overflow: hidden
+  height: x(20)
+
+.bar
+  height: 100%
+  width: 100%
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  align-items: center
+
+.border
+  margin: 0 x(5)
+  &:first-child
+    margin-left: 0
+  &:last-child
+    margin-right: 0
+
+.progress
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  align-items: center
+
+.placeholder
+  display: block
+  font-size: x(12)
+  line-height: x(12)
+  height: auto
+
+  +media('tablet')
+    &:nth-child(3n)
+      display: none
+
+  +media('phone')
+    &:nth-child(2n), &:nth-child(3n)
+      display: none
+
+.nextActive
+  background-color: rgba(white, 0.6)
+  animation-duration: 0.5s
+  animation-name: pulse
+  animation-iteration-count: infinite
+
+  +media('tablet')
+    &:nth-child(3n)
+      display: block
+
+  +media('phone')
+    &:nth-child(2n), &:nth-child(3n)
+      display: block
+
+.active
+  background-color: white
+
+
+applyMediaCache()

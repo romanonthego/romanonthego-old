@@ -1,6 +1,6 @@
 {
     "name": "romanonthego.rocks",
-    "version": "1.1.0",
+    "version": "3.0.0",
     "description": "romanonthego.rocks front-end",
     "main": "index.js",
     "private": true,
@@ -66,6 +66,7 @@
         "express-static-gzip": "0.3.0",
         "express-ws": "3.0.0",
         "extract-text-webpack-plugin": "3.0.1",
+        "file-loader": "1.1.6",
         "git-rev-sync": "1.9.1",
         "helmet": "3.9.0",
         "lodash": "4.17.4",
@@ -110,8 +111,8 @@
         "webpack-hot-middleware": "2.20.0"
     },
     "engines": {
-        "node": "8.6.x",
-        "npm": "5.4.x",
-        "yarn": "1.1.x"
+        "node": "^9",
+        "npm": "^5",
+        "yarn": "^1"
     }
 }
