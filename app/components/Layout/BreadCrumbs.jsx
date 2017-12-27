@@ -18,9 +18,7 @@ export default class BreadCrumbs extends PureComponent {
   }
 
   render() {
-    const {
-      children,
-    } = this.props
+    const {children} = this.props
 
     const childrenArray = Children.toArray(children)
 
@@ -28,9 +26,7 @@ export default class BreadCrumbs extends PureComponent {
       <nav className={css.breadcrumbs}>
         <ul>
           <li className={cx(css.item, css.root)}>
-            <LinkScramble to="/">
-              romanonthego
-            </LinkScramble>
+            <LinkScramble to="/">romanonthego</LinkScramble>
           </li>
           {childrenArray.map(renderItem)}
         </ul>

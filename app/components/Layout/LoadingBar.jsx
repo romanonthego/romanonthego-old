@@ -21,22 +21,24 @@ export default class LoadingBar extends PureComponent {
       return []
     }
 
-    return [{
-      key: 'loading-bar',
-      style: {
-        width: spring(80, springConfig),
+    return [
+      {
+        key: 'loading-bar',
+        style: {
+          width: spring(80, springConfig),
+        },
       },
-    }]
+    ]
   }
 
   willEnter = () => ({width: 0})
 
   willLeave = () => ({width: spring(120, springConfig)})
 
-  renderProgress = (interpolatedStyles) => {
+  renderProgress = interpolatedStyles => {
     return (
       <div className={css.barContainer}>
-        {interpolatedStyles.map(({key, style: {width}}) =>
+        {interpolatedStyles.map(({key, style: {width}}) => (
           <div className={css.bar} key={key}>
             <div className={css.border}>[</div>
             <div className={css.progress}>
@@ -59,7 +61,7 @@ export default class LoadingBar extends PureComponent {
             </div>
             <div className={css.border}>]</div>
           </div>
-        )}
+        ))}
       </div>
     )
   }

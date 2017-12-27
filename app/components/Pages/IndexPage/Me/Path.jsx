@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const factors = (length, index) => {
   return {
-    translateFactor: (1 - ((length - index) / length)),
+    translateFactor: 1 - (length - index) / length,
     randomFactor: 1,
     directionFactorX: index % 11 === 0 ? -1 : 1,
     directionFactorY: index % 13 === 0 ? -1 : 1,
@@ -22,7 +22,7 @@ const color = ([r, g, b], alfa) => {
 }
 
 const visibility = (opacity, fillOpacity, x, y) => {
-  return 1 - (opacity / fillOpacity)
+  return 1 - opacity / fillOpacity
 }
 
 const translate = (paths, index, x, y) => {
@@ -33,8 +33,8 @@ const translate = (paths, index, x, y) => {
     directionFactorY,
   } = factors(paths.length, index)
 
-  const translateX = (x / 50) * translateFactor * randomFactor * directionFactorX
-  const translateY = (y / 40) * translateFactor * randomFactor * directionFactorY
+  const translateX = x / 50 * translateFactor * randomFactor * directionFactorX
+  const translateY = y / 40 * translateFactor * randomFactor * directionFactorY
 
   return {
     x: translateX,
@@ -45,7 +45,6 @@ const translate = (paths, index, x, y) => {
 const transform = ({x, y}) => {
   return `translate3d(${x}px, ${y}px, 0)`
 }
-
 
 export default class Path extends PureComponent {
   static propTypes = {
@@ -67,16 +66,7 @@ export default class Path extends PureComponent {
   }
 
   render() {
-    const {
-      paths,
-      d,
-      fill,
-      fillOpacity,
-      opacity,
-      x,
-      y,
-      index
-    } = this.props
+    const {paths, d, fill, fillOpacity, opacity, x, y, index} = this.props
 
     return (
       <path

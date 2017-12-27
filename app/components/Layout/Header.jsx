@@ -3,14 +3,9 @@ import React, {PureComponent} from 'react'
 // import css from './Header.styl'
 
 export default class Header extends PureComponent {
-  static propTypes = {
-  }
+  static propTypes = {}
 
   render() {
-    return (
-      <header>
-        !header
-      </header>
-    )
+    return <header>!header</header>
   }
 }

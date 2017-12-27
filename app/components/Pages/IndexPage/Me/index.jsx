@@ -5,7 +5,7 @@ import ThrottledEventsProvider from 'app/components/Providers/ThrottledEventsPro
 import Path from './Path'
 import css from './index.styl'
 
-const springWithParams = (val) => {
+const springWithParams = val => {
   return spring(val, {stiffness: 60, damping: 8, precision: 0.01})
 }
 
@@ -17,8 +17,7 @@ class Me extends Component {
     paths: PropTypes.array.isRequired,
   }
 
-  static defaultProps = {
-  }
+  static defaultProps = {}
 
   state = {
     x: 0,
@@ -43,8 +42,7 @@ class Me extends Component {
     return this.props.paths.map(mapToOpacity)
   }
 
-
-  handleMouseMove = (event) => {
+  handleMouseMove = event => {
     const body = document.querySelectorAll('body')[0]
 
     const bodyHeight = body.clientHeight
@@ -57,21 +55,20 @@ class Me extends Component {
     })
   }
 
-  mapStyles = (prevInterpolatedStyles) => {
-    const {
-      paths
-    } = this.props
+  mapStyles = prevInterpolatedStyles => {
+    const {paths} = this.props
 
     return prevInterpolatedStyles.map((prevPaths, i) => {
       if (i === 0) {
         return {opacity: springWithParams(paths[0].fillOpacity)}
       }
 
-      const prevValue = prevInterpolatedStyles[i - 1].opacity / paths[i - 1].fillOpacity
+      const prevValue =
+        prevInterpolatedStyles[i - 1].opacity / paths[i - 1].fillOpacity
 
       if (prevValue > 0.01) {
         return {
-          opacity: springWithParams(paths[i].fillOpacity)
+          opacity: springWithParams(paths[i].fillOpacity),
         }
       }
 
@@ -80,14 +77,9 @@ class Me extends Component {
   }
 
   renderPath = (path, i) => {
-    const {
-      paths,
-    } = this.props
+    const {paths} = this.props
 
-    const {
-      x,
-      y,
-    } = this.state
+    const {x, y} = this.state
 
     return (
       <Path
@@ -102,12 +94,8 @@ class Me extends Component {
     )
   }
 
-  renderIterpolated = (interpolated) => {
-    return (
-      <g>
-        {interpolated.map(this.renderPath)}
-      </g>
-    )
+  renderIterpolated = interpolated => {
+    return <g>{interpolated.map(this.renderPath)}</g>
   }
 
   render() {

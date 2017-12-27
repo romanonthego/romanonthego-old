@@ -1,4 +1,3 @@
-
 const {floor, random} = Math
 const scrambledChars = '!<>-_\\/[]{}—=+*^?#________'
 
@@ -6,7 +5,7 @@ export const randomChar = (chars = scrambledChars) => {
   return chars[floor(random() * chars.length)]
 }
 
-export const castOutputToString = (output) => {
+export const castOutputToString = output => {
   return output.reduce((acc, {char}) => {
     return acc + char
   }, '')
@@ -39,13 +38,7 @@ export const buildNewOutput = (queue, frame) => {
   const newQueue = [...queue]
 
   for (let i = 0, n = queue.length; i < n; i += 1) {
-    const {
-      from,
-      to,
-      start,
-      end,
-      char = null,
-    } = queue[i]
+    const {from, to, start, end, char = null} = queue[i]
 
     if (frame >= end) {
       complete += 1

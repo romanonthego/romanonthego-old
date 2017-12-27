@@ -18,11 +18,7 @@ export default class SiteWrap extends PureComponent {
   }
 
   render() {
-    const {
-      children,
-      displayHeader,
-      displayFooter,
-    } = this.props
+    const {children, displayHeader, displayFooter} = this.props
 
     const cl = cx({
       [css.site]: true,
@@ -32,17 +28,11 @@ export default class SiteWrap extends PureComponent {
       <main className={cl}>
         <aside className={css.overlay} />
 
-        {displayHeader &&
-          <Header />
-        }
+        {displayHeader && <Header />}
 
-        <main className={css.siteWrap}>
-          {children}
-        </main>
+        <main className={css.siteWrap}>{children}</main>
 
-        {displayFooter &&
-          <Footer />
-        }
+        {displayFooter && <Footer />}
       </main>
     )
   }
