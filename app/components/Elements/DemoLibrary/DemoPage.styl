@@ -1,0 +1,34 @@
+.content
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: stretch
+  width: 100%
+  flex: 1 0 auto
+
+  > div
+    width: 100%
+
+.files
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: stretch
+  width: 100%
+  flex: 1 0 auto
+
+.file
+  display: block
+  margin-bottom: x(20)
+
+.fileContent
+  &, &> *
+    font-size: x(14)
+    text-shadow: none !important
+
+.fileName
+  padding: 0
+  margin: 0
+  background-color: rgba(white, 0.1)
+  border-bottom: 1px dashed rgba(white, 0.3)
+

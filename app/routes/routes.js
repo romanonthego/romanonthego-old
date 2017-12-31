@@ -4,6 +4,7 @@ import {Route} from 'react-router'
 // pages
 import IndexPage from 'app/components/Pages/IndexPage'
 import ResumePage from 'app/components/Pages/Resume'
+import InterviewPage from 'app/components/Pages/Interview'
 import PlaygroundPage from 'app/components/Pages/Playground'
 import TextScramblePage from 'app/components/Pages/Playground/TextScramble'
 import TextPrintPage from 'app/components/Pages/Playground/TextPrint'
@@ -15,6 +16,7 @@ export default (
   <Route component={Wrap}>
     <Route path="/" exact component={IndexPage} />
     <Route path="/resume" component={ResumePage} />
+    <Route path="/interview" component={InterviewPage} />
     <Route path="/playground" component={PlaygroundPage} />
     <Route path="/playground/text-scramble" component={TextScramblePage} />
     <Route path="/playground/text-print" component={TextPrintPage} />

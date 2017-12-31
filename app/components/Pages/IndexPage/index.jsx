@@ -298,7 +298,7 @@ export default class IndexPage extends PureComponent {
                     </TextPrint>
                   </div>
                   <div>
-                    <LinkScramble to="/playground/text-scramble/">
+                    <LinkScramble to="/playground/text-print/">
                       TextPrint
                     </LinkScramble>
                     <TextPrint className="secondary" component="p">
