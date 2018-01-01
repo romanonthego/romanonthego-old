@@ -4,15 +4,27 @@ import {unnest, last} from 'ramda'
 import Code from './Code'
 import css from './DemoPage.styl'
 
-const MONO_FONT = 'Menlo, Monaco, Consolas, "Lucida Console", monospace'
-const SERIF_FONT = '"Lucida Grande", Helvetica, arial, sans-serif'
+// const MONO_FONT = 'Menlo, Monaco, Consolas, "Lucida Console", monospace'
+// const SERIF_FONT = '"Lucida Grande", Helvetica, arial, sans-serif'
 
-function locationItem(name, i, {length}) {
-  const last = length === i + 1
-  return [
-    <span key={`${i}item`}>{name}</span>,
-    !last && <span key={`${i}del`}>/</span>,
-  ]
+// function locationItem(name, i, {length}) {
+//   const last = length === i + 1
+//   return [
+//     <span key={`${i}item`}>{name}</span>,
+//     !last && <span key={`${i}del`}>/</span>,
+//   ]
+// }
+
+const languages = {
+  js: 'jsx',
+  jsx: 'jsx',
+  styl: 'stylus',
+}
+
+const fileNameToLanguage = name => {
+  const ext = name.split('.')[1]
+
+  return languages[ext] || 'javascript'
 }
 
 export default class DemoPage extends PureComponent {
@@ -29,11 +41,13 @@ export default class DemoPage extends PureComponent {
     ),
   }
 
-  renderFile(file, index) {
+  renderFile({name, content}, index) {
     return (
       <div key={index} className={css.file}>
-        <span className={css.fileName}>{file.name}</span>
-        <Code className={css.fileContent}>{file.content}</Code>
+        <span className={css.fileName}>{name}</span>
+        <Code className={css.fileContent} language={fileNameToLanguage(name)}>
+          {content}
+        </Code>
       </div>
     )
   }
@@ -48,6 +62,8 @@ export default class DemoPage extends PureComponent {
       files,
       name = last(location),
     } = this.props
+
+    console.log(demo)
 
     return (
       <div className={css.content}>

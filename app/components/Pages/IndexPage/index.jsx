@@ -288,9 +288,9 @@ export default class IndexPage extends PureComponent {
                     Playground
                   </TextScramble>
                 </SubTitle>
-                <LinksList addMore="more to come">
+                <LinksList addMore="explore more" moreLink="/playground">
                   <div>
-                    <LinkScramble to="/playground/text-scramble/">
+                    <LinkScramble to="/playground#!/Elements/TextPrint/">
                       TextScramble
                     </LinkScramble>
                     <TextPrint className="secondary" component="p">
@@ -298,7 +298,7 @@ export default class IndexPage extends PureComponent {
                     </TextPrint>
                   </div>
                   <div>
-                    <LinkScramble to="/playground/text-print/">
+                    <LinkScramble to="/playground#!/Elements/TextPrint/">
                       TextPrint
                     </LinkScramble>
                     <TextPrint className="secondary" component="p">

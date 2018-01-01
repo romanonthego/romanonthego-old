@@ -9,22 +9,23 @@ export default class Code extends PureComponent {
   static propTypes = {
     children: PropTypes.string.isRequired,
     className: PropTypes.string,
+    language: PropTypes.string,
   }
 
-  // static defaultProps = {
-  //
-  // }
+  static defaultProps = {
+    language: 'jsx',
+  }
 
   // state = {
   //
   // }
 
   render() {
-    const {children, className} = this.props
+    const {children, className, language} = this.props
 
     return (
       <SyntaxHighlighter
-        language="javascript"
+        language={language}
         style={atomDark}
         codeTagProps={{className}}
         className={css.code}

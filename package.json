@@ -73,6 +73,7 @@
         "raven": "2.2.1",
         "raw-loader": "0.5.1",
         "react": "16.0.0",
+        "react-create-class": "1.0.0",
         "react-demo": "2.0.0",
         "react-demo-library": "2.0.0",
         "react-dom": "16.0.0",

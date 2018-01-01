@@ -1,6 +1,7 @@
 import React from 'react'
-import Demo, {props as DemoProps} from 'react-demo'
-import Component from './Text'
+import Demo from 'app/components/Elements/DemoLibrary/ComponentDemo'
+import DemoProps from 'app/components/Elements/DemoLibrary/ComponentDemo/props'
+import Component from './index'
 
 const Target = ({component, ...props}) => {
   return <Component component={component || 'p'} {...props} />
@@ -8,7 +9,7 @@ const Target = ({component, ...props}) => {
 
 export default (
   <Demo
-    fullWidth
+    background="dark"
     props={{
       children: DemoProps.text('Testing text element'),
       component: DemoProps.text('h1'),

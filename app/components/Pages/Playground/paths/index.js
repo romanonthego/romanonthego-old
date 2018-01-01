@@ -1,15 +1,11 @@
 import last from 'lodash/last'
 
 const rawContext = require.context(
-  '!!raw-loader!app/components/Pages/Interview/tasks',
+  '!!raw-loader!app/components',
   true,
-  /\.(js|styl)$/,
+  /\.(jsx?|styl)$/,
 )
-const context = require.context(
-  'app/components/Pages/Interview/tasks',
-  true,
-  /\.demo\.js$/,
-)
+const context = require.context('app/components', true, /\.demo\.jsx?$/)
 
 const getName = importPath => {
   const importPathArray = importPath.split('/')
@@ -36,7 +32,7 @@ const getLocation = importPath => {
 const getFiles = (path, name) => {
   const rawKeys = rawContext.keys()
   const sourcePath = path.replace('.demo', '')
-  const stylesPath = path.replace('.demo.js', '.styl')
+  const stylesPath = path.replace(/.demo.jsx?/, '.styl')
 
   const files = []
 
@@ -56,7 +52,7 @@ const getFiles = (path, name) => {
 }
 
 export default context.keys().map(path => {
-  const importPath = `app/components/${/^\.\/(.*)\.demo\.js$/.exec(path)[1]}`
+  const importPath = `app/components/${/^\.\/(.*)\.demo\.jsx?$/.exec(path)[1]}`
   const location = getLocation(importPath)
   const name = getName(importPath)
   const files = getFiles(path, name)

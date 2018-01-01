@@ -119,7 +119,7 @@ const MenuLeaf = props => (
 )
 
 const Menu = props => (
-  <div style={styles.menu({topLevel: props.topLevel})}>
+  <div className={css.menu} style={styles.menu({topLevel: props.topLevel})}>
     {props.items.map(
       (item, i) =>
         item.type === 'leaf' ? (
