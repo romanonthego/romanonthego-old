@@ -45,6 +45,11 @@ export default class Footer extends PureComponent {
               resume
             </LinkScramble>
           </li>
+          <li className={css.resumeLink}>
+            <LinkScramble to="/playground" className="secondary">
+              playground
+            </LinkScramble>
+          </li>
         </ul>
       </Section>
     )

@@ -53,6 +53,7 @@ export default class TextPrint extends PureComponent {
 
     if (!children) {
       this.setState({step: 0, maxStep: 0, text: '', done: false}, this.animate)
+      return
     }
 
     this.setState(

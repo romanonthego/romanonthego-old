@@ -26,7 +26,7 @@ export default createReactClass({
           onChange={this.handleChange}
           className={css.checkbox}
         />
-        <span>{value ? '[true]' : '[false]'}</span>
+        <span className={css.value}>{value ? '[true]' : '[false]'}</span>
       </div>
     )
   },

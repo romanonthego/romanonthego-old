@@ -47,8 +47,17 @@ export default (
   </Demo>
 )
 
-export const fullWidth = false
-export const location = ['Elements', 'InteractivePortrait']
-export const description = [
-  <TextScramble component="h1">Interactive Portrait</TextScramble>,
+export const location = [
+  'ReactComponents',
+  'SiteComponents',
+  'InteractivePortrait',
 ]
+export const description = (
+  <React.Fragment>
+    <TextScramble component="h1">Interactive Portrait</TextScramble>
+    <TextPrint component="p">
+      Interactive portrait for main page. Constructed from svg paths with
+      react-motion.
+    </TextPrint>
+  </React.Fragment>
+)

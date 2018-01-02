@@ -15,6 +15,7 @@ const mapToOpacity = () => ({opacity: 0})
 class Me extends Component {
   static propTypes = {
     subscribe: PropTypes.func.isRequired,
+    unsubscribe: PropTypes.func.isRequired,
     paths: PropTypes.array.isRequired,
     staticMe: PropTypes.bool,
     mouseMovement: PropTypes.bool,
@@ -32,7 +33,17 @@ class Me extends Component {
 
   componentDidMount() {
     if (this.props.mouseMovement) {
-      this.props.subscribe('mousemove', this.handleMouseMove, {useRAF: true})
+      this.subscribe()
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.mouseMovement && !this.props.mouseMovement) {
+      this.subscribe()
+    }
+
+    if (!nextProps.mouseMovement && this.props.mouseMovement) {
+      this.unsubscribe()
     }
   }
 
@@ -46,20 +57,30 @@ class Me extends Component {
     return false
   }
 
+  subscribe = () => {
+    this.subscription = this.props.subscribe(
+      'mousemove',
+      this.handleMouseMove,
+      {useRAF: true},
+    )
+  }
+
+  unsubscribe = () => {
+    this.props.unsubscribe('mousemove', this.subscription)
+    this.setState({x: 0, y: 0})
+  }
+
   getDefaultStyles = () => {
     return this.props.paths.map(mapToOpacity)
   }
 
-  handleMouseMove = event => {
-    const body = document.querySelectorAll('body')[0]
-
-    const bodyHeight = body.clientHeight
-    const bodyWidth = body.clientWidth
-    const center = {x: bodyWidth / 2, y: bodyHeight / 2}
+  handleMouseMove = ({clientX: x, clientY: y}) => {
+    const {innerHeight: height, innerWidth: width} = window
+    const center = {x: width / 2, y: height / 2}
 
     this.setState({
-      x: Math.round(event.clientX - center.x),
-      y: Math.round(event.clientY - center.y),
+      x: Math.round(x - center.x),
+      y: Math.round(y - center.y),
     })
   }
 

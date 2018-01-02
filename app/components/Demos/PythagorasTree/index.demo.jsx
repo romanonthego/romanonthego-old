@@ -5,16 +5,15 @@ import TextScramble from 'app/components/Elements/TextScramble'
 import TextPrint from 'app/components/Elements/TextPrint'
 import Component from './index'
 
-const Target = ({component, ...props}) => {
-  return <Component component={component || 'p'} {...props} />
+const Target = ({...props}) => {
+  return <Component {...props} maxLevel={10} />
 }
 
 export default (
   <Demo
     background="dark"
     props={{
-      children: DemoProps.text('Testing text print effect'),
-      component: DemoProps.string('h1'),
+      level: DemoProps.number(1),
     }}
   >
     {Target}
@@ -22,12 +21,10 @@ export default (
 )
 
 export const fullWidth = false
-export const location = ['ReactComponents', 'SiteComponents', 'TextPrint']
+export const location = ['ReactComponents', 'Fractals', 'PythogorasTree']
 export const description = (
   <React.Fragment>
-    <TextScramble component="h1">Text Print</TextScramble>
-    <TextPrint component="p">
-      Simple component for interactive text print
-    </TextPrint>
+    <TextScramble component="h1">Pythogoras Tree</TextScramble>
+    <TextPrint component="p">Pythogoras Tree</TextPrint>
   </React.Fragment>
 )

@@ -45,7 +45,7 @@ export default class DemoPage extends PureComponent {
 
   renderFile({name, content}, index) {
     return (
-      <div key={index} className={css.file}>
+      <div key={name} className={css.file}>
         <span className={css.fileName}>{name}</span>
         <Code className={css.fileContent} language={fileNameToLanguage(name)}>
           {content}

@@ -76,7 +76,7 @@
         "react-create-class": "1.0.0",
         "react-demo": "2.0.0",
         "react-demo-library": "2.0.0",
-        "react-dom": "16.0.0",
+        "react-dom": "16.2",
         "react-feather": "1.0.7",
         "react-helmet": "5.2.0",
         "react-hot-loader": "3",

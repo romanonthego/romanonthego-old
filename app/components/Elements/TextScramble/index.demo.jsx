@@ -23,14 +23,17 @@ export default (
 )
 
 export const fullWidth = false
-export const description = [
-  <TextScramble component="h1">Text Scramble</TextScramble>,
-  <TextPrint component="p">
-    React pure component for text scramble effect. Highly effective, only render
-    what it absolutly needs to. Utilises `requestAnimationFrame` under the hood.
-    Reworked to react component from{' '}
-  </TextPrint>,
-  <LinkScramble to="https://codepen.io/soulwire/pen/mErPAK">
-    Text Scramble Effect codepen
-  </LinkScramble>,
-]
+export const location = ['ReactComponents', 'SiteComponents', 'TextScramble']
+export const description = (
+  <React.Fragment>
+    <TextScramble component="h1">Text Scramble</TextScramble>
+    <TextPrint component="p">
+      React pure component for text scramble effect. Highly effective, only
+      render what it absolutly needs to. Utilises `requestAnimationFrame` under
+      the hood. Reworked to react component from{' '}
+    </TextPrint>
+    <LinkScramble to="https://codepen.io/soulwire/pen/mErPAK">
+      Text Scramble Effect codepen
+    </LinkScramble>
+  </React.Fragment>
+)
