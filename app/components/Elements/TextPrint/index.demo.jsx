@@ -14,7 +14,7 @@ export default (
     background="dark"
     props={{
       children: DemoProps.text('Testing text print effect'),
-      component: DemoProps.text('h1'),
+      component: DemoProps.string('h1'),
     }}
   >
     {Target}

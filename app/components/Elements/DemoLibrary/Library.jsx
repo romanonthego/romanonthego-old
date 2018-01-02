@@ -3,6 +3,7 @@ import T from 'prop-types'
 import Layout from './Layout'
 import Router from './Router'
 import DemoPage from './DemoPage'
+import css from './Library.styl'
 
 function locationToHash(location) {
   return `/${location.map(encodeURIComponent).join('/')}/`
@@ -42,7 +43,9 @@ export default class Library extends PureComponent {
           hash: '',
           content: (
             <Layout menu={menu}>
-              ← Use menu to start exploring the library
+              <div className={css.emptyState}>
+                {'<=='} Use menu to start exploring the library
+              </div>
             </Layout>
           ),
         },

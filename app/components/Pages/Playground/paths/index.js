@@ -53,7 +53,7 @@ const getFiles = (path, name) => {
 
 export default context.keys().map(path => {
   const importPath = `app/components/${/^\.\/(.*)\.demo\.jsx?$/.exec(path)[1]}`
-  const location = getLocation(importPath)
+  const location = context(path).location || getLocation(importPath)
   const name = getName(importPath)
   const files = getFiles(path, name)
 

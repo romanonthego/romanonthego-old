@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 import {StaggeredMotion, spring} from 'react-motion'
 import ThrottledEventsProvider from 'app/components/Providers/ThrottledEventsProvider'
 import Path from './Path'
@@ -15,9 +16,14 @@ class Me extends Component {
   static propTypes = {
     subscribe: PropTypes.func.isRequired,
     paths: PropTypes.array.isRequired,
+    staticMe: PropTypes.bool,
+    mouseMovement: PropTypes.bool,
   }
 
-  static defaultProps = {}
+  static defaultProps = {
+    staticMe: false,
+    mouseMovement: true,
+  }
 
   state = {
     x: 0,
@@ -25,7 +31,9 @@ class Me extends Component {
   }
 
   componentDidMount() {
-    this.props.subscribe('mousemove', this.handleMouseMove, {useRAF: true})
+    if (this.props.mouseMovement) {
+      this.props.subscribe('mousemove', this.handleMouseMove, {useRAF: true})
+    }
   }
 
   shouldComponentUpdate(nextProps, {x: newX, y: newY}) {
@@ -99,8 +107,10 @@ class Me extends Component {
   }
 
   render() {
+    const {staticMe} = this.props
+
     return (
-      <aside className={css.me}>
+      <aside className={cx(css.me, {[css.staticMe]: staticMe})}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402 402">
           <StaggeredMotion
             defaultStyles={this.getDefaultStyles()}

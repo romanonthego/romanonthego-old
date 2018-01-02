@@ -15,7 +15,7 @@ export default (
     background="dark"
     props={{
       children: DemoProps.text('Testing text scramble effect'),
-      component: DemoProps.text('h1'),
+      component: DemoProps.string('h1'),
     }}
   >
     {Target}

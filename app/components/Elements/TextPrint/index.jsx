@@ -39,9 +39,7 @@ export default class TextPrint extends PureComponent {
 
     this.setState(
       {step: 0, maxStep: text.length, text: text[0], done: false},
-      () => {
-        this.animate()
-      },
+      this.animate(),
     )
   }
 
@@ -53,6 +51,10 @@ export default class TextPrint extends PureComponent {
       return {}
     }
 
+    if (!children) {
+      this.setState({step: 0, maxStep: 0, text: '', done: false}, this.animate)
+    }
+
     this.setState(
       {
         step: step + 1,
@@ -62,11 +64,11 @@ export default class TextPrint extends PureComponent {
             : children.substring(0, step) +
               '_' +
               children
-                .substring(step, Math.floor(step + (maxStep - 1 - step) / 2))
-                .replace(/\S/g, ' ') +
-              children
                 .substring(step, Math.ceil(step + (maxStep - 1 - step) / 2))
-                .replace(/\S/g, '·'),
+                .replace(/\S/g, '·') +
+              children
+                .substring(step, Math.floor(step + (maxStep - 1 - step) / 2))
+                .replace(/\S/g, '\xa0'),
         done: step >= maxStep,
       },
       this.animate,

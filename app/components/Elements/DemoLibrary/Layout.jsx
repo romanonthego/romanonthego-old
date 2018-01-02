@@ -113,6 +113,7 @@ const MenuLeaf = props => (
   <a
     href={`#!${props.hash}`}
     style={styles.leaf({current: props.current === props.hash})}
+    data-current={props.current === props.hash}
   >
     {props.name}
   </a>

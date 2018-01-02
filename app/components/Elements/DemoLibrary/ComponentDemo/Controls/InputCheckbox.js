@@ -1,6 +1,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import T from 'prop-types'
+import css from './InputCheckbox.styl'
 
 export default createReactClass({
   displayName: 'Demo.Controls.InputCheckbox',
@@ -15,12 +16,18 @@ export default createReactClass({
   },
 
   render() {
+    const {value} = this.props
+
     return (
-      <input
-        type="checkbox"
-        checked={this.props.value}
-        onChange={this.handleChange}
-      />
+      <div className={css.inputCheckbox}>
+        <input
+          type="checkbox"
+          checked={value}
+          onChange={this.handleChange}
+          className={css.checkbox}
+        />
+        <span>{value ? '[true]' : '[false]'}</span>
+      </div>
     )
   },
 })
