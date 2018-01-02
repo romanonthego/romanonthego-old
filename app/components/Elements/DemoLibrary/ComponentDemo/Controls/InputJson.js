@@ -2,30 +2,33 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import T from 'prop-types'
 
-function styles(invalid) {
-  return {
-    display: 'block',
-    width: '100%',
-    maxWidth: '100%',
-    boxSizing: 'border-box',
-    borderColor: '#cccccc',
-    backgroundColor: invalid ? 'pink' : 'white',
-    fontFamily: 'Menlo, Monaco, Consolas, "Lucida Console", monospace',
-  }
-}
+// function styles(invalid) {
+//   return {
+//     display: 'block',
+//     width: '100%',
+//     maxWidth: '100%',
+//     boxSizing: 'border-box',
+//     borderColor: '#cccccc',
+//     backgroundColor: invalid ? 'pink' : 'white',
+//     fontFamily: 'Menlo, Monaco, Consolas, "Lucida Console", monospace',
+//   }
+// }
 
 function stringifyFromUntrustedProp(obj) {
   try {
     return JSON.stringify(obj, null, 2)
   } catch (e) {
-    return JSON.stringify({
-      message: e.message,
-    }, null, 2)
+    return JSON.stringify(
+      {
+        message: e.message,
+      },
+      null,
+      2,
+    )
   }
 }
 
 export default createReactClass({
-
   displayName: 'Demo.Controls.InputJson',
 
   propTypes: {
@@ -65,12 +68,6 @@ export default createReactClass({
 
   render() {
     const {strValue, invalid} = this.state
-    return <textarea
-      rows={4}
-      style={styles(invalid)}
-      value={strValue}
-      onChange={this.handleChange}
-    />
+    return <textarea rows={4} value={strValue} onChange={this.handleChange} />
   },
-
 })

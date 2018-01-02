@@ -32,7 +32,7 @@ export default class ControlPanel extends PureComponent {
         </main>
 
         <ul className={css.meta}>
-          <li className>v{version}</li>
+          <li className={css.version}>v{version}</li>
           <li>
             <span className={css.sourceTitle}>source: </span>
             <ExternalLink

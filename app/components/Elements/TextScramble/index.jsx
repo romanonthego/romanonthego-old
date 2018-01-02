@@ -16,6 +16,7 @@ export default class TextScamble extends Component {
   }
 
   static defaultProps = {
+    children: '',
     component: 'span',
     onDoneTimeout: 1,
   }
@@ -128,7 +129,7 @@ export default class TextScamble extends Component {
   }
 
   render() {
-    const {component: Component, className} = this.props
+    const {component: Component = 'span', className} = this.props
 
     const {done, output} = this.state
 

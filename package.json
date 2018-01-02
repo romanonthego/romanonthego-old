@@ -1,6 +1,6 @@
 {
     "name": "romanonthego.rocks",
-    "version": "3.1.0",
+    "version": "3.1.2",
     "description": "romanonthego.rocks front-end",
     "main": "index.js",
     "private": true,
@@ -72,7 +72,7 @@
         "prop-types": "15.6.0",
         "raven": "2.2.1",
         "raw-loader": "0.5.1",
-        "react": "16.0.0",
+        "react": "16.2",
         "react-create-class": "1.0.0",
         "react-demo": "2.0.0",
         "react-demo-library": "2.0.0",

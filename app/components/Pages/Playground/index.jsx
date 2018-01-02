@@ -11,8 +11,6 @@ import Library from 'app/components/Elements/DemoLibrary/Library'
 import paths from './paths'
 import css from './index.styl'
 
-console.log(paths)
-
 export default class PlaygroundPage extends PureComponent {
   static propTypes = {}
 

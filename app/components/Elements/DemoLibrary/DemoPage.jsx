@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react'
-import T from 'prop-types'
+import PropTypes from 'prop-types'
 import {unnest, last} from 'ramda'
 import Code from './Code'
 import css from './DemoPage.styl'
@@ -29,15 +29,17 @@ const fileNameToLanguage = name => {
 
 export default class DemoPage extends PureComponent {
   static propTypes = {
-    demo: T.node,
-    fullWidth: T.bool,
-    location: T.array.isRequired,
-    importPath: T.string,
-    name: T.string,
-    description: T.node,
-    files: T.arrayOf(
-      T.shape({name: T.string.isRequired, content: T.string.isRequired})
-        .isRequired,
+    demo: PropTypes.node,
+    fullWidth: PropTypes.bool,
+    location: PropTypes.array.isRequired,
+    importPath: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.node,
+    files: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        content: PropTypes.string.isRequired,
+      }).isRequired,
     ),
   }
 
@@ -63,14 +65,13 @@ export default class DemoPage extends PureComponent {
       name = last(location),
     } = this.props
 
-    console.log(demo)
-
     return (
       <div className={css.content}>
-        <div>
-          <div>{description}</div>
-        </div>
         <div>{demo}</div>
+        <div className={css.descriptionWrap}>
+          <span className={css.descriptionLabel}>description</span>
+          <div className={css.description}>{description}</div>
+        </div>
         {files && <div className={css.files}>{files.map(this.renderFile)}</div>}
       </div>
     )

@@ -3,7 +3,6 @@ import createReactClass from 'create-react-class'
 import T from 'prop-types'
 
 export default createReactClass({
-
   displayName: 'Demo.Controls.InputCheckbox',
 
   propTypes: {
@@ -16,11 +15,12 @@ export default createReactClass({
   },
 
   render() {
-    return <input
-      type="checkbox"
-      checked={this.props.value}
-      onChange={this.handleChange}
-    />
+    return (
+      <input
+        type="checkbox"
+        checked={this.props.value}
+        onChange={this.handleChange}
+      />
+    )
   },
-
 })

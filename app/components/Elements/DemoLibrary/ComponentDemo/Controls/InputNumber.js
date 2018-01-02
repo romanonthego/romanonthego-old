@@ -2,17 +2,16 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import T from 'prop-types'
 
-function styles(invalid) {
-  return {
-    display: 'block',
-    width: '100%',
-    boxSizing: 'border-box',
-    backgroundColor: invalid ? 'pink' : 'white',
-  }
-}
+// function styles(invalid) {
+//   return {
+//     display: 'block',
+//     width: '100%',
+//     boxSizing: 'border-box',
+//     backgroundColor: invalid ? 'pink' : 'white',
+//   }
+// }
 
 export default createReactClass({
-
   displayName: 'Demo.Controls.InputNumber',
 
   propTypes: {
@@ -48,12 +47,6 @@ export default createReactClass({
 
   render() {
     const {strValue, invalid} = this.state
-    return <input
-      type="text"
-      style={styles(invalid)}
-      value={strValue}
-      onChange={this.handleChange}
-    />
+    return <input type="text" value={strValue} onChange={this.handleChange} />
   },
-
 })

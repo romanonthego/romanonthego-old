@@ -1,6 +1,8 @@
 import React from 'react'
 import Demo from 'app/components/Elements/DemoLibrary/ComponentDemo'
 import DemoProps from 'app/components/Elements/DemoLibrary/ComponentDemo/props'
+import TextScramble from 'app/components/Elements/TextScramble'
+import TextPrint from 'app/components/Elements/TextPrint'
 import Component from './index'
 
 const Target = ({component, ...props}) => {
@@ -11,7 +13,7 @@ export default (
   <Demo
     background="dark"
     props={{
-      children: DemoProps.text('Testing text element'),
+      children: DemoProps.text('Testing text print effect'),
       component: DemoProps.text('h1'),
     }}
   >
@@ -20,4 +22,9 @@ export default (
 )
 
 export const fullWidth = false
-export const description = 'Text component'
+export const description = [
+  <TextScramble component="h1">Text Print</TextScramble>,
+  <TextPrint component="p">
+    Simple component for interactive text print{' '}
+  </TextPrint>,
+]

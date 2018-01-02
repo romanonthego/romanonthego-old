@@ -3,7 +3,6 @@ import T from 'prop-types'
 import mapValues from 'lodash/mapValues'
 import pick from 'lodash/pickBy'
 import pairs from 'lodash/toPairs'
-import zipObject from 'lodash/zipObject'
 import forOwn from 'lodash/forOwn'
 import set from 'lodash/set'
 import propsDefenitions from './props'
@@ -24,14 +23,11 @@ const flattenObjProps = (prop, path) =>
     })
     .reduce((head, tail) => head.concat(tail), [])
 
-const flattenProps = (props, path = []) => {
-  return flattenObjProps(props, path).reduce((endProps, [key, value] = []) => {
-    return {
-      ...endProps,
-      [key]: value,
-    }
-  }, {})
-}
+const flattenProps = (props, path = []) =>
+  flattenObjProps(props, path).reduce(
+    (acc, [key, value]) => ({...acc, [key]: value}),
+    {},
+  )
 
 const nestProps = flatProps => {
   const props = {}
@@ -69,13 +65,13 @@ export default class ComponentDemo extends PureComponent {
     super(props)
 
     const {props: demoProps} = props
-
     const flatProps = flattenProps(demoProps)
 
-    console.log(flatProps)
-
     this.state = {
-      values: mapValues(getValueProps(flatProps), x => x.initialValue),
+      values: mapValues(
+        getValueProps(flatProps),
+        ({initialValue}) => initialValue,
+      ),
       logs: mapValues(getCallbackProps(flatProps), () => []),
     }
   }
@@ -112,7 +108,6 @@ export default class ComponentDemo extends PureComponent {
     const {children, fullWidth, codeIndentDepth, background, props} = this.props
 
     const flatProps = flattenProps(props)
-
     const targetProps = nestProps({...values, ...this.getCallbacks(flatProps)})
 
     const targetEl = children ? (

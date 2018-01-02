@@ -2,11 +2,11 @@ import React from 'react'
 import createReactClass from 'create-react-class'
 import T from 'prop-types'
 
-const style = {
-  display: 'block',
-  width: '100%',
-  boxSizing: 'border-box',
-}
+// const style = {
+//   display: 'block',
+//   width: '100%',
+//   boxSizing: 'border-box',
+// }
 
 export default createReactClass({
   displayName: 'Demo.Controls.InputText',
@@ -24,7 +24,6 @@ export default createReactClass({
     return (
       <input
         type="text"
-        style={style}
         value={this.props.value}
         onChange={this.handleChange}
       />

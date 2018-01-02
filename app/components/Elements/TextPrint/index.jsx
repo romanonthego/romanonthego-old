@@ -12,6 +12,7 @@ export default class TextPrint extends PureComponent {
 
   static defaultProps = {
     component: 'p',
+    children: '',
   }
 
   state = {
@@ -81,7 +82,7 @@ export default class TextPrint extends PureComponent {
   }
 
   render() {
-    const {component: Component, className, ...otherProps} = this.props
+    const {component: Component = 'span', className, ...otherProps} = this.props
     const {text, done} = this.state
 
     return (

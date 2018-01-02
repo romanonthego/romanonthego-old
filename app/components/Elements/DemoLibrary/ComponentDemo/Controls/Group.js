@@ -1,34 +1,33 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
-import T from 'prop-types'
+import PropTypes from 'prop-types'
+import css from './Group.styl'
 
-const style = {
-  fontSize: '11px',
-  display: 'block',
-  padding: '4px',
-}
-const styleLabel = {
-  display: 'block',
-  color: '#666',
-}
+// const style = {
+//   fontSize: '11px',
+//   display: 'block',
+//   padding: '4px',
+// }
+// const styleLabel = {
+//   display: 'block',
+//   color: '#666',
+// }
 
 export default createReactClass({
-
   displayName: 'Demo.Controls.Group',
 
   propTypes: {
-    name: T.string.isRequired,
-    children: T.node.isRequired,
+    name: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
   },
 
   render() {
     const {name, children} = this.props
-    return <label style={style} className="react-demo__control-group">
-      <span style={styleLabel} className="react-demo__control-group-label">
-        {name}
-      </span>
-      {children}
-    </label>
+    return (
+      <label className={css.group}>
+        <span className={css.label}>{name}</span>
+        {children}
+      </label>
+    )
   },
-
 })

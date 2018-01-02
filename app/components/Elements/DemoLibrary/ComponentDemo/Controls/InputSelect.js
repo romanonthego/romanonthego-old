@@ -3,11 +3,11 @@ import createReactClass from 'create-react-class'
 import T from 'prop-types'
 import findIndex from 'lodash//findIndex'
 
-const style = {
-  display: 'block',
-  width: '100%',
-  boxSizing: 'border-box',
-}
+// const style = {
+//   display: 'block',
+//   width: '100%',
+//   boxSizing: 'border-box',
+// }
 
 const optionType = T.shape({
   label: T.string.isRequired,
@@ -39,7 +39,6 @@ export default createReactClass({
     const {options, value} = this.props
     return (
       <select
-        style={style}
         value={findIndex(options, x => x.value === value)}
         onChange={this.handleChange}
       >
