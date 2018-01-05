@@ -39,6 +39,8 @@ export const globals = {
   GIT_COMMIT_LONG: extractGitCommitLong(),
   GIT_COMMIT_SHORT: extractGitCommitShort(),
   RESUME_LINK: null,
+  GA: null,
+  GA_MODE: 'auto',
 }
 
 export default (config = {}) => {
