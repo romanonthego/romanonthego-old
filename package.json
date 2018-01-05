@@ -1,6 +1,6 @@
 {
     "name": "romanonthego.rocks",
-    "version": "3.1.2",
+    "version": "3.2.2",
     "description": "romanonthego.rocks front-end",
     "main": "index.js",
     "private": true,
@@ -8,19 +8,26 @@
     "scripts": {
         "heroku-postbuild": "yarn build",
         "test": "yarn lint",
-        "lint": "./node_modules/.bin/eslint --quiet --ext .jsx --ext .js app/** || true",
-        "lint:fix": "./node_modules/.bin/eslint --quiet --ext .jsx --ext .js app/** --fix",
+        "lint":
+            "./node_modules/.bin/eslint --quiet --ext .jsx --ext .js app/** || true",
+        "lint:fix":
+            "./node_modules/.bin/eslint --quiet --ext .jsx --ext .js app/** --fix",
         "clean-build-dir": "rm -rf ./build/*",
         "bump": "yarn version",
         "predev": "yarn clean-build-dir",
-        "dev": "webpack --config webpack-configs/server.development.babel.js && yarn start",
-        "dev:prerender": "DEV_PRERENDER=true webpack --config webpack-configs/server.development.babel.js && yarn start",
+        "dev":
+            "webpack --config webpack-configs/server.development.babel.js && yarn start",
+        "dev:prerender":
+            "DEV_PRERENDER=true webpack --config webpack-configs/server.development.babel.js && yarn start",
         "prebuild": "yarn clean-build-dir",
         "build": "yarn build:server && yarn build:browser",
-        "build:server": "webpack --config webpack-configs/server.production.babel.js",
-        "build:browser": "webpack --config webpack-configs/browser.production.babel.js",
+        "build:server":
+            "webpack --config webpack-configs/server.production.babel.js",
+        "build:browser":
+            "webpack --config webpack-configs/browser.production.babel.js",
         "preanalyze": "yarn clean-build-dir",
-        "analyze": "NODE_ENV=production ANALYZE=true webpack --config webpack-configs/browser.production.babel.js",
+        "analyze":
+            "NODE_ENV=production ANALYZE=true webpack --config webpack-configs/browser.production.babel.js",
         "start": "node ./build/server"
     },
     "dependencies": {
@@ -59,6 +66,7 @@
         "express-static-gzip": "0.3.0",
         "express-ws": "3.0.0",
         "extract-text-webpack-plugin": "3.0.1",
+        "fast-memoize": "2.2.8",
         "file-loader": "1.1.6",
         "git-rev-sync": "1.9.1",
         "helmet": "3.9.0",
@@ -85,6 +93,7 @@
         "react-router": "3",
         "react-router-redux": "4.0.8",
         "react-syntax-highlighter": "6.1.1",
+        "recompose": "0.26.0",
         "redux": "3.7.2",
         "redux-connect": "6.0.0",
         "redux-persist": "4.10.1",

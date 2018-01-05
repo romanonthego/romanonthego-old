@@ -17,6 +17,8 @@ export default createReactClass({
   propTypes: {
     value: T.number.isRequired,
     onChange: T.func.isRequired,
+    max: T.number,
+    min: T.number,
   },
 
   getInitialState() {
@@ -46,7 +48,17 @@ export default createReactClass({
   },
 
   render() {
-    const {strValue, invalid} = this.state
-    return <input type="text" value={strValue} onChange={this.handleChange} />
+    const {min, max} = this.props
+    const {strValue} = this.state
+
+    return (
+      <input
+        type="number"
+        value={strValue}
+        onChange={this.handleChange}
+        min={min}
+        max={max}
+      />
+    )
   },
 })

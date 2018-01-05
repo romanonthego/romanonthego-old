@@ -37,9 +37,15 @@ export class Wrap extends PureComponent {
     const url = pathname + search
 
     return (
-      <PageMeta status={200} lang="ru">
+      <PageMeta status={200} lang="en">
         <main className={css.wrap}>
-          <Helmet />
+          <Helmet
+            website={{
+              name: 'romanonthego',
+              alternateName: 'romanonthego.rocks',
+              url: 'http://romanonthego.rocks',
+            }}
+          />
           <ControlPanel />
           <RouteTransition url={url} animated={isClient}>
             <main className={css.wrappedRoute} {...sanitizeProps(this.props)} />

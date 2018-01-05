@@ -41,19 +41,25 @@ export default class PlaygroundPage extends PureComponent {
             Resume
           </TextScramble>
 
-          <TextPrint>
-            As I'm grow tired of copy-pasting link to my resume and
+          <TextPrint component="p" className="secondary">
+            As I’m grow tired of copy-pasting link to my resume and
             redownloading the PDF,
           </TextPrint>
-          <TextPrint>I've desided to just put it here.</TextPrint>
+          <TextPrint component="p" className="secondary">
+            I’ve desided to just put it here. It will always be up to date
+            (thanks, Google Docs)
+          </TextPrint>
 
           <main className={css.block}>
-            <LinksList wrapped>
-              <LinkScramble to="https://docs.google.com/document/d/1S8zyYitY2LxaXU3CPlOdxD39S3BOwP5mooi1fil69Kw/view">
-                google docs
+            <LinksList>
+              <LinkScramble to="https://goo.gl/x8wd2h">
+                docs.google document
               </LinkScramble>
-              <LinkScramble to="https://docs.google.com/document/d/1S8zyYitY2LxaXU3CPlOdxD39S3BOwP5mooi1fil69Kw/export?format=pdf">
-                download pdf
+              <LinkScramble to="https://goo.gl/Ypmfjn">
+                download PDF file
+              </LinkScramble>
+              <LinkScramble to="https://goo.gl/Mcj2EN">
+                download RTF file
               </LinkScramble>
             </LinksList>
           </main>

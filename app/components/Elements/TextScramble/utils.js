@@ -1,5 +1,5 @@
 const {floor, random} = Math
-const scrambledChars = '!<>-_\\/[]{}—=+*^?#________'
+const scrambledChars = '!<>-_[]{}—=+*^?#________'
 
 export const randomChar = (chars = scrambledChars) => {
   return chars[floor(random() * chars.length)]

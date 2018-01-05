@@ -1,6 +1,7 @@
 import Noop from './Controls/ControlNoop'
 import String from './Controls/ControlString'
 import Number from './Controls/ControlNumber'
+import Range from './Controls/ControlRange'
 import Text from './Controls/ControlText'
 import Json from './Controls/ControlJson'
 import Bool from './Controls/ControlBool'
@@ -24,11 +25,28 @@ export default {
     }
   },
 
-  number(initialValue) {
+  number(initialValue, min, max) {
     return {
       type: 'value',
       Control: Number,
       initialValue,
+      controlProps: {
+        min,
+        max,
+      },
+    }
+  },
+
+  range(initialValue, min, max, step) {
+    return {
+      type: 'value',
+      Control: Range,
+      initialValue,
+      controlProps: {
+        min,
+        max,
+        step,
+      },
     }
   },
 

@@ -57,6 +57,7 @@ export default class DemoLayout extends PureComponent {
     const panel = (
       <div className={css.controllsWrap} key="panel">
         {controlsEl}
+        <div className={css.controlsSpacer} />
       </div>
     )
     return <div className={css.demo}>{[panel, demo]}</div>

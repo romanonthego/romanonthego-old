@@ -7,6 +7,9 @@
   justify-content: flex-end
   max-width: x(600)
 
+  +media('wideDesk')
+    max-width: x(800)
+
 .content
   z-index: 100
 
@@ -16,9 +19,14 @@
 .block
   margin-top: x(20)
 
+.description
+  margin-bottom: x(10)
+
 .title
   display: block
   position: relative
 
 .description
   display: block
+
+applyMediaCache()

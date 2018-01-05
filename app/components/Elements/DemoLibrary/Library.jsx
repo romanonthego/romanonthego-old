@@ -39,12 +39,12 @@ export default class Library extends PureComponent {
       }))
       .concat([
         {
-          title: 'Components Library',
+          title: 'Playground',
           hash: '',
           content: (
             <Layout menu={menu}>
               <div className={css.emptyState}>
-                {'<=='} Use menu to start exploring the library
+                {'<=='} Use menu to start exploring the Playground
               </div>
             </Layout>
           ),

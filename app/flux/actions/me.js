@@ -1,15 +1,15 @@
 import typesWithPrefix from 'app/flux/utils/typesWithPrefix'
 
 export const types = typesWithPrefix('me', {
-  SET_FAST_MODE: 'SET_FAST_MODE',
+  SET_ALREADY_VISITED: 'SET_ALREADY_VISITED',
   SET_EMAIL_UNCOVERED: 'SET_EMAIL_UNCOVERED',
 })
 
-export function setFastMode(fastMode = false) {
+export function setAlreadyVisited(alreadyVisited = false) {
   return {
-    type: types.SET_FAST_MODE,
+    type: types.SET_ALREADY_VISITED,
     payload: {
-      fastMode,
+      alreadyVisited,
     },
   }
 }

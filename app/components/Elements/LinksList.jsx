@@ -4,15 +4,6 @@ import {Link} from 'react-router'
 import cx from 'classnames'
 import css from './LinksList.styl'
 
-const renderItem = (child, i) => {
-  const props = {
-    key: i,
-    className: css.item,
-  }
-
-  return <li {...props}>{child}</li>
-}
-
 export default class LinksList extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -27,7 +18,7 @@ export default class LinksList extends PureComponent {
   }
 
   renderAndMore = () => {
-    const {addMore, moreLink} = this.props
+    const {addMore, moreLink, wrapped} = this.props
 
     const text = typeof addMore === 'boolean' ? 'and others' : addMore
     const component = moreLink ? (
@@ -37,6 +28,16 @@ export default class LinksList extends PureComponent {
     )
 
     return <li className={cx(css.item, css.addMore)}>{component}</li>
+  }
+
+  renderItem = (item, i) => {
+    const {wrapped} = this.props
+
+    return (
+      <li key={i} className={cx(css.item, {[css.wrappedItem]: wrapped})}>
+        {item}
+      </li>
+    )
   }
 
   render() {
@@ -51,7 +52,7 @@ export default class LinksList extends PureComponent {
 
     return (
       <ul className={cl}>
-        {childrenArray.map(renderItem)}
+        {childrenArray.map(this.renderItem)}
         {addMore && this.renderAndMore()}
       </ul>
     )

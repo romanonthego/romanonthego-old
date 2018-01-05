@@ -6,6 +6,7 @@ import websiteScheme from './utils/website'
 import breadcrumbsScheme from './utils/breadcrumbs'
 import metaOrNull from './utils/metaOrNull'
 import scriptTag from './utils/scriptTag'
+import share from './assets/share.png'
 
 export default class EcompHelmet extends PureComponent {
   static propTypes = {
@@ -49,6 +50,7 @@ export default class EcompHelmet extends PureComponent {
     renderOpenGraph: true,
     renderTwitterCard: true,
     cardType: 'summary_large_image',
+    image: share,
     imageWidth: 1200,
     imageHeight: 630,
   }
@@ -71,7 +73,7 @@ export default class EcompHelmet extends PureComponent {
     } = this.props
 
     return (
-      <Helmet defaultTitle="E-components">
+      <Helmet defaultTitle="romanonthego">
         {title && <title>{title}</title>}
         {metaOrNull('description', description)}
         {metaOrNull('twitter:title', title)}

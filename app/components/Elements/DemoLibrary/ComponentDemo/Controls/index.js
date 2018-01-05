@@ -34,6 +34,7 @@ export default createReactClass({
     const Control = props[key].Control
     const controlProps = props[key].controlProps || {}
     const value = values[key]
+
     return (
       <Control
         {...controlProps}

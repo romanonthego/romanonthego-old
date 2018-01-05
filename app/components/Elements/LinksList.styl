@@ -1,5 +1,3 @@
-$itemsInColum = 4
-
 @keyframes listNumberAnimated
   0%
     content: '01·'
@@ -27,10 +25,7 @@ $itemsInColum = 4
 .list
   counter-reset: linksList
   list-style: none
-  display: flex
-  flex-direction: column
-  justify-content: flex-start
-  align-items: flex-start
+  display: bloc
   max-width: x(800)
 
   +media('tablet')
@@ -41,14 +36,20 @@ $itemsInColum = 4
     max-height: none
 
 .wrapped
-  height: 1.5em * $itemsInColum + 0.5em
-  max-height: 1.5em * $itemsInColum + 0.5em
-  flex-wrap: wrap
+  column-count: 2
+  columns-width: 50%
+  column-gap: x(20)
+  overflow: hidden
+  column-fill: balance
+
+  +media('wideDesk')
+    column-count: 3
+    columns-width: 33.3%
 
   +media('phone')
-    height: auto
-    max-height: none
-    flex-wrap: nowrap
+    column-count: 1
+    columns-width: 100%
+    column-gap: 0
 
 
 .item
@@ -58,13 +59,6 @@ $itemsInColum = 4
   justify-content: flex-start
   align-items: center
   margin-bottom: 0.5em
-  min-height: 1em
-
-  &:nth-child(4n)
-    column-span: all
-
-  &:last-child
-    margin-bottom: 0
 
   &:before
     align-self: flex-start
@@ -79,6 +73,8 @@ $itemsInColum = 4
 
 .addMore
   opacity: 0.6
+  column-span: all
+  margin-top: x(10)
   &:before
     content: '···'
     pointer-events: none

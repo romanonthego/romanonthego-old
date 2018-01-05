@@ -11,7 +11,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default pageRenderingProvider(Page, {
-  pageName: 'PlaygroundPage',
   asyncLoaders: [emptyLoader],
   mapStateToProps,
   mapDispatchToProps,

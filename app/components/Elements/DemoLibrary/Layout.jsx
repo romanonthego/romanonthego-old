@@ -47,6 +47,7 @@ const styles = {
   },
   nodeName: {
     margin: '2px 0',
+    opacity: 0.6,
   },
   leaf({current}) {
     return {
@@ -158,6 +159,7 @@ export default class Layout extends PureComponent {
   render() {
     const {menu, children, fullWidth, currentHash} = this.props
     const {menuOpen} = this.state
+
     return (
       <div onClick={this.handleWrapClick} className={css.wrap}>
         {fullWidth && (

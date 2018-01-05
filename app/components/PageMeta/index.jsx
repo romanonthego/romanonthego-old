@@ -9,12 +9,12 @@ class PageMeta extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     status: PropTypes.number,
-    lang: PropTypes.oneOf(['ru']),
+    lang: PropTypes.oneOf(['en']),
   }
 
   static defaultProps = {
     status: 200,
-    lang: 'ru',
+    lang: 'en',
   }
 
   render() {

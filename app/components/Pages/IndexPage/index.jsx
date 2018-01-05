@@ -1,5 +1,7 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
+import Helmet from 'app/components/Helmet'
 import SiteWrap from 'app/components/Layout/SiteWrap'
 import Section from 'app/components/Layout/Section'
 import TextScramble from 'app/components/Elements/TextScramble'
@@ -15,23 +17,24 @@ const importMePaths = () =>
   /* webpackMode: 'lazy' */
   './Me/paths')
 
-const fastModeTimeout = 400
-const defaultTimeout = 600
+const alreadyVisitedTimeout = 100
+const defaultTimeout = 200
 
 export default class IndexPage extends PureComponent {
   static propTypes = {
     loading: PropTypes.bool.isRequired,
-    fastMode: PropTypes.bool.isRequired,
-    setFastMode: PropTypes.func.isRequired,
+    alreadyVisited: PropTypes.bool.isRequired,
+    setAlreadyVisited: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
-    fastMode: true,
+    alreadyVisited: true,
   }
 
   state = {
     step: 0,
     paths: null,
+    useReducedMotion: false,
   }
 
   componentDidMount() {
@@ -39,7 +42,15 @@ export default class IndexPage extends PureComponent {
       this.handleStart()
     }
 
-    importMePaths().then(paths => this.setState({paths}))
+    importMePaths().then(paths => {
+      let useReducedMotion = false
+
+      // if (window.matchMedia && window.matchMedia('(prefers-reduced-motion)')) {
+      //   useReducedMotion = true
+      // }
+
+      this.setState({paths, useReducedMotion})
+    })
   }
 
   componentWillReceiveProps(newProps) {
@@ -49,12 +60,12 @@ export default class IndexPage extends PureComponent {
   }
 
   componentDidUpdate() {
-    const {setFastMode, fastMode} = this.props
+    const {setAlreadyVisited, alreadyVisited} = this.props
 
     const {step} = this.state
 
-    if (step >= 6 && !fastMode) {
-      setFastMode(true)
+    if (step >= 6 && !alreadyVisited) {
+      setAlreadyVisited(true)
     }
   }
 
@@ -69,21 +80,33 @@ export default class IndexPage extends PureComponent {
   }
 
   render() {
-    const {fastMode} = this.props
+    const {alreadyVisited} = this.props
 
-    const {paths} = this.state
+    const {paths, useReducedMotion} = this.state
 
     return (
       <SiteWrap displayHeader={false} displayFooter={this.shouldRender(6)}>
+        <Helmet
+          title="romanonthego"
+          description="Hello there, I’m Roman Dubinin, front-end developer"
+          breadcrumbs={[
+            {
+              id: `${GLOBALS.BASE_URL}`,
+              name: 'romanonthego',
+            },
+          ]}
+        />
         <Section className={css.section}>
           <main className={css.content}>
             <TextScramble
               className={css.title}
               component="h1"
               onDone={this.handleNextStep}
-              onDoneTimeout={fastMode ? fastModeTimeout : defaultTimeout * 2}
+              onDoneTimeout={
+                alreadyVisited ? alreadyVisitedTimeout * 4 : defaultTimeout * 4
+              }
             >
-              {this.shouldRender(1) ? 'Hello there' : 'Oh'}
+              {this.shouldRender(1) ? `Hello there` : 'Oh'}
             </TextScramble>
 
             {this.shouldRender(2) && (
@@ -91,9 +114,11 @@ export default class IndexPage extends PureComponent {
                 <TextScramble
                   className={css.description}
                   onDone={this.handleNextStep}
-                  onDoneTimeout={fastMode ? fastModeTimeout : defaultTimeout}
+                  onDoneTimeout={
+                    alreadyVisited ? alreadyVisitedTimeout : defaultTimeout
+                  }
                 >
-                  I'm Roman Dubinin, front-end developer
+                  I’m Roman Dubinin, front-end developer
                 </TextScramble>
                 <br />
                 <div className="secondary">
@@ -119,43 +144,45 @@ export default class IndexPage extends PureComponent {
               <main className={css.block}>
                 <SubTitle>
                   <TextScramble
-                    component="span"
                     onDone={this.handleNextStep}
-                    onDoneTimeout={fastMode ? fastModeTimeout : defaultTimeout}
+                    onDoneTimeout={
+                      alreadyVisited ? alreadyVisitedTimeout : defaultTimeout
+                    }
+                    component="span"
                   >
-                    Experience
+                    Playground
                   </TextScramble>
                 </SubTitle>
+                <TextPrint
+                  component="p"
+                  className={cx('secondary', css.description)}
+                >
+                  Interactive demos of components, concepts etc:
+                </TextPrint>
+                <LinksList
+                  wrapped
+                  addMore="explore more"
+                  moreLink="/playground"
+                >
+                  <LinkScramble to="/playground#!/ReactComponents/SiteComponents/TextScramble/">
+                    TextScramble
+                  </LinkScramble>
 
-                <LinksList wrapped addMore>
-                  <div>
-                    <LinkScramble to="http://whitescape.com">
-                      whitescape
-                    </LinkScramble>
-                  </div>
-                  <div>
-                    <LinkScramble to="http://vector.education">
-                      vector
-                    </LinkScramble>
-                  </div>
-                  <div>
-                    <LinkScramble to="https://openuni.io">openuni</LinkScramble>
-                  </div>
-                  <div>
-                    <LinkScramble to="https://lmbd.ru/">
-                      lambada market
-                    </LinkScramble>
-                  </div>
-                  <div>
-                    <LinkScramble to="http://intel.afisha.ru/">
-                      intel for afisha.ru
-                    </LinkScramble>
-                  </div>
-                  <div>
-                    <LinkScramble to="https://www.clickavia.ru">
-                      clickavia
-                    </LinkScramble>
-                  </div>
+                  <LinkScramble to="/playground#!/ReactComponents/SiteComponents/TextPrint/">
+                    TextPrint
+                  </LinkScramble>
+
+                  <LinkScramble to="/playground#!/ReactComponents/SiteComponents/InteractivePortrait/">
+                    InteractivePortrait
+                  </LinkScramble>
+
+                  <LinkScramble to="/playground#!/ReactComponents/Fractals/PythogorasTree/">
+                    PythagorasTree
+                  </LinkScramble>
+
+                  <LinkScramble to="/playground#!/ReactComponents/CellularAutomata/GameOfLife/">
+                    GameOfLife
+                  </LinkScramble>
                 </LinksList>
               </main>
             )}
@@ -166,13 +193,71 @@ export default class IndexPage extends PureComponent {
                   <TextScramble
                     component="span"
                     onDone={this.handleNextStep}
-                    onDoneTimeout={fastMode ? fastModeTimeout : defaultTimeout}
+                    onDoneTimeout={
+                      alreadyVisited ? alreadyVisitedTimeout : defaultTimeout
+                    }
+                  >
+                    Experience
+                  </TextScramble>
+                </SubTitle>
+
+                <TextPrint
+                  component="p"
+                  className={cx('secondary', css.description)}
+                >
+                  Projects I’ve worked on and with:
+                </TextPrint>
+
+                <LinksList wrapped addMore>
+                  <LinkScramble to="https://uploadcare.com">
+                    uploadcare
+                  </LinkScramble>
+
+                  <LinkScramble to="https://riders.co">riders</LinkScramble>
+
+                  <LinkScramble to="http://whitescape.com">
+                    whitescape
+                  </LinkScramble>
+
+                  <LinkScramble to="http://vector.education">
+                    vector
+                  </LinkScramble>
+
+                  <LinkScramble to="https://openuni.io">openuni</LinkScramble>
+
+                  <LinkScramble to="https://lmbd.ru/">
+                    lambada market
+                  </LinkScramble>
+
+                  <LinkScramble to="http://intel.afisha.ru/">
+                    intel.afisha.ru
+                  </LinkScramble>
+
+                  <LinkScramble to="https://www.clickavia.ru">
+                    clickavia
+                  </LinkScramble>
+                </LinksList>
+              </main>
+            )}
+
+            {this.shouldRender(5) && (
+              <main className={css.block}>
+                <SubTitle>
+                  <TextScramble
+                    component="span"
+                    onDone={this.handleNextStep}
+                    onDoneTimeout={
+                      alreadyVisited ? alreadyVisitedTimeout : defaultTimeout
+                    }
                   >
                     Open Source
                   </TextScramble>
                 </SubTitle>
 
-                <LinksList>
+                <LinksList
+                  addMore="and more in github profile"
+                  moreLink="https://github.com/romanonthego"
+                >
                   <div>
                     <LinkScramble
                       to="https://github.com/whitescape/uploadcare-loader"
@@ -233,18 +318,20 @@ export default class IndexPage extends PureComponent {
               </main>
             )}
 
-            {this.shouldRender(5) && (
+            {this.shouldRender(6) && (
               <main className={css.block}>
                 <SubTitle>
                   <TextScramble
                     onDone={this.handleNextStep}
-                    onDoneTimeout={fastMode ? fastModeTimeout : defaultTimeout}
+                    onDoneTimeout={
+                      alreadyVisited ? alreadyVisitedTimeout : defaultTimeout
+                    }
                     component="span"
                   >
                     Articles
                   </TextScramble>
                 </SubTitle>
-                <LinksList addMore="and more in github profile">
+                <LinksList>
                   <div>
                     <LinkScramble
                       to="https://blog.uploadcare.com/supercharge-your-static-assets-with-uploadcare-and-webpack-in-no-time-a7f1f0b5b30a#.mqdm5trmr"
@@ -252,7 +339,6 @@ export default class IndexPage extends PureComponent {
                       data-use-title
                     >
                       Supercharge your static assets with Uploadcare and Webpack
-                      in no time
                     </LinkScramble>
                     <TextPrint className="secondary" component="p">
                       How can one use Uploadcare and Webpack to get all the
@@ -272,38 +358,12 @@ export default class IndexPage extends PureComponent {
                       loaded since it is SO DAMN HUGE? Seriously, it is 107kb
                       gzipped!
                     </TextPrint>
-                  </div>
-                </LinksList>
-              </main>
-            )}
-
-            {this.shouldRender(6) && (
-              <main className={css.block}>
-                <SubTitle>
-                  <TextScramble
-                    onDone={this.handleNextStep}
-                    onDoneTimeout={fastMode ? fastModeTimeout : defaultTimeout}
-                    component="span"
-                  >
-                    Playground
-                  </TextScramble>
-                </SubTitle>
-                <LinksList addMore="explore more" moreLink="/playground">
-                  <div>
-                    <LinkScramble to="/playground#!/Elements/TextPrint/">
-                      TextScramble
+                    <LinkScramble
+                      to="https://habrahabr.ru/post/344248/"
+                      className="secondary"
+                    >
+                      (russian version on habrahabr)
                     </LinkScramble>
-                    <TextPrint className="secondary" component="p">
-                      Text scramble effect you could see on this site
-                    </TextPrint>
-                  </div>
-                  <div>
-                    <LinkScramble to="/playground#!/Elements/TextPrint/">
-                      TextPrint
-                    </LinkScramble>
-                    <TextPrint className="secondary" component="p">
-                      Text print effect you could see on this site
-                    </TextPrint>
                   </div>
                 </LinksList>
               </main>
@@ -311,8 +371,8 @@ export default class IndexPage extends PureComponent {
           </main>
 
           <aside className={css.me}>
-            {this.shouldRender(fastMode ? 6 : 7, false) &&
-              paths && <Me paths={paths} />}
+            {this.shouldRender(alreadyVisited ? 6 : 7, false) &&
+              paths && <Me paths={paths} mouseMovement={!useReducedMotion} />}
           </aside>
         </Section>
       </SiteWrap>

@@ -48,6 +48,10 @@ class Me extends Component {
   }
 
   shouldComponentUpdate(nextProps, {x: newX, y: newY}) {
+    if (nextProps.paths !== this.props.paths) {
+      return true
+    }
+
     const {x, y} = this.state
 
     if (x !== newX && y !== newY) {
@@ -132,14 +136,16 @@ class Me extends Component {
 
     return (
       <aside className={cx(css.me, {[css.staticMe]: staticMe})}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402 402">
-          <StaggeredMotion
-            defaultStyles={this.getDefaultStyles()}
-            styles={this.mapStyles}
-          >
-            {this.renderIterpolated}
-          </StaggeredMotion>
-        </svg>
+        {this.props.paths && (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402 402">
+            <StaggeredMotion
+              defaultStyles={this.getDefaultStyles()}
+              styles={this.mapStyles}
+            >
+              {this.renderIterpolated}
+            </StaggeredMotion>
+          </svg>
+        )}
       </aside>
     )
   }

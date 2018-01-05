@@ -85,7 +85,13 @@ export default class TextPrint extends PureComponent {
   }
 
   render() {
-    const {component: Component = 'span', className, ...otherProps} = this.props
+    const {
+      component: Component = 'span',
+      className,
+      children,
+      ...otherProps
+    } = this.props
+
     const {text, done} = this.state
 
     return (

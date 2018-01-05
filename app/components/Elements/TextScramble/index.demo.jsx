@@ -30,7 +30,7 @@ export const description = (
     <TextPrint component="p">
       React pure component for text scramble effect. Highly effective, only
       render what it absolutly needs to. Utilises `requestAnimationFrame` under
-      the hood. Reworked to react component from{' '}
+      the hood. Reworked to react component from
     </TextPrint>
     <LinkScramble to="https://codepen.io/soulwire/pen/mErPAK">
       Text Scramble Effect codepen

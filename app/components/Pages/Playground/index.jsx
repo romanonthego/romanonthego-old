@@ -41,7 +41,19 @@ export default class PlaygroundPage extends PureComponent {
           <TextScramble className={css.title} component="h1">
             Playground
           </TextScramble>
-
+          <TextPrint component="span" className="secondary">
+            Little Playground of mine, displays demos of Components used on this
+            site.
+          </TextPrint>
+          <br />
+          <TextPrint component="span" className="secondary">
+            Based on and inspired by
+          </TextPrint>{' '}
+          <LinkScramble to="https://github.com/rpominov/react-demo-library">
+            react-demo-library
+          </LinkScramble>
+        </Section>
+        <Section paddingTop={false}>
           <Library demos={paths} />
         </Section>
       </SiteWrap>

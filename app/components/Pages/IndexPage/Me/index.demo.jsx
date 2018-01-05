@@ -28,11 +28,7 @@ class Target extends PureComponent {
     const {mouseMovement} = this.props
     const {paths} = this.state
 
-    if (paths) {
-      return <Component paths={paths} staticMe mouseMovement={mouseMovement} />
-    }
-
-    return null
+    return <Component paths={paths} staticMe mouseMovement={mouseMovement} />
   }
 }
 

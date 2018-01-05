@@ -26,6 +26,7 @@ const extractAppVersion = () => {
 export const globals = {
   DEV: true,
   DEV_PRERENDER: false,
+  BASE_URL: 'http://romanonthego.rocks',
   APP_ENV: 'development',
   BACKEND_URL: null,
   BACKEND_HELPER_URL: null,
