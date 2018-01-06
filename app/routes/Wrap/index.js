@@ -45,6 +45,8 @@ export class Wrap extends PureComponent {
               alternateName: 'romanonthego.rocks',
               url: 'http://romanonthego.rocks',
             }}
+            siteHandler="@romanonthego"
+            creatorHandler="@romanonthego"
           />
           <ControlPanel />
           <RouteTransition url={url} animated={isClient}>

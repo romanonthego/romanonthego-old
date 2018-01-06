@@ -4,9 +4,9 @@ import {Helmet} from 'react-helmet'
 import companyScheme from './utils/company'
 import websiteScheme from './utils/website'
 import breadcrumbsScheme from './utils/breadcrumbs'
-import metaOrNull from './utils/metaOrNull'
+import metaOrNull, {metaWithPropertyOrNull} from './utils/metaOrNull'
 import scriptTag from './utils/scriptTag'
-import share from './assets/share.png'
+import shareImage from './assets/share.png'
 
 export default class EcompHelmet extends PureComponent {
   static propTypes = {
@@ -50,11 +50,10 @@ export default class EcompHelmet extends PureComponent {
     renderOpenGraph: true,
     renderTwitterCard: true,
     cardType: 'summary_large_image',
-    image: share,
+    image: shareImage,
     imageWidth: 1200,
     imageHeight: 630,
   }
-
   render() {
     const {
       title,
@@ -78,17 +77,17 @@ export default class EcompHelmet extends PureComponent {
         {metaOrNull('description', description)}
         {metaOrNull('twitter:title', title)}
         {metaOrNull('twitter:description', description)}
-        {metaOrNull('twitter:image', image)}
+        {metaOrNull('twitter:image', `${GLOBALS.BASE_URL}${image}`)}
         {metaOrNull('twitter:card', cardType)}
         {metaOrNull('twitter:site', siteHandler)}
         {metaOrNull('twitter:creator', creatorHandler)}
-        {metaOrNull('og:title', title)}
-        {metaOrNull('og:description', description)}
-        {metaOrNull('og:image', image)}
-        {metaOrNull('og:image:width', imageWidth, image)}
-        {metaOrNull('og:image:height', imageHeight, image)}
-        {metaOrNull('og:type', openGraphType)}
-        {metaOrNull('og:site', openGraphSiteName)}
+        {metaWithPropertyOrNull('og:title', title)}
+        {metaWithPropertyOrNull('og:description', description)}
+        {metaWithPropertyOrNull('og:image', `${GLOBALS.BASE_URL}${image}`)}
+        {metaWithPropertyOrNull('og:image:width', imageWidth, image)}
+        {metaWithPropertyOrNull('og:image:height', imageHeight, image)}
+        {metaWithPropertyOrNull('og:type', openGraphType)}
+        {metaWithPropertyOrNull('og:site', openGraphSiteName)}
         {metaOrNull(
           'yandex-verification',
           GLOBALS.YANDEX_VERIFICATION,

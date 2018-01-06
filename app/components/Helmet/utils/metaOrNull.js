@@ -7,3 +7,11 @@ export default function metaOrNull(name, content, predicate = true) {
 
   return null
 }
+
+export function metaWithPropertyOrNull(property, content, predicate = true) {
+  if (content && predicate) {
+    return <meta property={property} content={content} />
+  }
+
+  return null
+}
