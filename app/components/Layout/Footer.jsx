@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 import Section from 'app/components/Layout/Section'
-import LinkScramble from 'app/components/Elements/LinkScramble'
+import LinkPrint from 'app/components/Elements/LinkPrint'
 import Divider from 'app/components/Elements/Divider'
 import css from './Footer.styl'
 import Email from './Email'
@@ -15,10 +15,10 @@ export default class Footer extends PureComponent {
         <main className={css.navigations}>
           <ul>
             <li className={css.resumeLink}>
-              <LinkScramble to="/resume">/resume</LinkScramble>
+              <LinkPrint to="/resume">/resume</LinkPrint>
             </li>
             <li className={css.resumeLink}>
-              <LinkScramble to="/playground">/playground</LinkScramble>
+              <LinkPrint to="/playground">/playground</LinkPrint>
             </li>
           </ul>
 
@@ -27,28 +27,28 @@ export default class Footer extends PureComponent {
               <Email />
             </li>
             <li>
-              <LinkScramble
+              <LinkPrint
                 to="https://github.com/romanonthego"
                 data-tooltip-position="top"
               >
                 github
-              </LinkScramble>
+              </LinkPrint>
             </li>
             <li>
-              <LinkScramble
+              <LinkPrint
                 to="https://medium.com/@romanonthego"
                 data-tooltip-position="top"
               >
                 medium
-              </LinkScramble>
+              </LinkPrint>
             </li>
             <li>
-              <LinkScramble
+              <LinkPrint
                 to="https://www.facebook.com/romanonthego"
                 data-tooltip-position="top"
               >
                 facebook
-              </LinkScramble>
+              </LinkPrint>
             </li>
           </ul>
         </main>

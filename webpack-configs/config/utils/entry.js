@@ -24,7 +24,6 @@ export const browser = (config = {}) => {
   if (production) {
     return {
       app: ['babel-polyfill', './app/entries/browser/index.js'],
-      demo: ['babel-polyfill', './app/entries/browser/demo.js'],
     }
   }
 
@@ -34,12 +33,6 @@ export const browser = (config = {}) => {
       'react-hot-loader/patch',
       'webpack-hot-middleware/client?overlay=true&reload=false',
       './app/entries/browser/index.js',
-    ],
-    demo: [
-      'babel-polyfill',
-      'react-hot-loader/patch',
-      'webpack-hot-middleware/client?overlay=true&reload=false',
-      './app/entries//browser/demo.js',
     ],
   }
 }

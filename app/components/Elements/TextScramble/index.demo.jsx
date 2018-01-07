@@ -3,7 +3,7 @@ import Demo from 'app/components/Elements/DemoLibrary/ComponentDemo'
 import DemoProps from 'app/components/Elements/DemoLibrary/ComponentDemo/props'
 import TextPrint from 'app/components/Elements/TextPrint'
 import TextScramble from 'app/components/Elements/TextScramble'
-import LinkScramble from 'app/components/Elements/LinkScramble'
+import LinkPrint from 'app/components/Elements/LinkPrint'
 import Component from './index'
 
 const Target = ({component, ...props}) => {
@@ -32,8 +32,8 @@ export const description = (
       render what it absolutly needs to. Utilises `requestAnimationFrame` under
       the hood. Reworked to react component from
     </TextPrint>
-    <LinkScramble to="https://codepen.io/soulwire/pen/mErPAK">
+    <LinkPrint to="https://codepen.io/soulwire/pen/mErPAK">
       Text Scramble Effect codepen
-    </LinkScramble>
+    </LinkPrint>
   </React.Fragment>
 )

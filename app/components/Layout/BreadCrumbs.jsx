@@ -1,6 +1,6 @@
 import React, {PureComponent, Children} from 'react'
 import PropTypes from 'prop-types'
-import LinkScramble from 'app/components/Elements/LinkScramble'
+import LinkPrint from 'app/components/Elements/LinkPrint'
 import cx from 'classnames'
 import css from './BreadCrumbs.styl'
 
@@ -26,7 +26,7 @@ export default class BreadCrumbs extends PureComponent {
       <nav className={css.breadcrumbs}>
         <ul>
           <li className={cx(css.item, css.root)}>
-            <LinkScramble to="/">romanonthego</LinkScramble>
+            <LinkPrint to="/">romanonthego</LinkPrint>
           </li>
           {childrenArray.map(renderItem)}
         </ul>

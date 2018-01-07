@@ -43,13 +43,13 @@ export default class IndexPage extends PureComponent {
     }
 
     importMePaths().then(paths => {
-      let useReducedMotion = false
+      // let useReducedMotion = false
 
       // if (window.matchMedia && window.matchMedia('(prefers-reduced-motion)')) {
       //   useReducedMotion = true
       // }
 
-      this.setState({paths, useReducedMotion})
+      this.setState({paths, useReducedMotion: true})
     })
   }
 

@@ -11,7 +11,6 @@ import {
   publicMiddeware,
   assetsMiddleware,
 } from './utils/expressMiddlewares'
-import demoMiddleware from './utils/demoMiddleware'
 import startMessage, {errorMessage} from './utils/startMessage'
 import {production as productionStatics} from './utils/getStatics'
 import compressionFilter from './utils/compressionFilter'
@@ -21,7 +20,6 @@ setupSentry()
 
 function start() {
   const appStatics = productionStatics('app')
-  const demoStatics = productionStatics('demo')
 
   const app = express()
 
@@ -31,7 +29,6 @@ function start() {
   app.use(compression({filter: compressionFilter}))
   app.use('/', publicMiddeware)
   app.use('/assets', assetsMiddleware)
-  app.use('/__demo', demoMiddleware(demoStatics))
 
   // sentry request handler - should go first
   if (GLOBALS.SENTRY_DSN_SERVER) {

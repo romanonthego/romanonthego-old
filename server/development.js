@@ -16,7 +16,6 @@ import noPrerenderTemplate from './utils/noPrerender.mustache'
 setupSentry()
 
 const appStatics = developmentStatics('app')
-const demoStatics = developmentStatics('demo')
 
 const app = express()
 
@@ -35,7 +34,6 @@ getPrerender(app, GLOBALS.DEV_PRERENDER, (err, compiledPrerender) => {
 app.use(morgan('dev'))
 app.use(cookieParser())
 app.use('/', publicMiddeware)
-app.use('/__demo', demoMiddleware(demoStatics))
 app.use(webpackDevMiddleware)
 app.use(webpackHotMiddleware)
 

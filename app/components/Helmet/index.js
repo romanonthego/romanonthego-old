@@ -53,6 +53,7 @@ export default class EcompHelmet extends PureComponent {
     image: shareImage,
     imageWidth: 1200,
     imageHeight: 630,
+    url: GLOBALS.BASE_URL,
   }
   render() {
     const {
@@ -69,6 +70,7 @@ export default class EcompHelmet extends PureComponent {
       company,
       website,
       breadcrumbs,
+      url,
     } = this.props
 
     return (
@@ -81,6 +83,7 @@ export default class EcompHelmet extends PureComponent {
         {metaOrNull('twitter:card', cardType)}
         {metaOrNull('twitter:site', siteHandler)}
         {metaOrNull('twitter:creator', creatorHandler)}
+        {metaWithPropertyOrNull('og:url', url)}
         {metaWithPropertyOrNull('og:title', title)}
         {metaWithPropertyOrNull('og:description', description)}
         {metaWithPropertyOrNull('og:image', `${GLOBALS.BASE_URL}${image}`)}

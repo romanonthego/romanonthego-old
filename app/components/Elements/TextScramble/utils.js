@@ -1,3 +1,5 @@
+// import memoize from 'fast-memoize'
+
 const {floor, random} = Math
 const scrambledChars = '!<>-_[]{}—=+*^?#________'
 
@@ -5,11 +7,11 @@ export const randomChar = (chars = scrambledChars) => {
   return chars[floor(random() * chars.length)]
 }
 
-export const castOutputToString = output => {
-  return output.reduce((acc, {char}) => {
-    return acc + char
-  }, '')
-}
+const threshold = 0.28
+
+const mapOutputToString = output => output.map(({char}) => char).join('')
+
+export const castOutputToString = mapOutputToString
 
 export const setText = (children, oldText) => {
   const queue = []
@@ -46,7 +48,7 @@ export const buildNewOutput = (queue, frame) => {
     }
 
     if (frame < end && frame >= start) {
-      if (!char || random() < 0.28) {
+      if (!char || random() < threshold) {
         newQueue[i].char = randomChar(scrambledChars)
       }
       output.push({dud: true, char})

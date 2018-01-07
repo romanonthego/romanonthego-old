@@ -43,20 +43,21 @@ export default class TextScamble extends Component {
   shouldComponentUpdate(newProps, newState) {
     // component is not depended on children directly,
     // rather on output[] from children
-    return (
+
+    const result =
       castOutputToString(newState.output) !==
       castOutputToString(this.state.output)
-    )
+
+    return result
   }
 
-  componentWillUpdate(newProps, newState) {
-    const {onDone, onDoneTimeout} = this.props
-
-    const done = newProps.onDone || onDone
-    const timeout = newProps.onDoneTimeout || onDoneTimeout
-
-    if (newState.done && onDone) {
-      this.onDoneTimeoutRequest = setTimeout(done, timeout)
+  componentDidUpdate() {
+    if (this.state.done && this.props.onDone) {
+      clearTimeout(this.onDoneTimeoutRequest)
+      this.onDoneTimeoutRequest = setTimeout(
+        this.props.onDone,
+        this.props.onDoneTimeout,
+      )
     }
   }
 

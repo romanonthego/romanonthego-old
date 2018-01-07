@@ -99,7 +99,7 @@ class Me extends Component {
       const prevValue =
         prevInterpolatedStyles[i - 1].opacity / paths[i - 1].fillOpacity
 
-      if (prevValue > 0.01) {
+      if (prevValue > 0.1) {
         return {
           opacity: springWithParams(paths[i].fillOpacity),
         }

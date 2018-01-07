@@ -1,9 +1,9 @@
-import React, {PureComponent} from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import css from './index.styl'
 
-export default class TextPrint extends PureComponent {
+export default class TextPrint extends Component {
   static propTypes = {
     children: PropTypes.string.isRequired,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
@@ -30,6 +30,18 @@ export default class TextPrint extends PureComponent {
     if (newProps.children !== this.props.children) {
       this.setText(newProps.children)
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.children !== nextProps.children) {
+      return true
+    }
+
+    if (this.state.text !== nextState.text) {
+      return true
+    }
+
+    return false
   }
 
   setText = text => {
@@ -88,16 +100,15 @@ export default class TextPrint extends PureComponent {
     const {
       component: Component = 'span',
       className,
-      children,
+      children, // eslint-disable-line
       ...otherProps
     } = this.props
 
-    const {text, done} = this.state
+    const {text} = this.state
 
     return (
       <Component className={cx(className, css.textPrint)} {...otherProps}>
         {text}
-        {!done && <span className={css.carret} />}
       </Component>
     )
   }

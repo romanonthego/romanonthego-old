@@ -1,5 +1,7 @@
-import React, {PureComponent} from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import {onlyUpdateForKeys} from 'recompose'
+import {compose} from 'ramda'
 
 const factors = (length, index) => {
   return {
@@ -46,7 +48,9 @@ const transform = ({x, y}) => {
   return `translate3d(${x}px, ${y}px, 0)`
 }
 
-export default class Path extends PureComponent {
+const enchance = compose(onlyUpdateForKeys(['x', 'y', 'opacity']))
+
+class Path extends Component {
   static propTypes = {
     paths: PropTypes.array.isRequired,
     d: PropTypes.arrayOf(PropTypes.array).isRequired,
@@ -78,3 +82,5 @@ export default class Path extends PureComponent {
     )
   }
 }
+
+export default enchance(Path)
