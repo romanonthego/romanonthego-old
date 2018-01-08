@@ -7,6 +7,8 @@ import css from './LoadingBar.styl'
 // const {floor} = Math
 const springConfig = {stiffness: 300, damping: 32, precision: 1}
 
+const mapingArray = Array(60)
+
 export default class LoadingBar extends PureComponent {
   static propTypes = {
     loading: PropTypes.bool.isRequired,
@@ -42,7 +44,7 @@ export default class LoadingBar extends PureComponent {
           <div className={css.bar} key={key}>
             <div className={css.border}>[</div>
             <div className={css.progress}>
-              {[...Array(100)].map((_, i) => {
+              {mapingArray.map((_, i) => {
                 const cl = cx({
                   [css.placeholder]: true,
                   [css.active]: width >= i,

@@ -49,7 +49,7 @@ export class Wrap extends PureComponent {
             creatorHandler="@romanonthego"
           />
           <ControlPanel />
-          <RouteTransition url={url} animated={isClient}>
+          <RouteTransition url={url} animated={false}>
             <main className={css.wrappedRoute} {...sanitizeProps(this.props)} />
           </RouteTransition>
         </main>

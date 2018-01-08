@@ -67,7 +67,7 @@ export default class RouteTransition extends PureComponent {
   }
 
   static defaultProps = {
-    animated: true,
+    animated: false,
   }
 
   renderRoutesTransition = () => {

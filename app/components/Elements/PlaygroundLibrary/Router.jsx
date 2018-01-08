@@ -24,9 +24,7 @@ export default class Router extends PureComponent {
   }
 
   handleHashChange = () => {
-    this.forceUpdate(() => {
-      window.scrollTo(0, 0)
-    })
+    this.forceUpdate()
   }
 
   componentDidMount() {

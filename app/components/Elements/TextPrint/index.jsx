@@ -68,20 +68,19 @@ export default class TextPrint extends Component {
       return
     }
 
+    const text =
+      step >= maxStep
+        ? children
+        : children.substring(0, step) +
+          '_' +
+          children
+            .substring(step, step + (maxStep - 1 - step))
+            .replace(/\S/g, '·')
+
     this.setState(
       {
         step: step + 1,
-        text:
-          step >= maxStep
-            ? children
-            : children.substring(0, step) +
-              '_' +
-              children
-                .substring(step, Math.ceil(step + (maxStep - 1 - step) / 2))
-                .replace(/\S/g, '·') +
-              children
-                .substring(step, Math.floor(step + (maxStep - 1 - step) / 2))
-                .replace(/\S/g, '\xa0'),
+        text,
         done: step >= maxStep,
       },
       this.animate,
