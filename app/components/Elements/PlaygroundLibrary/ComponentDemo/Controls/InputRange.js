@@ -63,7 +63,7 @@ export default createReactClass({
           max={max}
           step={step}
         />
-        <span>[{strValue}]</span>
+        <span>{`[${strValue}]`}</span>
       </div>
     )
   },

@@ -6,21 +6,34 @@ import TextScramble from 'app/components/Elements/TextScramble'
 import TextPrint from 'app/components/Elements/TextPrint'
 import LinkScramble from 'app/components/Elements/LinkScramble'
 import BreadCrumbs from 'app/components/Layout/BreadCrumbs'
-import LinksList from 'app/components/Elements/LinksList'
-import Library from 'app/components/Elements/DemoLibrary/Library'
+import Library from 'app/components/Elements/PlaygroundLibrary/Library'
 import paths from './paths'
 import css from './index.styl'
 
 export default class PlaygroundPage extends PureComponent {
   static propTypes = {}
 
+  state = {
+    loaded: false,
+  }
+
+  componentDidMount() {
+    this.displayLibrary()
+  }
+
+  displayLibrary() {
+    this.setState({loaded: true})
+  }
+
   render() {
+    const {loaded} = this.state
+
     return (
       <SiteWrap displayHeader={false} displayFooter>
         <Helmet
           url={`${GLOBALS.BASE_URL}/playground/`}
           title="Playground"
-          description="Playground"
+          description="Little playground and demos"
           breadcrumbs={[
             {
               id: `${GLOBALS.BASE_URL}`,
@@ -53,9 +66,11 @@ export default class PlaygroundPage extends PureComponent {
             react-demo-library
           </LinkScramble>
         </Section>
-        <Section paddingTop={false}>
-          <Library demos={paths} />
-        </Section>
+        {loaded && (
+          <Section paddingTop={false}>
+            <Library demos={paths} />
+          </Section>
+        )}
       </SiteWrap>
     )
   }

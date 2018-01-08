@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {unnest, last} from 'ramda'
 import Code from './Code'
+import DescriptionBlock from './DescriptionBlock'
 import css from './DemoPage.styl'
 
 // const MONO_FONT = 'Menlo, Monaco, Consolas, "Lucida Console", monospace'
@@ -46,7 +47,7 @@ export default class DemoPage extends PureComponent {
   renderFile({name, content}, index) {
     return (
       <div key={name} className={css.file}>
-        <span className={css.fileName}>{name}</span>
+        <DescriptionBlock>{name}</DescriptionBlock>
         <Code className={css.fileContent} language={fileNameToLanguage(name)}>
           {content}
         </Code>
@@ -69,7 +70,7 @@ export default class DemoPage extends PureComponent {
       <div className={css.content}>
         <div>{demo}</div>
         <div className={css.descriptionWrap}>
-          <span className={css.descriptionLabel}>description</span>
+          <DescriptionBlock>description</DescriptionBlock>
           <div className={css.description}>{description}</div>
         </div>
         {files && <div className={css.files}>{files.map(this.renderFile)}</div>}

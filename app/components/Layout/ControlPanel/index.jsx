@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Section from 'app/components/Layout/Section'
 import ExternalLink from 'app/components/Elements/ExternalLink'
 import LoadingBar from 'app/components/Layout/LoadingBar'
-import TextScramble from 'app/components/Elements/TextScramble'
+import TextPrint from 'app/components/Elements/TextPrint'
 import css from './index.styl'
 
 export default class ControlPanel extends PureComponent {
@@ -24,9 +24,9 @@ export default class ControlPanel extends PureComponent {
     return (
       <Section component="nav" paddingBottom={false} className={css.wrap}>
         <main className={css.status}>
-          <TextScramble className={css.statusText}>
+          <TextPrint className={css.statusText}>
             {loading ? 'loading' : 'loaded'}
-          </TextScramble>
+          </TextPrint>
 
           <LoadingBar loading={loading} />
         </main>

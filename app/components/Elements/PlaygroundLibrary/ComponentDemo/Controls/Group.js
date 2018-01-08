@@ -1,6 +1,7 @@
 import React from 'react'
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types'
+import DescriptionBlock from 'app/components/Elements/PlaygroundLibrary/DescriptionBlock'
 import css from './Group.styl'
 
 // const style = {
@@ -25,7 +26,7 @@ export default createReactClass({
     const {name, children} = this.props
     return (
       <label className={css.group}>
-        <span className={css.label}>{name}</span>
+        <DescriptionBlock>{name}</DescriptionBlock>
         {children}
       </label>
     )

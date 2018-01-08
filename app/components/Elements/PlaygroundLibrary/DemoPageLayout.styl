@@ -1,0 +1,54 @@
+.wrap
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  align-items: stretch
+  min-width: x(320)
+
+  +media('tablet')
+    flex-direction: column
+
+  +media('phone')
+    flex-direction: column
+
+.menuWrap
+  display: block
+  flex: 0 0 auto
+  color: white
+  padding: x(20) x(10)
+  background-color: rgba(white, 0.10)
+  width: x(320)
+
+  +media('tablet')
+    padding: x(10)
+    width: 100%
+    margin-bottom: x(20)
+
+  +media('phone')
+    padding: x(10)
+    width: 100%
+    margin-bottom: x(20)
+
+.menu
+  position: sticky
+  top: 0
+
+.content
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: flex-start
+  padding: 0  0 0 x(20)
+
+  flex: 1 1 auto
+  width: 100%
+  overflow: hidden
+
+  +media('tablet')
+    padding: 0
+
+  +media('phone')
+    padding: 0
+
+
+applyMediaCache()

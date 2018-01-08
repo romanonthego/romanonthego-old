@@ -1,21 +1,25 @@
 import React, {PureComponent} from 'react'
-import T from 'prop-types'
+import PropTypes from 'prop-types'
 
 export default class Router extends PureComponent {
   static propTypes = {
-    routes: T.arrayOf(T.object.isRequired).isRequired,
-    notFoundRoute: T.object.isRequired,
+    routes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    notFoundRoute: PropTypes.object.isRequired,
   }
 
   getCurrentRoute = () => {
     const {routes, notFoundRoute} = this.props
+
     const hash = location.hash.slice(2) // removes #!
+
     for (let i = 0; i < routes.length; i++) {
       const route = routes[i]
+
       if (route.hash === hash) {
         return route
       }
     }
+
     return notFoundRoute
   }
 

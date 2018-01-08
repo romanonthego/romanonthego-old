@@ -1,23 +1,18 @@
 import React from 'react'
-import Demo from 'app/components/Elements/DemoLibrary/ComponentDemo'
-import DemoProps from 'app/components/Elements/DemoLibrary/ComponentDemo/props'
+import Demo from 'app/components/Elements/PlaygroundLibrary/ComponentDemo'
+import DemoProps from 'app/components/Elements/PlaygroundLibrary/ComponentDemo/props'
 import TextScramble from 'app/components/Elements/TextScramble'
 import TextPrint from 'app/components/Elements/TextPrint'
 import Component from './index'
-
-const Target = ({component, ...props}) => {
-  return <Component component={component || 'p'} {...props} />
-}
 
 export default (
   <Demo
     background="dark"
     props={{
       children: DemoProps.text('Testing text print effect'),
-      component: DemoProps.string('h1'),
     }}
   >
-    {Target}
+    {props => <Component component="h1" {...props} />}
   </Demo>
 )
 

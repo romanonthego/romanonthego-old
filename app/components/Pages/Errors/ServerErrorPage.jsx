@@ -28,7 +28,7 @@ export default class ServerErrorPage extends PureComponent {
           <Section className={css.content}>
             <main>
               <h1 className={css.title}>500</h1>
-              <TextPrint className="secondary">Something went wrong</TextPrint>
+              <p className="secondary">Something went wrong</p>
             </main>
             <aside>
               <button onClick={() => window.location.reload()}>

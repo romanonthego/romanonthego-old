@@ -5,6 +5,16 @@
   align-items: stretch
   margin-bottom: x(20)
 
+  +media('tablet')
+    flex-direction: column
+    width: 100%
+    margin-bottom: x(10)
+
+  +media('phone')
+    flex-direction: column
+    width: 100%
+    margin-bottom: x(10)
+
 .targetWrap
   padding: 0
   display: flex
@@ -13,6 +23,11 @@
   align-items: center
   flex: 1 0 auto
   overflow: hidden
+
+  +media('tablet')
+    min-height: x(320)
+  +media('phone')
+    min-height: x(320)
 
 .dark, .light, .none
   position: relative
@@ -54,6 +69,15 @@
   flex: 0 0 auto
   margin-right: x(20)
 
+  +media('tablet')
+    width: 100%
+    margin-right: 0
+
+
+  +media('phone')
+    width: 100%
+    margin-right: 0
+
 .controlsSpacer
   flex: 1 0 auto
   background-color: rgba(white, 0.1)
@@ -69,3 +93,6 @@
     content: '^ interactive props'
     padding: x(10) 0
     opacity: 0.8
+
+
+applyMediaCache()

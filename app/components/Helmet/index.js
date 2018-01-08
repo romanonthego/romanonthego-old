@@ -83,6 +83,7 @@ export default class EcompHelmet extends PureComponent {
         {metaOrNull('twitter:card', cardType)}
         {metaOrNull('twitter:site', siteHandler)}
         {metaOrNull('twitter:creator', creatorHandler)}
+        {metaWithPropertyOrNull('og:type', website)}
         {metaWithPropertyOrNull('og:url', url)}
         {metaWithPropertyOrNull('og:title', title)}
         {metaWithPropertyOrNull('og:description', description)}

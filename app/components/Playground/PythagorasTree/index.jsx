@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {compose} from 'ramda'
 import {renderNothing, branch, withProps, pure, setPropTypes} from 'recompose'
 import memoize from 'fast-memoize'
+import css from './index.styl'
 
 const scaleFactor = 0.5 * Math.sqrt(2)
 const leftAngle = 45
@@ -102,10 +103,9 @@ export default class PythogorasTree extends PureComponent {
 
     return (
       <svg
-        style={{
-          height: 480,
-          width: 640,
-        }}
+        className={css.svgRoot}
+        viewBox="0 0 640 480"
+        preserveAspectRatio="xMidYMin slice"
       >
         <PythagorasNode
           level={1}

@@ -88,6 +88,7 @@ export default class IndexPage extends PureComponent {
       <SiteWrap displayHeader={false} displayFooter={this.shouldRender(6)}>
         <Helmet
           title="romanonthego"
+          url={GLOBALS.BASE_URL}
           description="Hello there, I’m Roman Dubinin, front-end developer"
           breadcrumbs={[
             {

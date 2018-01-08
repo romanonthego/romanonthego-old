@@ -9,11 +9,9 @@ import stylus from 'react-syntax-highlighter/languages/prism/stylus'
 import atomDarkStyle from 'react-syntax-highlighter/styles/prism/atom-dark'
 import css from './Code.styl'
 
-const languages = {jsx, javascript, stylus}
+const langs = {jsx, javascript, stylus}
 
-Object.keys(languages).map(language => {
-  registerLanguage(language, languages[language])
-})
+Object.keys(langs).map(lang => registerLanguage(lang, langs[lang]))
 
 export default class Code extends PureComponent {
   static propTypes = {
@@ -25,10 +23,6 @@ export default class Code extends PureComponent {
   static defaultProps = {
     language: 'jsx',
   }
-
-  // state = {
-  //
-  // }
 
   render() {
     const {children, className, language} = this.props

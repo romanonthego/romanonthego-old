@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
-import T from 'prop-types'
-import Layout from './Layout'
+import PropTypes from 'prop-types'
+import DemoPageLayout from './DemoPageLayout'
 import Router from './Router'
 import DemoPage from './DemoPage'
 import css from './Library.styl'
@@ -18,7 +18,7 @@ function locationToTitle(location) {
 
 export default class Library extends PureComponent {
   static propTypes = {
-    demos: T.arrayOf(T.object.isRequired).isRequired,
+    demos: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   }
 
   render() {
@@ -32,9 +32,9 @@ export default class Library extends PureComponent {
         title: locationToTitle(spec.location),
         hash: locationToHash(spec.location),
         content: (
-          <Layout menu={menu} fullWidth={spec.fullWidth}>
+          <DemoPageLayout menu={menu} fullWidth={spec.fullWidth}>
             <DemoPage {...spec} />
-          </Layout>
+          </DemoPageLayout>
         ),
       }))
       .concat([
@@ -42,17 +42,25 @@ export default class Library extends PureComponent {
           title: 'Playground',
           hash: '',
           content: (
-            <Layout menu={menu}>
+            <DemoPageLayout menu={menu}>
               <div className={css.emptyState}>
-                {'<=='} Use menu to start exploring the Playground
+                {'<=='} Use the menu to start exploring the Playground
               </div>
-            </Layout>
+            </DemoPageLayout>
           ),
         },
       ])
     const notFoundRoute = {
       title: '404 — Components Library',
-      content: <Layout menu={menu}>404</Layout>,
+      content: (
+        <DemoPageLayout menu={menu}>
+          <div className={css.emptyState}>
+            Demo not found
+            <br />
+            {'<=='} Use the menu
+          </div>
+        </DemoPageLayout>
+      ),
     }
     return <Router routes={routes} notFoundRoute={notFoundRoute} />
   }

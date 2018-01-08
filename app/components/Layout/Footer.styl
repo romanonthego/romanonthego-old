@@ -30,10 +30,17 @@
   justify-content: flex-start
   align-items: flex-end !important
 
+  +media('phone')
+    margin-top: x(20)
+    align-items: flex-start !important
+
 .navigations
   display: flex
   flex-direction: row
   justify-content: space-between
+
+  +media('phone')
+    flex-direction: column
 
 .resumeLink
   align-self: flext-end

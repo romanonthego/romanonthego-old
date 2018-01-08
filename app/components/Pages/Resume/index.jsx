@@ -19,7 +19,7 @@ export default class PlaygroundPage extends PureComponent {
         <Helmet
           url={`${GLOBALS.BASE_URL}/resume/`}
           title="Resume"
-          description="My resume"
+          description="Roman Dubinin resume links"
           breadcrumbs={[
             {
               id: `${GLOBALS.BASE_URL}`,

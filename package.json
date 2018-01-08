@@ -1,6 +1,6 @@
 {
     "name": "romanonthego.rocks",
-    "version": "3.2.2",
+    "version": "3.3.2",
     "description": "romanonthego.rocks front-end",
     "main": "index.js",
     "private": true,
@@ -15,6 +15,9 @@
         "clean-build-dir": "rm -rf ./build/*",
         "bump": "yarn version",
         "predev": "yarn clean-build-dir",
+        "subl": "subl ./",
+        "start:dev": "yarn subl && yarn dev",
+        "start:dev:prernder": "yarn subl && yarn dev:prernder",
         "dev":
             "webpack --config webpack-configs/server.development.babel.js && yarn start",
         "dev:prerender":

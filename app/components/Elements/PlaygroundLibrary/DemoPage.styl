@@ -9,6 +9,9 @@
   > div
     width: 100%
 
+  +media('tablet')
+    flex-direction: column
+
 .files
   display: flex
   flex-direction: column
@@ -21,8 +24,20 @@
   display: block
   margin-bottom: x(20)
 
+  +media('tablet')
+    margin-bottom: x(10)
+
+  +media('phone')
+    margin-bottom: x(10)
+
   &:last-child
     margin-bottom: 0
+
+    +media('tablet')
+      margin-bottom: 0
+
+    +media('phone')
+      margin-bottom: 0
 
 .fileContent
   &, &> *
@@ -47,6 +62,12 @@
   margin-bottom: x(20)
   padding: x(20) x(10)
 
+  +media('tablet')
+    margin-bottom: x(10)
+
+  +media('phone')
+    margin-bottom: x(10)
+
 .descriptionLabel
   display: block
   padding: 0 x(10)
@@ -54,3 +75,5 @@
   background-color: rgba(white, 0.1)
   border-bottom: 1px dashed rgba(white, 0.3)
 
+
+applyMediaCache()

@@ -57,6 +57,8 @@ export default function prerender(req, res, statics) {
         })
         .catch(matchingError => {
           const {status = 500, error, url} = matchingError
+
+          console.log(status)
           // not exactly an error, but still.
           if (status === 304) {
             return res.redirect(url)
@@ -70,6 +72,7 @@ export default function prerender(req, res, statics) {
         })
     })
     .catch(error => {
+      console.log(error)
       res.status(500).send(dumbErrorPage({error}))
     })
 }

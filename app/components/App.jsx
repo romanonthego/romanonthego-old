@@ -36,6 +36,8 @@ export default class App extends PureComponent {
     const {store, history} = this.props
     const {error} = this.state
 
+    console.log(error)
+
     if (error) {
       return <ServerErrorPage error={error} />
     }

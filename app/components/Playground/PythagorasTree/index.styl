@@ -1,0 +1,12 @@
+rootHeight = 480
+rootWidth = 640
+
+.svgRoot
+  height: x(rootHeight)
+  width: x(rootWidth)
+
+  +media('tablet')
+    height: x(rootHeight * 0.6)
+    width: x(rootWidth * 0.6)
+
+applyMediaCache()

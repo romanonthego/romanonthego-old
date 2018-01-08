@@ -37,7 +37,7 @@ export default {
     }
   },
 
-  range(initialValue, min, max, step) {
+  range(initialValue, {min, max, step}) {
     return {
       type: 'value',
       Control: Range,

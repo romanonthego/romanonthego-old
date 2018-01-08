@@ -9,7 +9,6 @@ import {
 import startMessage, {errorMessage} from './utils/startMessage'
 import getPrerender from './utils/getPrerender'
 import {development as developmentStatics} from './utils/getStatics'
-import demoMiddleware from './utils/demoMiddleware'
 import setupSentry from './utils/sentry'
 import noPrerenderTemplate from './utils/noPrerender.mustache'
 

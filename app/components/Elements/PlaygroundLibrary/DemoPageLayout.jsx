@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react'
 import T from 'prop-types'
 import {groupBy, values, tail, unnest} from 'ramda'
-import css from './Layout.styl'
+import css from './DemoPageLayout.styl'
 
 const MENU_WIDTH = 180
 
@@ -133,7 +133,7 @@ const Menu = props => (
   </div>
 )
 
-export default class Layout extends PureComponent {
+export default class DemoPageLayout extends PureComponent {
   static propTypes = {
     menu: T.arrayOf(T.object.isRequired).isRequired,
     children: T.node,
