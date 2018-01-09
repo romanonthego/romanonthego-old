@@ -51,7 +51,7 @@ export default class TextPrint extends Component {
 
     this.setState(
       {step: 0, maxStep: text.length, text: text[0], done: false},
-      this.animate(),
+      this.animate,
     )
   }
 
