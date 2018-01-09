@@ -31,7 +31,12 @@
 
 .menu
   position: sticky
-  top: 0
+  top: x(20)
+
+  +media('tablet')
+    position: static
+  +media('phone')
+    position: static
 
 .content
   display: flex

@@ -52,10 +52,7 @@ export default class LoadingBar extends PureComponent {
                 })
 
                 return (
-                  <span
-                    key={i} // eslint-disable-line
-                    className={cl}
-                  >
+                  <span key={i} className={cl}>
                     _
                   </span>
                 )
