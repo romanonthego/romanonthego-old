@@ -1,19 +1,16 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import T from 'prop-types'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import css from './InputCheckbox.styl'
 
-export default createReactClass({
-  displayName: 'Demo.Controls.InputCheckbox',
+export default class InputCheckbox extends PureComponent {
+  static propTypes = {
+    value: PropTypes.bool.isRequired,
+    onChange: PropTypes.func.isRequired,
+  }
 
-  propTypes: {
-    value: T.bool.isRequired,
-    onChange: T.func.isRequired,
-  },
-
-  handleChange() {
+  handleChange = () => {
     this.props.onChange(!this.props.value)
-  },
+  }
 
   render() {
     const {value} = this.props
@@ -29,5 +26,5 @@ export default createReactClass({
         <span className={css.value}>{value ? '[true]' : '[false]'}</span>
       </div>
     )
-  },
-})
+  }
+}

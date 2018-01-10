@@ -1,23 +1,21 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
+import React, {PureComponent} from 'react'
 import T from 'prop-types'
 import Group from './Group'
 import InputText from './InputText'
 
-export default createReactClass({
-
-  displayName: 'Demo.Controls.ControlString',
-
-  propTypes: {
+export default class ControlString extends PureComponent {
+  static propTypes = {
     name: T.string.isRequired,
     value: T.string.isRequired,
     onChange: T.func.isRequired,
-  },
+  }
 
   render() {
     const {name, value, onChange} = this.props
-    return <Group name={name}>
-      <InputText value={value} onChange={onChange} />
-    </Group>
-  },
-})
+    return (
+      <Group name={name}>
+        <InputText value={value} onChange={onChange} />
+      </Group>
+    )
+  }
+}

@@ -5,16 +5,14 @@ import Router from './Router'
 import DemoPage from './DemoPage'
 import css from './Library.styl'
 
-function locationToHash(location) {
-  return `/${location.map(encodeURIComponent).join('/')}/`
-}
+const locationToHash = location =>
+  `/${location.map(encodeURIComponent).join('/')}/`
 
-function locationToTitle(location) {
-  return `${location
+const locationToTitle = location =>
+  `${location
     .slice()
     .reverse()
-    .join(' \\ ')} — Components Library`
-}
+    .join(' \\ ')} — Playground Library`
 
 export default class Library extends PureComponent {
   static propTypes = {
@@ -23,17 +21,19 @@ export default class Library extends PureComponent {
 
   render() {
     const {demos} = this.props
+
     const menu = demos.map(({location}) => ({
       location,
       hash: locationToHash(location),
     }))
+
     const routes = demos
-      .map(spec => ({
-        title: locationToTitle(spec.location),
-        hash: locationToHash(spec.location),
+      .map(demo => ({
+        title: locationToTitle(demo.location),
+        hash: locationToHash(demo.location),
         content: (
-          <DemoPageLayout menu={menu} fullWidth={spec.fullWidth}>
-            <DemoPage {...spec} />
+          <DemoPageLayout menu={menu}>
+            <DemoPage {...demo} />
           </DemoPageLayout>
         ),
       }))
@@ -50,8 +50,9 @@ export default class Library extends PureComponent {
           ),
         },
       ])
+
     const notFoundRoute = {
-      title: '404 — Components Library',
+      title: '404 — Playground Library',
       content: (
         <DemoPageLayout menu={menu}>
           <div className={css.emptyState}>

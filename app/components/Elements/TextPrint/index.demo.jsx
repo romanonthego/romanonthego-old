@@ -16,7 +16,6 @@ export default (
   </Demo>
 )
 
-export const fullWidth = false
 export const location = ['ReactComponents', 'SiteComponents', 'TextPrint']
 export const description = (
   <React.Fragment>

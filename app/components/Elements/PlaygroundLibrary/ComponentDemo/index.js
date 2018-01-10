@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react'
-import T from 'prop-types'
+import PropTypes from 'prop-types'
 import mapValues from 'lodash/mapValues'
 import pick from 'lodash/pickBy'
 import pairs from 'lodash/toPairs'
@@ -44,11 +44,10 @@ const getCallbackProps = props => pick(props, x => x.type === 'callback')
 
 export default class ComponentDemo extends PureComponent {
   static propTypes = {
-    props: T.object,
-    fullWidth: T.bool,
-    target: T.oneOfType([T.func, T.string]),
-    children: T.func,
-    codeIndentDepth: T.number,
+    props: PropTypes.object,
+    target: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    children: PropTypes.func,
+    codeIndentDepth: PropTypes.number,
     background: Layout.propTypes.background,
   }
 
@@ -56,7 +55,6 @@ export default class ComponentDemo extends PureComponent {
 
   static defaultProps = {
     props: {},
-    fullWidth: false,
     codeIndentDepth: 3,
     background: 'light',
   }
@@ -65,6 +63,7 @@ export default class ComponentDemo extends PureComponent {
     super(props)
 
     const {props: demoProps} = props
+
     const flatProps = flattenProps(demoProps)
 
     this.state = {
@@ -105,7 +104,7 @@ export default class ComponentDemo extends PureComponent {
 
   render() {
     const {values, logs} = this.state
-    const {children, fullWidth, codeIndentDepth, background, props} = this.props
+    const {children, codeIndentDepth, background, props} = this.props
 
     const flatProps = flattenProps(props)
     const targetProps = nestProps({...values, ...this.getCallbacks(flatProps)})
@@ -121,13 +120,12 @@ export default class ComponentDemo extends PureComponent {
       values,
       codeIndentDepth,
       targetEl,
-      onTop: fullWidth,
       props: getValueProps(flatProps),
       onChange: this.updateValues,
     }
     const controlsEl = <Controls {...controlsProps} />
 
-    const layoutProps = {fullWidth, targetEl, controlsEl, background}
+    const layoutProps = {targetEl, controlsEl, background}
 
     return <Layout {...layoutProps} />
   }

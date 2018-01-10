@@ -6,16 +6,21 @@ import css from './SubTitle.styl'
 export default class SubTitle extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    element: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     className: PropTypes.string,
   }
 
   static defaultProps = {
-    element: 'h2',
+    component: 'h2',
   }
 
   render() {
-    const {element: Element, className, children, ...otherProps} = this.props
+    const {
+      component: Component,
+      className,
+      children,
+      ...otherProps
+    } = this.props
 
     const cl = cx({
       [css.subtitle]: true,
@@ -23,9 +28,9 @@ export default class SubTitle extends PureComponent {
     })
 
     return (
-      <Element className={cl} {...otherProps}>
+      <Component className={cl} {...otherProps}>
         {children}
-      </Element>
+      </Component>
     )
   }
 }

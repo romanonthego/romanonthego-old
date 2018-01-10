@@ -20,7 +20,6 @@ export default (
   </Demo>
 )
 
-export const fullWidth = false
 export const location = ['ReactComponents', 'CellularAutomata', 'GameOfLife']
 export const description = (
   <React.Fragment>

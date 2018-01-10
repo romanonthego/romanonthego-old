@@ -1,20 +1,8 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-import {unnest, last} from 'ramda'
 import Code from './Code'
 import DescriptionBlock from './DescriptionBlock'
 import css from './DemoPage.styl'
-
-// const MONO_FONT = 'Menlo, Monaco, Consolas, "Lucida Console", monospace'
-// const SERIF_FONT = '"Lucida Grande", Helvetica, arial, sans-serif'
-
-// function locationItem(name, i, {length}) {
-//   const last = length === i + 1
-//   return [
-//     <span key={`${i}item`}>{name}</span>,
-//     !last && <span key={`${i}del`}>/</span>,
-//   ]
-// }
 
 const languages = {
   js: 'jsx',
@@ -31,7 +19,6 @@ const fileNameToLanguage = name => {
 export default class DemoPage extends PureComponent {
   static propTypes = {
     demo: PropTypes.node,
-    fullWidth: PropTypes.bool,
     location: PropTypes.array.isRequired,
     importPath: PropTypes.string,
     name: PropTypes.string,
@@ -56,15 +43,7 @@ export default class DemoPage extends PureComponent {
   }
 
   render() {
-    const {
-      demo,
-      fullWidth,
-      location,
-      importPath,
-      description,
-      files,
-      name = last(location),
-    } = this.props
+    const {demo, description, files} = this.props
 
     return (
       <div className={css.content}>

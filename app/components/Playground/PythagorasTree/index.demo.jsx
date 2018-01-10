@@ -17,11 +17,19 @@ export default (
   </Demo>
 )
 
-export const fullWidth = false
 export const location = ['ReactComponents', 'Fractals', 'PythogorasTree']
 export const description = (
   <React.Fragment>
     <TextScramble component="h1">Pythogoras Tree</TextScramble>
-    <TextPrint component="p">Pythogoras Tree</TextPrint>
+    <TextPrint component="p">
+      Recursive React component - each node of the tree creates two more nodes
+      of the tree and so on and so on until max level is reached or node became
+      less than 1px in size.
+    </TextPrint>
+    <TextPrint>
+      Omtimized with recompose and fast-memoize for better perfomance. Even
+      still - `maxLevel` more than `11` will more likely cause browser tab to
+      crash :)
+    </TextPrint>
   </React.Fragment>
 )

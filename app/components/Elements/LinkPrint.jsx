@@ -12,13 +12,13 @@ export default class LinkPrint extends PureComponent {
     to: PropTypes.string.isRequired,
   }
 
-  getElement = () => {
+  getComponent = () => {
     const {to} = this.props
 
     return to.includes('http') ? ExternalLink : Link
   }
 
-  getElementProps = () => {
+  getComponentProps = () => {
     const {to} = this.props
 
     return to.includes('http') ? {'data-external': true} : {}
@@ -27,13 +27,13 @@ export default class LinkPrint extends PureComponent {
   render() {
     const {children, to, ...otherProps} = this.props
 
-    const Element = this.getElement()
-    const elementProps = this.getElementProps()
+    const Component = this.getComponent()
+    const elementProps = this.getComponentProps()
 
     return (
-      <Element to={to} {...elementProps} {...otherProps}>
+      <Component to={to} {...elementProps} {...otherProps}>
         <TextPrint component="span">{children}</TextPrint>
-      </Element>
+      </Component>
     )
   }
 }

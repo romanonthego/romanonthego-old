@@ -17,7 +17,6 @@ export default (
   </Demo>
 )
 
-export const fullWidth = false
 export const location = ['ReactComponents', 'SiteComponents', 'TextScramble']
 export const description = (
   <React.Fragment>

@@ -1,24 +1,15 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import T from 'prop-types'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 
-// const style = {
-//   display: 'block',
-//   width: '100%',
-//   boxSizing: 'border-box',
-// }
+export default class InputText extends PureComponent {
+  static propTypes = {
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+  }
 
-export default createReactClass({
-  displayName: 'Demo.Controls.InputText',
-
-  propTypes: {
-    value: T.string.isRequired,
-    onChange: T.func.isRequired,
-  },
-
-  handleChange(e) {
+  handleChange = e => {
     this.props.onChange(e.target.value)
-  },
+  }
 
   render() {
     return (
@@ -28,5 +19,5 @@ export default createReactClass({
         onChange={this.handleChange}
       />
     )
-  },
-})
+  }
+}

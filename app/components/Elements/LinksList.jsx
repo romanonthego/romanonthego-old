@@ -18,7 +18,7 @@ export default class LinksList extends PureComponent {
   }
 
   renderAndMore = () => {
-    const {addMore, moreLink, wrapped} = this.props
+    const {addMore, moreLink} = this.props
 
     const text = typeof addMore === 'boolean' ? 'and others' : addMore
     const component = moreLink ? (

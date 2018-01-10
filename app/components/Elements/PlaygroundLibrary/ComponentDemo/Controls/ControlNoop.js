@@ -1,10 +1,5 @@
-import createReactClass from 'create-react-class'
+const ControlNoop = () => null
 
-export default createReactClass({
+ControlNoop.displayName = 'ControlNoop'
 
-  displayName: 'Demo.Controls.ControlNoop',
-
-  render() {
-    return null
-  },
-})
+export default ControlNoop

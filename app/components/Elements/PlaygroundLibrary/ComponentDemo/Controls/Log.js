@@ -1,6 +1,5 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import T from 'prop-types'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import Group from './Group'
 
 // const style = {
@@ -17,16 +16,15 @@ import Group from './Group'
 //   borderBottom: 'solid 1px #e5e5e5',
 // }
 
-export default createReactClass({
-  displayName: 'Demo.Controls.Log',
-
-  propTypes: {
-    name: T.string.isRequired,
-    items: T.arrayOf(T.string).isRequired,
-  },
+export default class Log extends PureComponent {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }
 
   render() {
     const {name, items} = this.props
+
     return (
       <Group name={name}>
         <div className="react-demo__log">
@@ -38,5 +36,5 @@ export default createReactClass({
         </div>
       </Group>
     )
-  },
-})
+  }
+}

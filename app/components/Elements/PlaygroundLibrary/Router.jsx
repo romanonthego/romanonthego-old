@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
+import Helmet from 'app/components/Helmet'
 
 export default class Router extends PureComponent {
   static propTypes = {
@@ -9,15 +10,12 @@ export default class Router extends PureComponent {
 
   getCurrentRoute = () => {
     const {routes, notFoundRoute} = this.props
+    const hash = location.hash.slice(2)
 
-    const hash = location.hash.slice(2) // removes #!
+    const route = routes.find(route => route.hash === hash)
 
-    for (let i = 0; i < routes.length; i++) {
-      const route = routes[i]
-
-      if (route.hash === hash) {
-        return route
-      }
+    if (route) {
+      return route
     }
 
     return notFoundRoute
@@ -36,13 +34,13 @@ export default class Router extends PureComponent {
   }
 
   render() {
-    const route = this.getCurrentRoute()
+    const {content, hash, title} = this.getCurrentRoute()
 
-    // don't do that at work
-    document.title = route.title
-
-    // this is even dirtier, we know that `route.content` always a <Layout>
-    // element, so we just push additional prop to it. Tight coupling FTW.
-    return React.cloneElement(route.content, {currentHash: route.hash})
+    return (
+      <React.Fragment>
+        <Helmet title={title} />
+        {React.cloneElement(content, {currentHash: hash})}
+      </React.Fragment>
+    )
   }
 }

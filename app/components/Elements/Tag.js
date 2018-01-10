@@ -6,20 +6,20 @@ import css from './Tag.styl'
 export default class Tag extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    element: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }
 
   static defaultProps = {
-    element: 'span',
+    component: 'span',
   }
 
   render() {
-    const {element: Element, children} = this.props
+    const {component: Component, children} = this.props
 
     return (
-      <Element className={css.tag}>
+      <Component className={css.tag}>
         <TextScramble component="span">{children}</TextScramble>
-      </Element>
+      </Component>
     )
   }
 }

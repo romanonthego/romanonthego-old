@@ -19,6 +19,16 @@
   background-color: rgba(white, 0.10)
   width: x(260)
 
+  > .menu
+    position: sticky
+    top: x(20)
+
+    +media('tablet')
+      position: static
+    +media('phone')
+      position: static
+
+
   +media('tablet')
     padding: x(10)
     width: 100%
@@ -28,15 +38,6 @@
     padding: x(10)
     width: 100%
     margin-bottom: x(20)
-
-.menu
-  position: sticky
-  top: x(20)
-
-  +media('tablet')
-    position: static
-  +media('phone')
-    position: static
 
 .content
   display: flex
@@ -54,6 +55,25 @@
 
   +media('phone')
     padding: 0
+
+.menu
+  margin-left: x(5)
+  padding-left: x(5)
+  .menu
+    margin-bottom: x(10)
+
+.node
+  padding: 0
+  marginBottom: x(20)
+
+.nodeName
+  margin: 0
+  opacity: 0.6
+
+.leaf
+  display: block
+  margin: 0
+
 
 
 applyMediaCache()

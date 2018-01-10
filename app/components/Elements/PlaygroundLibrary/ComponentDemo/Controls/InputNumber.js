@@ -1,32 +1,18 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import T from 'prop-types'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 
-// function styles(invalid) {
-//   return {
-//     display: 'block',
-//     width: '100%',
-//     boxSizing: 'border-box',
-//     backgroundColor: invalid ? 'pink' : 'white',
-//   }
-// }
+export default class InputNumber extends PureComponent {
+  static propTypes = {
+    value: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired,
+    max: PropTypes.number,
+    min: PropTypes.number,
+  }
 
-export default createReactClass({
-  displayName: 'Demo.Controls.InputNumber',
-
-  propTypes: {
-    value: T.number.isRequired,
-    onChange: T.func.isRequired,
-    max: T.number,
-    min: T.number,
-  },
-
-  getInitialState() {
-    return {
-      strValue: String(this.props.value),
-      invalid: false,
-    }
-  },
+  state = {
+    strValue: String(this.props.value),
+    invalid: false,
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
@@ -35,9 +21,9 @@ export default createReactClass({
         invalid: false,
       })
     }
-  },
+  }
 
-  handleChange(event) {
+  handleChange = event => {
     const strValue = event.target.value
     const value = Number(strValue)
     const invalid = Number.isNaN(value)
@@ -45,7 +31,7 @@ export default createReactClass({
     if (!invalid) {
       this.props.onChange(value)
     }
-  },
+  }
 
   render() {
     const {min, max} = this.props
@@ -60,5 +46,5 @@ export default createReactClass({
         max={max}
       />
     )
-  },
-})
+  }
+}

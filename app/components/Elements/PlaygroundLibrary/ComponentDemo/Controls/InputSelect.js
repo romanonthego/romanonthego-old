@@ -1,39 +1,30 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import T from 'prop-types'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import findIndex from 'lodash//findIndex'
 
-// const style = {
-//   display: 'block',
-//   width: '100%',
-//   boxSizing: 'border-box',
-// }
+export default class InputSelect extends PureComponent {
+  static propTypes = {
+    value: PropTypes.any,
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.any,
+      }).isRequired,
+    ).isRequired,
+    onChange: PropTypes.func.isRequired,
+  }
 
-const optionType = T.shape({
-  label: T.string.isRequired,
-  value: T.any,
-})
-
-export default createReactClass({
-  displayName: 'Demo.Controls.InputSelect',
-
-  propTypes: {
-    value: T.any,
-    options: T.arrayOf(optionType.isRequired).isRequired,
-    onChange: T.func.isRequired,
-  },
-
-  handleChange(e) {
+  handleChange = e => {
     this.props.onChange(this.props.options[e.target.value].value)
-  },
+  }
 
-  renderOption(choice, index) {
+  renderOption = (choice, index) => {
     return (
       <option key={index} value={index}>
         {choice.label}
       </option>
     )
-  },
+  }
 
   render() {
     const {options, value} = this.props
@@ -45,5 +36,5 @@ export default createReactClass({
         {options.map(this.renderOption)}
       </select>
     )
-  },
-})
+  }
+}

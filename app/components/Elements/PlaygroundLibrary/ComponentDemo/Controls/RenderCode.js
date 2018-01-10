@@ -1,6 +1,5 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import T from 'prop-types'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import stringify from '../stringify'
 
 // const style = {
@@ -12,20 +11,19 @@ import stringify from '../stringify'
 //   overflow: 'auto',
 // }
 
-export default createReactClass({
-  displayName: 'Demo.Controls.RenderCode',
-
-  propTypes: {
-    obj: T.node.isRequired,
-    indentDepth: T.number.isRequired,
-  },
+export default class RenderCode extends PureComponent {
+  static propTypes = {
+    obj: PropTypes.node.isRequired,
+    indentDepth: PropTypes.number.isRequired,
+  }
 
   render() {
     const {obj, indentDepth} = this.props
+
     return (
       <div className="react-demo__render-code">
         {stringify(obj, {depthLim: indentDepth})}
       </div>
     )
-  },
-})
+  }
+}

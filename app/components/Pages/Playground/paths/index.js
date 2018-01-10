@@ -61,7 +61,6 @@ export default context.keys().map(path => {
     importPath,
     location,
     demo: context(path).default || context(path),
-    fullWidth: context(path).fullWidth || false,
     description: context(path).description || '',
     files,
   }

@@ -1,18 +1,5 @@
-import React from 'react'
-import createReactClass from 'create-react-class'
-import T from 'prop-types'
-
-// function styles(invalid) {
-//   return {
-//     display: 'block',
-//     width: '100%',
-//     maxWidth: '100%',
-//     boxSizing: 'border-box',
-//     borderColor: '#cccccc',
-//     backgroundColor: invalid ? 'pink' : 'white',
-//     fontFamily: 'Menlo, Monaco, Consolas, "Lucida Console", monospace',
-//   }
-// }
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 
 function stringifyFromUntrustedProp(obj) {
   try {
@@ -28,20 +15,16 @@ function stringifyFromUntrustedProp(obj) {
   }
 }
 
-export default createReactClass({
-  displayName: 'Demo.Controls.InputJson',
+export default class InputJson extends PureComponent {
+  static propTypes = {
+    value: PropTypes.any.isRequired,
+    onChange: PropTypes.func.isRequired,
+  }
 
-  propTypes: {
-    value: T.any.isRequired,
-    onChange: T.func.isRequired,
-  },
-
-  getInitialState() {
-    return {
-      strValue: stringifyFromUntrustedProp(this.props.value),
-      invalid: false,
-    }
-  },
+  state = {
+    strValue: stringifyFromUntrustedProp(this.props.value),
+    invalid: false,
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
@@ -50,9 +33,9 @@ export default createReactClass({
         invalid: false,
       })
     }
-  },
+  }
 
-  handleChange(event) {
+  handleChange = event => {
     const strValue = event.target.value
     let invalid = true
     let value
@@ -64,10 +47,10 @@ export default createReactClass({
     if (!invalid) {
       this.props.onChange(value)
     }
-  },
+  }
 
   render() {
     const {strValue, invalid} = this.state
     return <textarea rows={4} value={strValue} onChange={this.handleChange} />
-  },
-})
+  }
+}
