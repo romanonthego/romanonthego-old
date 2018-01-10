@@ -5,18 +5,16 @@ import TextScramble from 'app/components/Elements/TextScramble'
 import TextPrint from 'app/components/Elements/TextPrint'
 import Component from './index'
 
-const Target = (props = {}) => {
-  return <Component {...props} />
-}
-
 export default (
   <Demo
-    background="dark"
+    background="none"
     props={{
-      maxLevel: DemoProps.number(6, 1, 11),
+      rows: DemoProps.range(50, {min: 10, max: 100, step: 1}),
+      columns: DemoProps.range(50, {min: 10, max: 100, step: 1}),
+      generationTimeout: DemoProps.range(50, {min: 50, max: 2000, step: 50}),
     }}
   >
-    {Target}
+    {props => <Component {...props} />}
   </Demo>
 )
 

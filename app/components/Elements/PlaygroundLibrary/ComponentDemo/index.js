@@ -56,7 +56,7 @@ export default class ComponentDemo extends PureComponent {
   static defaultProps = {
     props: {},
     codeIndentDepth: 3,
-    background: 'light',
+    background: 'dark',
   }
 
   constructor(props) {

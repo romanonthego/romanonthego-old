@@ -1,0 +1,49 @@
+cellSize = 10
+
+.controls
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  align-items: center
+  padding: x(10) 0
+
+  button
+    margin-right: x(10)
+
+    &:last-child
+      margin-right: 0
+
+.grid
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: flex-start
+
+.row
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  align-items: flex-start
+
+.cell
+  display: block
+  position: relative
+  width: x(cellSize)
+  height: x(cellSize)
+
+  &:after
+    content: ''
+    display: block
+    position: absolute
+    width: calc(100% - 2px)
+    height: calc(100% - 2px)
+    top: 1px
+    left: 1px
+    background-color: black
+    border-radius: x(2)
+    transition: background-color 0.2s
+
+.liveCell
+  &:after
+    background-color: white
+    transition: background-color 0.2s
