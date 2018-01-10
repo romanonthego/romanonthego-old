@@ -5,7 +5,6 @@ import css from './DemoPageLayout.styl'
 
 const locationCutHead = item => ({...item, location: tail(item.location)})
 
-    cursor: 'pointer',
 const isLeaf = item => item.location.length === 1
 
 const isNode = item => item.location.length > 1
