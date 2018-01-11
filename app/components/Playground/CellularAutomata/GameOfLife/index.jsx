@@ -1,6 +1,8 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
+import {compose} from 'ramda'
+import {setPropTypes, onlyUpdateForKeys} from 'recompose'
 import css from './index.styl'
 
 const randomLive = (row, column) => {
@@ -24,7 +26,7 @@ const newGeneration = (rows, columns) => {
 }
 
 const nextGeneration = (rows, columns, grid) => {
-  const newGrid = grid.map(row => row.map(cell => cell))
+  const newGrid = grid.map(row => row.map(cell => ({...cell})))
 
   for (let row = 0; row < rows; row++) {
     for (let column = 0; column < columns; column++) {
@@ -75,7 +77,14 @@ const nextGeneration = (rows, columns, grid) => {
   return newGrid
 }
 
-const Cell = (props = {}) => {
+const enchance = compose(
+  setPropTypes({
+    alive: PropTypes.bool.isRequired,
+  }),
+  onlyUpdateForKeys(['alive']),
+)
+
+const Cell = enchance((props = {}) => {
   const {alive} = props
 
   const className = cx({
@@ -84,11 +93,7 @@ const Cell = (props = {}) => {
   })
 
   return <div className={className} />
-}
-
-Cell.propTypes = {
-  alive: PropTypes.bool.isRequired,
-}
+})
 
 export default class GameOfLife extends PureComponent {
   static propTypes = {
@@ -103,7 +108,7 @@ export default class GameOfLife extends PureComponent {
     generationTimeout: 300,
   }
 
-  state = {grid: [[]], runnig: false}
+  state = {grid: [[]], runnig: false, generation: 0}
 
   componentDidMount() {
     this.populateGrid(this.props)
@@ -114,22 +119,27 @@ export default class GameOfLife extends PureComponent {
       newProps.rows !== this.props.rows ||
       newProps.columns !== this.props.columns
     ) {
-      this.setState({runnig: false}, () => this.populateGrid(newProps))
+      this.setState({runnig: false, generation: 0}, () =>
+        this.populateGrid(newProps),
+      )
     }
   }
 
-  populateGrid = ({rows, columns}, callback = () => {}) => {
-    this.setState({grid: newGeneration(rows, columns)}, callback)
+  populateGrid = ({rows, columns}) => {
+    this.setState({grid: newGeneration(rows, columns), generation: 0})
   }
 
   nextGeneration = () => {
     const {rows, columns} = this.props
-    const {grid} = this.state
+    const {grid, generation} = this.state
 
-    this.setState({grid: nextGeneration(rows, columns, grid)}, this.setNextTick)
+    this.setState(
+      {grid: nextGeneration(rows, columns, grid), generation: generation + 1},
+      this.setNextGeneration,
+    )
   }
 
-  setNextTick = () => {
+  setNextGeneration = () => {
     this.generationTimeout = setTimeout(
       this.nextGeneration,
       this.props.generationTimeout,
@@ -147,7 +157,7 @@ export default class GameOfLife extends PureComponent {
   }
 
   reset = () => {
-    this.setState({runnig: false}, () => {
+    this.setState({runnig: false, generation: 0}, () => {
       clearTimeout(this.generationTimeout)
       this.populateGrid(this.props)
     })
@@ -164,7 +174,7 @@ export default class GameOfLife extends PureComponent {
   )
 
   render() {
-    const {grid, runnig} = this.state
+    const {grid, runnig, generation} = this.state
 
     return (
       <div>
@@ -176,6 +186,7 @@ export default class GameOfLife extends PureComponent {
             pause
           </button>
           <button onClick={this.reset}>reset</button>
+          <span>generation: {generation}</span>
         </aside>
         <div className={css.grid}>{grid.map(this.renderRow)}</div>
       </div>
