@@ -2,13 +2,9 @@ import isEqual from 'shallowequal'
 import {trackPage} from 'app/utils/analytics/gaAction'
 
 function getParamsFromHistory(history) {
-  const {
-    pathname,
-    search,
-    query: {page: pageNumber} = {},
-  } = history.getCurrentLocation()
+  const {pathname, hash} = history.getCurrentLocation()
 
-  return {pathname, search, pageNumber}
+  return {pathname, hash}
 }
 
 export default function attachHistoryListeners(history) {
@@ -25,11 +21,11 @@ export default function attachHistoryListeners(history) {
   })
 
   history.listen(() => {
-    const {pathname, search, pageNumber} = history.getCurrentLocation()
+    const {pathname, hash} = history.getCurrentLocation()
 
-    afterTransitionParams = {pathname, pageNumber}
+    afterTransitionParams = {pathname, hash}
 
-    trackPage(`${pathname}${search}`)
+    trackPage(`${pathname}${hash}`)
 
     if (shouldScrollToTop()) {
       window.scrollTo(0, 0)

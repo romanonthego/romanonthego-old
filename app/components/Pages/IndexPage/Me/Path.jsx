@@ -1,27 +1,27 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {onlyUpdateForKeys} from 'recompose'
-import {compose} from 'ramda'
+import memoize from 'fast-memoize'
 
-const factors = (length, index) => {
+const factors = memoize((length, index) => {
   return {
     translateFactor: 1 - (length - index) / length,
     randomFactor: 1,
     directionFactorX: index % 11 === 0 ? -1 : 1,
     directionFactorY: index % 13 === 0 ? -1 : 1,
   }
-}
+})
 
-const point = (p = []) => {
+const point = memoize((p = []) => {
   return p.join(',')
-}
+})
 
-const line = ([p1, p2, p3]) => {
+const line = memoize(([p1, p2, p3]) => {
   return `M${point(p1)}L${point(p2)}L${point(p3)}Z`
-}
-const color = ([r, g, b], alfa) => {
+})
+
+const color = memoize(([r, g, b], alfa) => {
   return `rgba(${r}, ${g}, ${b}, ${1 - alfa})`
-}
+})
 
 const visibility = (opacity, fillOpacity, x, y) => {
   return 1 - opacity / fillOpacity
@@ -48,9 +48,7 @@ const transform = ({x, y}) => {
   return `translate3d(${x}px, ${y}px, 0)`
 }
 
-const enchance = compose(onlyUpdateForKeys(['x', 'y', 'opacity']))
-
-class Path extends Component {
+export default class Path extends Component {
   static propTypes = {
     paths: PropTypes.array.isRequired,
     d: PropTypes.arrayOf(PropTypes.array).isRequired,
@@ -69,6 +67,12 @@ class Path extends Component {
     fillOpacity: 0,
   }
 
+  shouldComponentUpdate(newProps) {
+    const {x, y, opacity} = this.props
+
+    return newProps.x !== x || newProps.y !== y || newProps.opacity !== opacity
+  }
+
   render() {
     const {paths, d, fill, fillOpacity, opacity, x, y, index} = this.props
 
@@ -82,5 +86,3 @@ class Path extends Component {
     )
   }
 }
-
-export default enchance(Path)

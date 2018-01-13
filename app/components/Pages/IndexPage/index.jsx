@@ -49,7 +49,7 @@ export default class IndexPage extends PureComponent {
       //   useReducedMotion = true
       // }
 
-      this.setState({paths, useReducedMotion: true})
+      this.setState({paths, useReducedMotion: false})
     })
   }
 
@@ -373,7 +373,9 @@ export default class IndexPage extends PureComponent {
 
           <aside className={css.me}>
             {this.shouldRender(alreadyVisited ? 6 : 7, false) &&
-              paths && <Me paths={paths} mouseMovement={!useReducedMotion} />}
+              paths && (
+                <Me paths={paths} useMouseTracking={!useReducedMotion} />
+              )}
           </aside>
         </Section>
       </SiteWrap>

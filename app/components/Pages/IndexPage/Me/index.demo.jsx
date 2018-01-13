@@ -14,7 +14,7 @@ const importMePaths = () =>
 
 class Target extends PureComponent {
   static propTypes = {
-    mouseMovement: PropTypes.bool,
+    useMouseTracking: PropTypes.bool,
   }
 
   state = {
@@ -25,10 +25,12 @@ class Target extends PureComponent {
   }
 
   render() {
-    const {mouseMovement} = this.props
+    const {useMouseTracking} = this.props
     const {paths} = this.state
 
-    return <Component paths={paths} staticMe mouseMovement={mouseMovement} />
+    return (
+      <Component paths={paths} staticMe useMouseTracking={useMouseTracking} />
+    )
   }
 }
 
@@ -36,7 +38,7 @@ export default (
   <Demo
     background="dark"
     props={{
-      mouseMovement: DemoProps.bool(false),
+      useMouseTracking: DemoProps.bool(false),
     }}
   >
     {props => <Target {...props} />}

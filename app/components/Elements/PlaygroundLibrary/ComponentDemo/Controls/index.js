@@ -10,7 +10,6 @@ export default class Controls extends PureComponent {
     props: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     targetEl: PropTypes.node.isRequired,
-    onTop: PropTypes.bool.isRequired,
     codeIndentDepth: PropTypes.number.isRequired,
   }
 
@@ -43,9 +42,9 @@ export default class Controls extends PureComponent {
   }
 
   render() {
-    const {onTop, props, logs} = this.props
+    const {props, logs} = this.props
     return (
-      <Layout onTop={onTop}>
+      <Layout>
         {Object.keys(props).map(this.renderControl)}
         {Object.keys(logs).map(this.renderLog)}
       </Layout>

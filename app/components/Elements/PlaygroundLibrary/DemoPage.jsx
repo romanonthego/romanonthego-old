@@ -18,7 +18,7 @@ const fileNameToLanguage = name => {
 
 export default class DemoPage extends PureComponent {
   static propTypes = {
-    demo: PropTypes.node,
+    demo: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
     location: PropTypes.array.isRequired,
     importPath: PropTypes.string,
     name: PropTypes.string,

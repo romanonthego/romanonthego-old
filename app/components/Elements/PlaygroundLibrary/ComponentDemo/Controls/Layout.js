@@ -7,15 +7,14 @@ import css from './Layout.styl'
 export default class Layout extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    onTop: PropTypes.bool.isRequired,
   }
 
   renderChildren = () =>
     flattenDeep(this.props.children)
-      .filter(x => x && x.type !== ControlNoop)
-      .map((x, i) => (
+      .filter(child => child && child.type !== ControlNoop)
+      .map((child, i) => (
         <div key={i} className={css.controlWrap}>
-          {x}
+          {child}
         </div>
       ))
 

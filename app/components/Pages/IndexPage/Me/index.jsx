@@ -16,14 +16,14 @@ class Me extends Component {
   static propTypes = {
     subscribe: PropTypes.func.isRequired,
     unsubscribe: PropTypes.func.isRequired,
-    paths: PropTypes.array.isRequired,
+    paths: PropTypes.array,
     staticMe: PropTypes.bool,
-    mouseMovement: PropTypes.bool,
+    useMouseTracking: PropTypes.bool,
   }
 
   static defaultProps = {
     staticMe: false,
-    mouseMovement: true,
+    useMouseTracking: true,
   }
 
   state = {
@@ -32,17 +32,17 @@ class Me extends Component {
   }
 
   componentDidMount() {
-    if (this.props.mouseMovement) {
+    if (this.props.useMouseTracking) {
       this.subscribe()
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.mouseMovement && !this.props.mouseMovement) {
+    if (nextProps.useMouseTracking && !this.props.useMouseTracking) {
       this.subscribe()
     }
 
-    if (!nextProps.mouseMovement && this.props.mouseMovement) {
+    if (!nextProps.useMouseTracking && this.props.useMouseTracking) {
       this.unsubscribe()
     }
   }
@@ -59,6 +59,10 @@ class Me extends Component {
     }
 
     return false
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe()
   }
 
   subscribe = () => {

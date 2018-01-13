@@ -8,11 +8,13 @@ export default class TextPrint extends Component {
     children: PropTypes.string.isRequired,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     className: PropTypes.string,
+    staticRender: PropTypes.bool,
   }
 
   static defaultProps = {
     component: 'p',
     children: '',
+    staticRender: false,
   }
 
   state = {
@@ -24,6 +26,10 @@ export default class TextPrint extends Component {
 
   componentDidMount() {
     this.setText(this.props.children)
+  }
+
+  componentWillUnmount() {
+    this.cancelAnimation()
   }
 
   componentWillReceiveProps(newProps) {
@@ -100,13 +106,24 @@ export default class TextPrint extends Component {
       component: Component = 'span',
       className,
       children, // eslint-disable-line
+      staticRender,
       ...otherProps
     } = this.props
 
     const {text} = this.state
 
+    const cl = cx(className, css.textPrint)
+
+    if (staticRender) {
+      return (
+        <Component className={cl} {...otherProps}>
+          {children}
+        </Component>
+      )
+    }
+
     return (
-      <Component className={cx(className, css.textPrint)} {...otherProps}>
+      <Component className={cl} {...otherProps}>
         {text}
       </Component>
     )

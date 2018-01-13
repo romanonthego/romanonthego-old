@@ -3,27 +3,27 @@ import gaAction from './gaAction'
 const HIT_TYPE = 'event'
 const DEFAULT_EVENT_LABEL = 'vector2'
 const CATEGORIES = {
-  // TODO: implement event categories
+  EXTERNAL_LINK: 'EXTERNAL_LINK',
 }
 
-export default function(e) {
-  if (!e.eventAction) {
+export default function gaEvent(event) {
+  if (!event.eventAction) {
     return new Error('ga event must contain eventAction')
   }
 
-  if (!CATEGORIES[e.eventCategory] && typeof console !== 'undefined') {
+  if (!CATEGORIES[event.eventCategory] && typeof console !== 'undefined') {
     console.warn(
-      `there is no such eventCategory defined. ${e.eventCategory} will be used`,
-    ) // eslint-disable-line
+      `there is no such eventCategory defined. ${event.eventCategory} will be used`,
+    )
   }
 
-  const event = {
+  const eventData = {
     hitType: HIT_TYPE,
-    eventCategory: CATEGORIES[e.eventCategory] || e.eventCategory,
-    eventAction: e.eventAction,
-    eventLabel: e.eventLabel || DEFAULT_EVENT_LABEL,
-    ...(e.eventValue ? {eventValue: e.eventValue} : {}),
+    eventCategory: CATEGORIES[event.eventCategory] || event.eventCategory,
+    eventAction: event.eventAction,
+    eventLabel: event.eventLabel || DEFAULT_EVENT_LABEL,
+    ...(event.eventValue ? {eventValue: event.eventValue} : {}),
   }
 
-  return gaAction('send', event)
+  return gaAction('send', eventData)
 }
