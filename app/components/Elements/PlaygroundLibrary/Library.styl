@@ -8,3 +8,18 @@
   flex: 1 0 auto
   width: 100%
   text-align: center
+
+.useTheMenu
+  &:before
+    content: '<== '
+
+  +media('tablet')
+    &:before
+      display: block
+      content: '^^^ '
+  +media('phone')
+    &:before
+      display: block
+      content: '^^^ '
+
+applyMediaCache()
