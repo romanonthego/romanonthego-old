@@ -9,6 +9,7 @@ export default function demo() {
   return <Demo background="none">{() => null}</Demo>
 }
 
+export const excludeFromLib = true
 export const location = ['Code', 'DataStructures', 'List']
 export const description = (
   <React.Fragment>

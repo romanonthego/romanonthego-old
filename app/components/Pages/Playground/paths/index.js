@@ -51,17 +51,33 @@ const getFiles = (path, name) => {
   return files
 }
 
-export default context.keys().map(path => {
+const mapPath = path => {
+  const pathContext = context(path)
   const importPath = `app/components/${/^\.\/(.*)\.demo\.jsx?$/.exec(path)}`
-  const location = context(path).location || getLocation(importPath)
+  const {
+    location = getLocation(importPath),
+    excludeFromLib = false,
+    description = '',
+  } = pathContext
+
+  if (excludeFromLib) {
+    return null
+  }
+
   const name = getName(importPath)
   const files = getFiles(path, name)
 
   return {
     importPath,
     location,
-    demo: context(path).default || context(path),
-    description: context(path).description || '',
+    // as for default export - default is reserver word, so can not go to destructuring
+    demo: pathContext.default || context(path),
+    description,
     files,
   }
-})
+}
+
+export default context
+  .keys()
+  .map(mapPath)
+  .filter(result => result !== null)

@@ -60,7 +60,9 @@ export default class Library extends PureComponent {
           <div className={css.emptyState}>
             Demo not found
             <br />
-            <span className={css.useTheMenu}>Use the menu</span>
+            <span className={css.useTheMenu}>
+              Use the menu to start exploring the Playground
+            </span>
           </div>
         </DemoPageLayout>
       ),
