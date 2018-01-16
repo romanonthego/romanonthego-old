@@ -98,7 +98,7 @@ export default class EcompHelmet extends PureComponent {
           Boolean(GLOBALS.YANDEX_VERIFICATION),
         )}
         {metaOrNull(
-          'google-verification',
+          'google-site-verification',
           '52cc9HZNEX5Gd1dc_5G3XifhHYqZ5DKH0Xffngcd3PM',
         )}
         {company && scriptTag(companyScheme(company))}
